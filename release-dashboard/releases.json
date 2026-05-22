@@ -1,0 +1,550 @@
+{
+  "releases": [
+    {
+      "ts": "1779462738.657739",
+      "version": "Deploy #471",
+      "releaseDate": "2026-05-21",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1779462738657739?thread_ts=1779426038.669409&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #471 (2026-05-21)\n\nNew Features\n\nJob and Order Notifications\nUsers can now opt into push, SMS, and email notifications for key job events — accepted, rejected, canceled, and completed — as well as when new orders or projects are created. Notification preferences are configurable per channel on the User Profile Notifications screen, so each team member receives only the alerts they care about.\n\nBulk Download Filters\nBulk Download Files now respects your page filters (date range, driver) so downloads match exactly what you see on screen. The download dialog also displays which filters are applied before you download, eliminating guesswork about what's included.\n\n───\n\nImprovements\n\n• Idle time visibility on the live map — Idle truck markers now use a higher-contrast yellow, and route history idle indicators have been updated with clearer colors and styling for better at-a-glance readability\n• Projects page for parent+child companies — The Projects page now shows projects from both parent and child companies by default\n• API pagination documentation — Documentation for upcoming pagination changes is now available in the API developer reference\n\n───\n\nBug Fixes\n\nProject-level Rates\n\n• Fixed switching the pickup site on Copy & Edit not clearing the previous rate card selection\n• Fixed the driver rate being lost when the \"Use vendor rate\" toggle was checked\n• Fixed incorrect add-ons being saved when canceling and re-saving on the Edit Job rematch step\n• Fixed the Copy & Edit order form not preserving the selected rate card from the original order\n• Fixed editing existing site rates in the project form being silently dropped on save\n• Rates are now properly decoupled from the project when an order is canceled, matching the existing completion behavior\n• Fixed stamped order rates on completion incorrectly referencing project-level add-on assignments\n\nOther\n\n• Fixed jittery UI behavior during job event transitions (e.g., accepting or completing a job)\n• Fixed Live Map zoom buttons not working, and fixed a follow-up issue where map panning broke after the zoom fix\n• Fixed job creation failing when an order referenced a user who no longer has the Foreman role\n• Fixed driver counts on the dispatch page not updating after job state changes like cancellation\n• Fixed live site data broadcasting scoping incorrectly, which could cause missed site proximity updates\n• Fixed CRH ticket integration incorrectly importing kilogram values as tons\n\n───\n\nIn Progress (not yet customer-facing)\n\n• Idle Time — Live map idle indicators and route history polishes shipped; metric calculations and driver panel integration continue\n• Bulk Download Files — Date and driver filters now work; approved-only load filtering and higher download limits coming next"
+    },
+    {
+      "ts": "1779376122.826889",
+      "version": "Mobile v1.110.0",
+      "releaseDate": "2026-05-20",
+      "isMobile": true,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1779376122826889?thread_ts=1779296335.596119&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Mobile v1.110.0 (2026-05-20)\n\nNew Features\n\nEdit Job Form Redesign with Rate Card Support\nThe Edit Job form now includes full rate card support on mobile. Dispatchers can select from project or order rate cards, toggle vendor rate and add-ons per rate card, and override the system-matched rate. Rate display logic on order details has been updated to show the starred customer rate or hide rates when none are starred. The field formerly labeled \"Site rate schedule\" is now called \"Rate Card Selection\" for clarity.\n\nManual Offline Mode\nOffline mode is now manually controlled rather than triggered by automatic detection, giving drivers more predictable behavior. Drivers can also complete required signatures while offline — signatures are queued and submitted once connectivity returns.\n\nMap Improvements\nThe driver map now auto-centers on your current location while navigating. The confusing delayed green marker has been removed in favor of the live blue pin. Local geofence notifications alert drivers when approaching pickup or dropoff sites, and map cursor alignment and orientation have been improved.\n\n───\n\nImprovements\n\n• Softer in-app update prompt — App updates now appear as a gentle notification on the Accounts tab instead of forcing an immediate update\n• Load-level sites on orders — Orders now display pickup and dropoff sites at the load level, so drivers can see exactly where each load needs to go even when dispatch doesn't set order-level waypoints\n• Ticket quantity validation — The app now validates ticket quantity after a ticket is added, preventing incomplete submissions\n\n───\n\nBug Fixes\n\n• Drivers can no longer upload tickets to canceled jobs\n• Fixed an issue where newly added mid-day drivers could see scale tickets instead of digital tickets on orders configured for digital tickets\n• Fixed an issue where unstarring a rate card on an order didn't trigger a rate rematch\n• Fixed percentage add-on values displaying incorrectly in the add-on selector\n• Fixed an accessibility issue where large text settings could block button taps on certain screens\n• Fixed an app crash that could occur when reconnecting to Tread after losing Wi-Fi\n• Reduced iOS app hangs caused by permission checks during app resume\n\n───\n\nIn Progress (not yet customer-facing)\n\n• Project-level Rates — Mobile rate card support is now live; web-side polishes, reporting integration, and rollout to remaining accounts continue"
+    },
+    {
+      "ts": "1779203040.374739",
+      "version": "Deploy #465",
+      "releaseDate": "2026-05-18",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1779203040374739?thread_ts=1779157936.641679&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #465 (2026-05-18)\n\nImprovements\n\nProject-level Rates\n\n• Project timeline entries now identify which specific rate card was changed, including its name and conditions — making it easy to tell which rate was modified on projects with multiple rate cards\n• When editing a job, saving condition changes alongside manual rate edits now triggers a confirmation dialog so the rate re-match doesn't silently override your manual pricing\n• Deleting a starred rate card on an order now prompts a confirmation and triggers a system re-match, consistent with the existing unstar behavior\n• Project and order forms now gracefully recover from partial save failures — if some rate cards or add-ons fail to save, the form stays open with a clear error message and retry option instead of silently losing data\n• The order form now correctly indicates when rates are decoupled from the project after an order moves back from Completed status\n\n───\n\nBug Fixes\n\nProject-level Rates\n\n• Fixed an issue where add-on cascading could incorrectly target assignments across companies\n• Replacing an add-on type and adding another with the same rate in a single edit no longer fails to save\n• Editing only add-ons on the Edit Job form now correctly enables the Save button\n• Previously matched vendor and driver rates are now properly cleared when switching to a rate card that doesn't include them\n• Vendors in a sub-dispatch chain can no longer edit the customer rate through the Receivables Invoice\n• Rate matching no longer runs on projects that don't use site rates, preventing inherited add-ons from being unintentionally removed\n• Fixed a race condition where saving add-ons could intermittently fail when deletions and updates overlapped — now fixed across order, project, and rate card forms\n• Fixed an issue where the Edit Job dialog could fail to close after saving\n\nOther\n\n• The External tab badge count now updates correctly when orders transition between states\n• Driver list export now includes truck numbers and shows all visible drivers (including vendor drivers), not just company drivers\n\n───\n\nIn Progress (not yet customer-facing)\n\n• Idle Time — Improved driver idle indicators on the dispatch page with real-time updates in the driver panel, jobs table, and live map; visual refinements to idle icons"
+    },
+    {
+      "ts": "1778857746.773719",
+      "version": "Deploy #463",
+      "releaseDate": "2026-05-14",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1778857746773719?thread_ts=1778814136.234059&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #463 (2026-05-14)\n\nNew Features\n\nSales Quoting Workflow\nThe Projects page now includes a Quotes tab with full lifecycle tracking. Move projects through Draft, Quoted, Active, and Completed states directly from the page. Status chips and transition actions make it easy to manage your sales pipeline at a glance.\n\n───\n\nImprovements\n\n• Order Metrics redesign — The Order Metrics view has been refreshed with new data including first truck arrival time, total work time, scheduled start, and idle time breakdowns at pickup and dropoff. Truck status badges now show completed-vs-accepted counts at a glance\n• Project-level Rates terminology — \"Unnamed Schedule\" renamed to \"Base Rate\" and the invoice rate selector renamed to \"Rate Card\" for clearer naming\n• Improved automatic ticket matching for orders dispatched with placeholder jobs\n• The \"Running\" checkbox on job edit forms is now always editable\n\n───\n\nBug Fixes\n\n• Project-level Rates — Add-ons now properly sync from Invoice to Settlement; clearing a rate value no longer causes a save error; duplicating an order preserves the default rate card; fixed cases where customer rates could disappear; deleting a starred rate on a project no longer causes errors on linked orders\n• Driver and vendor rates are now correctly preserved when duplicating orders\n• Shared equipment no longer appears in the Telematics equipment selector\n• Add-ons applied after rate matching now correctly update invoice reconciliation\n• Order truck count no longer briefly shows 0 after creating an order\n• Duplicating an order now preserves tax rate and external tax accounting settings\n• Improved settlement processing reliability\n• Fixed a state transition error that could block load arrival\n\n───\n\nIn Progress (not yet customer-facing)\n\n• Idle Time — Idle time data fields wired into Load, Job, Order, and DriverDay views; rolling out per-company\n• PostGIS Geofence Processing — continued backend improvements and bug fixes"
+    },
+    {
+      "ts": "1778598431.693709",
+      "version": "Deploy #459",
+      "releaseDate": "2026-05-11",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1778598431693709?thread_ts=1778557528.752779&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #459 (2026-05-11)\n\nNew Features\n\nIdle Time Tracking\nDispatchers can now see when trucks are idle directly on the Dispatch page. An idle indicator appears on the driver panel, and a threshold line is shown on the speed timeline so you can quickly spot idle periods. Idle time is automatically calculated per load, job, and order upon completion.\n\n───\n\nImprovements\n\n• Project-level Rates polish — \"Site Rate Schedule\" renamed to \"Freight Rates\" for clarity, a confirmation modal now appears before starring a rate to prevent unintended cascading changes, and a \"Rate Card Selection\" label has been added to the site rate selector\n• Load notes are now visible in order-level load lists and the load drawer, with edits immediately reflected after saving\n• New branded Tread email layout for transactional emails\n• Apex orders now default to Running Loads\n\n───\n\nBug Fixes\n\n• Fixed an issue where changes to an order's tax configuration were not propagating to existing Invoices and Settlements, causing incorrect tax amounts on bills\n• Project-level Rates fixes — Edit Order form no longer overwrites concurrent rate edits; validation errors now show readable field names instead of technical paths; changing rates at the order level after completion correctly cascades to jobs\n• Fixed WBS/Phase code not being saved to the order after creation\n• Fixed job map not displaying site locations correctly\n• Fixed autocomplete dropdown arrow misalignment in dispatch and approvals tables\n• Fixed driver auto-assignment when matching equipment from resolved tickets\n\n───\n\nIn Progress (not yet customer-facing)\n\n• PostGIS Geofence Processing — continued backend pipeline improvements and bug fixes\n• Prevailing Wage — backend data models in maintenance; rate calculation and UI pending\n• Quoting — backend sales state machine shipped; full quoting workflow pending"
+    },
+    {
+      "ts": "1778166619.217609",
+      "version": "Deploy #456",
+      "releaseDate": "2026-05-06",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1778166619217609?thread_ts=1778090461.678029&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #456 (2026-05-06)\n\nBug Fixes\n\n• Fixed \"Copy and Edit\" on orders clearing rates instead of carrying them over — rates now properly persist when duplicating orders, including those assigned to projects\n\n───\n\nIn Progress (not yet customer-facing)\n\n• PostGIS Geofence Processing — continued backend pipeline improvements; product-facing features pending"
+    },
+    {
+      "ts": "1777993693.211799",
+      "version": "Deploy #453",
+      "releaseDate": "2026-05-05",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1777993693211799?thread_ts=1777946845.213399&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #453 (2026-05-05)\n\nNew Features\n\nProject Timeline\nProjects now display a real-time timeline of key events — including creation, rate changes, site updates, and schedule modifications. Teams can track a project's full activity history at a glance without leaving the project view.\n\n───\n\nImprovements\n\nProject-level Rates\n• Orders with no rates now show a clear empty-state UI, making it obvious when pricing hasn't been configured\n• Project-level rates now take precedence over order-level fallbacks during automatic rate matching\n• Starring a rate on an order now cascades that rate to all jobs on the order\n• Customer rate is now visible directly on the Dispatch page\n• A confirmation banner now appears when unstarring rates to prevent accidental changes\n• Sub-vendors in the dispatch chain can no longer edit the customer rate\n\nSelf-Service API Clients — Full Release\n• API client management is now fully released with a polished interface — create, view, and revoke API clients directly from Settings\n\nOther Improvements\n• The automated ticket review now detects when an uploaded image isn't actually a ticket and prevents automatic approval, improving billing accuracy\n• \"Axle\" has been renamed to \"Telematics\" throughout the platform\n• Users can now set a preferred language on their profile\n• Pickup and dropoff site selectors are now available on the load drawer\n• Orders can now be deleted via the API\n• Drivers are now automatically assigned to driverless jobs when a matching ticket is ingested\n• The Accounting ID field is now available on updated user profile forms\n\n───\n\nBug Fixes\n\n• Fixed sent job counts showing 0 in cross-company dispatch when sent jobs actually exist\n• Fixed stale add-ons persisting when site or material changes trigger a different rate match\n• Fixed \"Copy and Edit\" on projects not carrying over freight rates\n• Fixed \"Copy and Edit\" on orders not preserving all order details\n• Fixed customer rate intermittently disappearing on orders\n• Fixed clearing a system-matched rate card not resetting all associated values\n• Fixed rate matching not retriggering when changing sites on an order or job\n• Fixed add-on percentage calculations showing incorrect totals after editing line items\n• Fixed duplicate add-ons appearing on projects\n• Fixed settlement column settings not persisting when navigating away\n• Fixed admin geofence page showing incorrect view on initial load\n• Fixed driver dispatch SMS showing incorrect driver quantity\n• Fixed shared-site multi-load not advancing fully through the pickup cycle\n• Fixed order site changes not cascading updates to associated jobs\n\n───\n\nIn Progress (not yet customer-facing)\n\n• Idle Time — backend speed-based detection infrastructure shipped; live map indicators and timeline UI pending\n• Prevailing Wage — foundational data models complete; rate calculation, classification, and billing integration pending"
+    },
+    {
+      "ts": "1777907778.423449",
+      "version": "Mobile v1.109.0",
+      "releaseDate": "2026-05-04",
+      "isMobile": true,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1777907778423449?thread_ts=1777904472.427809&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Mobile v1.109.0 (2026-05-04)\n\nNew Features\n\nProject-Level Rates on Mobile\nThe full Rates experience is now available on mobile order forms — including project-level rate cards, add-ons, and inline rate editing. Dispatchers can manage pricing directly from their phone or tablet.\n\nSend Message from Mobile\nDispatchers can now text individual drivers or all drivers on an order directly from the mobile app, making field communication faster and easier.\n\nDriver Signature on DriverDay Log\nDrivers can now provide a signature on their DriverDay log when stopping, adding accountability and compliance documentation to daily workflows. Currently rolling out to select organizations.\n\n───\n\nImprovements\n\n• Load notes now have their own dedicated section in load and ticket details for easier viewing\n• Site creation now pins to the typed address instead of defaulting to the current GPS location\n\n───\n\nBug Fixes\n\n• Fixed SSO login on mobile no longer incorrectly redirecting to the web app after sign-in\n• Fixed Foreman role incorrectly showing rate information on the Job Details (Schedule) tab\n• Improved offline detection accuracy — reduced false-positive \"offline\" alerts"
+    },
+    {
+      "ts": "1777648225.038759",
+      "version": "Deploy #452",
+      "releaseDate": "2026-04-30",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1777648225038759?thread_ts=1777590066.234499&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #452 (2026-04-30)\n\nImprovements\n\nProject-level Rates\n• The new rate selection experience is now available on the Edit Job form, giving dispatchers the same streamlined pricing controls when modifying existing jobs\n• Users can now clear rates on a job to reset to automatic rate matching\n\nSelf-Service API Clients\n• API client creation flow is now complete — create a new client, assign a role, and receive a one-time API key all from the Settings page\n\n───\n\nBug Fixes\n\n• Fixed \"Copy and Edit\" on projects incorrectly linking copied add-ons to the original project — copied projects are now fully independent\n\n───\n\nIn Progress (not yet customer-facing)\n\n• Project-level Rates — mobile support and reporting enhancements in progress\n• Self-Service API Clients — security enhancements and additional management capabilities coming soon"
+    },
+    {
+      "ts": "1777562205.652329",
+      "version": "Deploy #451",
+      "releaseDate": "2026-04-29",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1777562205652329?thread_ts=1777525269.609899&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #451 (2026-04-29)\nNew Features\nSelf-Service API Client Management\nCompany admins can now create, view, and revoke API clients directly from the new API Clients page in Settings. Active clients are displayed with masked keys, and access can be revoked instantly with a single click.\n───\nImprovements\nProject-level Rates\n• Invoice rate selectors now show project-level rates instead of only company-wide rates, so billing matches the pricing configured on each project\n• Invoice line items now display a \"Type\" column distinguishing Material and Freight charges\n• Each rate card now includes a \"Use vendor rate and add-ons for driver rate\" option, letting driver rates stay in sync with vendor pricing automatically\n• Material rates now properly validate unit of measure when a sell price is set\n• Material rate selections are now correctly saved and displayed on orders\n• Improved handling when a material rate's unit differs from the material's default unit\n• Removed deprecated Flat Commission and Commission from Customer Rate types\nOther Improvements\n• The Automatic Settlement Add-ons table now shows a \"Default Qty\" column for easier verification\n• Jobs now only auto-start when GPS reports the driver is actually moving, reducing false starts from stationary location pings\n• Milling equipment now automatically uses the equipment site as the pickup location\n• User profiles now support an Accounting ID field for correlating users with external payroll and accounting systems\n───\nBug Fixes\n• Fixed site rates not auto-populating on the Update Order form when a site is added\n• Fixed material rate not being saved when selecting a rate on completed orders\n• Fixed editing a job not updating pickup and dropoff locations when the job site changes\n• Fixed driver job counts showing inconsistent numbers across views\n• Fixed sub-vendors being unable to see ticket images in the Loads tab\n• Fixed ticket scanning not triggering in certain file upload timing scenarios\n• Fixed settlement rebill totals calculating incorrectly\n• Fixed bulk settlement creation showing an endless spinner when no invoices are groupable\n• Fixed settlement add-ons not visible in the read-only view when no job line items exist\n• Fixed duplicate ticket detection missing duplicates across sub-companies on the same order\n• Fixed stale duplicate ticket flags remaining after ticket numbers are cleared\n• Fixed precision rounding issues in rate and quantity calculations\n• Fixed table header styling and cell alignment issues\n───\nIn Progress (not yet customer-facing)\n• PostGIS Geofence Processing — new event processing pipeline shipped; product-facing features pending\n• Project Timeline Events — backend event recording infrastructure shipped; API and UI pending"
+    },
+    {
+      "ts": "1777043544.718539",
+      "version": "Deploy #450",
+      "releaseDate": "2026-04-23",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1777043544718539?thread_ts=1776998066.392199&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #450 (2026-04-23)\nNew Features\nSeparated Material & Freight Rates on Invoices\nInvoices and settlements now break out material rates and freight rates as separate line items, giving you a clearer cost breakdown. The combined view remains available for invoices without itemized material rates.\n───\nImprovements\n• Duplicate Ticket Filtering — The Dispatch page now supports filtering loads by duplicate ticket status, making it easier to find and resolve duplicates before billing or payment\n───\nBug Fixes\n• Fixed an issue preventing project attachments from being deleted\n• Fixed restored jobs going to \"To Pickup\" instead of incorrectly landing on \"Unloaded\" status\n• Fixed prevailing wage flag not carrying over from orders to invoices, so the prevailing wage filter in Payables and Receivables now returns correct results\n• Fixed automated order imports matching the wrong shared site when routing to sub-companies\n───\nIn Progress (not yet customer-facing)\n• Self-Service API Key Management — backend service shipped; admin UI pending\n• PostGIS Geofence Processing — backend pipeline improvements shipped; product-facing features pending"
+    },
+    {
+      "ts": "1776871033.115609",
+      "version": "Deploy #449",
+      "releaseDate": "2026-04-21",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1776871033115609?thread_ts=1776819707.699869&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #449 (2026-04-21)\nNew Features\nPhase Code Management — Bulk Paste from Excel\nManage phase codes in a new slide-out drawer with a full table view. Bulk-add dozens of phase codes by pasting directly from Excel — no more entering them one at a time.\nRestore Jobs\nDispatchers can now restore canceled jobs from a dropdown menu. Restoring a job with no active loads automatically creates one so work can resume immediately.\nStreamlined Ticket Entry\nTicket number is now optional on the web (configurable per organization). The ticket form auto-opens with smart defaults for date, time, and unit of measure — fewer clicks to log a ticket.\n───\nImprovements\n• Project-level Rates: Star a rate to apply it to every job on an order, overriding condition-based matching. Override matched rates on individual jobs and invoices. Rate cards now default to open when no rates are set.\n• Prevailing wage filter added to Payables and Receivables\n• License plate and VIN now visible on the Remote Vehicle Integration page\n• Invite type selection now uses a cleaner button toggle\n• Improved ticket scanning accuracy\n• Unified material rates view on projects — all material rates managed in a single form\n• Improved address geocoding accuracy\n───\nBug Fixes\n• Fixed crash in Payables when entering certain values in the add-on quantity field\n• Fixed Payables/Receivables not using correct per-load material data\n• Fixed vendor equipment update failing with an error\n• Fixed Export Jobs CSV \"Truck ID\" column showing vendor name instead of truck identifier\n• Fixed error when calculating fuel surcharge on certain invoices\n• Fixed truck count not updating when creating a job from an order\n• Fixed Add-Ons picker returning empty list for sub-company users\n• Fixed \"Add Material Rate\" button not appearing when material was not set on a project\n• Fixed error when saving a freight rate without selecting a rate type\n• Fixed rate matching not re-running when order or job attributes change\n• Improved Bulk Uploader date format documentation\n• Fixed SSO authentication issues for users with pending invitations\n• Fixed equipment type creation using wrong company version\n───\nIn Progress (not yet customer-facing)\n• PostGIS Geofence — backend service improvements shipped; product-facing features pending\n• Self-Service API Key Management — security backend and permissions shipped; admin UI pending"
+    },
+    {
+      "ts": "1776871022.632849",
+      "version": "Mobile v1.108.0",
+      "releaseDate": "2026-04-21",
+      "isMobile": true,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1776871022632849?thread_ts=1776792878.378509&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Mobile v1.108.0 (2026-04-21)\nNew Features\nOffline Ticket Creation\nCreate tickets while offline — they automatically sync (including images) once you reconnect. No more lost work in low-connectivity areas.\nOffline Actions Toggle\nAccept/reject and start/stop actions while offline can now be enabled per organization via feature flags.\nSmarter Offline Banner\nThe offline indicator now checks actual backend reachability, not just internet connectivity, giving you a more accurate picture of your connection status.\n───\nImprovements\n• Faster map loads on job and order views — reduced redundant network calls\n• Better inline error messages on Create Site and Job Location forms\n• More reliable feature flag evaluation, especially while offline\n───\nBug Fixes\n• Fixed Foreman role seeing rate information on the Order Details tab\n• Fixed contacts not saving when creating a new site (misleading \"Site not created\" error)\n• Fixed History tab intermittently disappearing for drivers"
+    },
+    {
+      "ts": "1776352536.803259",
+      "version": "Deploy #448",
+      "releaseDate": "2026-04-15",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1776352536803259?thread_ts=1776304253.919819&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #448 (2026-04-15)\nNew Features\nProject-level Rates\nYou can now define a complete pricing rulebook directly on a project — set customer, vendor, and driver rates with conditions based on pickup site, dropoff site, equipment type, and material. The system automatically matches the best rate for each job and stamps pricing when orders complete. Rate templates, add-ons, starring, and manual overrides are all supported.\nAI Ticket Reviews\nAI-powered ticket reviews now appear directly in the ticket drawer, with duplicate ticket indicators to help reviewers quickly spot and handle duplicates.\n───\nImprovements\n• Prevailing Wage badges and filters now available across Dispatch, Approvals, Payables, and Receivables\n• Prevailing wage fields now shown on rate cards when enabled for a project\n• Settled invoices now show an inactive \"Approved\" badge to prevent accidental un-approval\n• Bulk settlement actions added to the Approve Jobs tab\n• \"View Settlement\" link added to settlement toast notifications\n• Confirmation dialog now shown when bulk canceling jobs in dispatch\n• Trucks now display driver first and last name instead of \"My Truck\"\n• Default onsite minutes can now be configured in Settings\n• Multiple labels now shown on dispatch driver and vendor cards\n• Customer Portal Access now defaults to ON for new connected accounts\n• Rates and phase codes now visible on the ticket drawer\n• Tax Rate Schedules list is now searchable\n───\nBug Fixes\n• Fixed material rates not saving when creating a project with blank units\n• Fixed receivable/payable subtotal showing a different total than individual line items due to rounding\n• Fixed duplicate line items appearing in invoices\n• Fixed driver rates unexpectedly changing on the mobile app\n• Fixed inability to update waypoints on individual loads\n• Fixed Sites page pagination — Previous button and page number issues resolved\n• Fixed jobs not becoming splittable again after driver unassignment\n• Fixed order creation failing with \"Project is invalid\" in certain dispatch scenarios\n• Fixed Tax Rate Schedules page missing pagination controls\n• Fixed default date range on Approve Jobs (Files) tab — now defaults to last 7 days\n• Fixed truck unit of measure not updating when order equipment changes\n• Fixed foreman role missing permissions for resource usage logs\n• Fixed inability to remove items in Update Project and Order forms\n• Improved search performance in data grid views\n• Fixed intermittent errors when loading user profile on poor connections\n───\nIn Progress (not yet customer-facing)\n• PostGIS Geofence — internal infrastructure improvements shipped; product-facing features pending"
+    },
+    {
+      "ts": "1776095124.498249",
+      "version": "Mobile v1.107.0",
+      "releaseDate": "2026-04-13",
+      "isMobile": true,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1776095124498249?thread_ts=1776089251.751119&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Mobile v1.107.0 (2026-04-13)\nNew Features\nSite Geofences on Maps\nSite geofences (both circles and polygons) now render on all in-app maps with tag-based color coding (loading, unloading, check-in, scaling, ticketing), so drivers and foremen can see site boundaries directly on Job Details, Active Job, Order Detail, and Live Map views.\nDispatch on Mobile: Edit Order State\nDispatchers and company admins can now edit order state directly from mobile, bringing parity with the web experience.\nDispatch Department Filter\nThe Dispatch tab now has a Department filter, making it easier to narrow down orders in large organizations.\nConnection Checker in App Settings\nA new connection checker in app settings lets drivers manually troubleshoot connectivity issues in the field.\n───\nImprovements\n• Foreman create-order form now includes \"Charge To Account\" on Equipment orders (previously only on Trucking orders)\n• Clearer offline-mode UI cue so drivers know when they're working offline\n• Offline cache errors are now handled gracefully instead of surfacing cryptic messages\n• Ticket scanning banner is now correctly hidden for tickets coming from API integrations\n• Improved RTU connection stability — fewer spurious errors while the app is backgrounded\n───\nBug Fixes\n• Fixed night-shift jobs disappearing from the Assigned page after midnight on tablets\n• Fixed splash screen text and icon not being centered horizontally\n───\nIn Progress (not yet customer-facing)\n• Mobile Offline (drivers accept/reject, start/stop while offline) — offline UI groundwork and connectivity tooling shipped; full offline job lifecycle actions still in progress"
+    },
+    {
+      "ts": "1775920137.954269",
+      "version": "Deploy #447",
+      "releaseDate": "2026-04-10",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1775920137954269?thread_ts=1775863802.657809&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #447 (2026-04-10)\nBug Fixes\n• Fixed a 404 error when updating add-on charges on shifts"
+    },
+    {
+      "ts": "1775920136.953329",
+      "version": "Deploy #446",
+      "releaseDate": "2026-04-10",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1775920136953329?thread_ts=1775839077.020289&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #446 (2026-04-10)\nBug Fixes\n• Fixed text-to-accept SMS notifications using inconsistent timezones and added timezone indicators for clarity"
+    },
+    {
+      "ts": "1775920135.709169",
+      "version": "Deploy #445",
+      "releaseDate": "2026-04-09",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1775920135709169?thread_ts=1775777400.899119&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #445 (2026-04-09)\nNew Features\nPrevailing Wage Settings\nNew settings pages for managing Overtime Rules and Prevailing Wage Benefits are now available, with a Prevailing Wage badge visible on Projects and Dispatch pages to easily identify PW jobs.\nCanceled/Rejected Orders in Dispatch\nCompanies can now optionally show Canceled and Rejected orders in the dispatch Orders tab for full visibility into all order statuses.\n───\nImprovements\n• AI review instructions can now be edited directly from the Settings > Agents page\n• Duplicate Tickets quick filter now links directly to the Loads tab on the approvals page\n• Driver Type filter is now sticky — your selection persists when navigating between pages\n───\nBug Fixes\n• Fixed rate cascades not flowing correctly from Order to Job and Invoice\n• New users now default to the company's timezone instead of Eastern\n• \"Rates vary by equipment type\" table now displays correctly on Create and Update Order forms\n• Tax rate schedule now persists correctly when editing orders\n• Fixed inability to change load count from the Edit Job button\n• Drivers now see material or unit of measure in text-to-accept messages, not just the number of loads\n• Company logo can now be properly removed and updated in General Settings\n• Fixed a race condition that could create duplicate invoices\n• Load approval states now update in real time when approving loads across multiple orders\n• Imported orders can now correctly transition out of Hold and Weather Hold states\n───\nIn Progress (not yet customer-facing)\n• Prevailing Wage — rate card integration and rate calculation (Phase 1B) coming next\n• PostGIS Geofence — internal tooling improvements shipped, product-facing features pending"
+    },
+    {
+      "ts": "1775694284.268709",
+      "version": "Deploy #442",
+      "releaseDate": "2026-04-07",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1775694284268709?thread_ts=1775600449.761119&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #442 (2026-04-07)\nNew Features\nAI Review Improvements\nCompanies can now add custom review instructions to tailor AI ticket reviews to their specific business rules. Review sensitivity has also been improved to reduce false flags on small quantity differences (e.g., 24 vs 26 tons).\n───\nImprovements\n• Rate cards now automatically re-match when a job's equipment type changes, ensuring the correct pricing is always applied\n• Imported tickets can now match to active jobs by truck even without a dispatch number\n• Order imports now support vendor assignments and site mapping for imported tickets, with improved duplicate detection\n───\nBug Fixes\n• Fixed an issue where trucks couldn't be added back to an order after one was removed\n• Fixed the Settlements Equipment Type column pulling the wrong type instead of the Truck Type\n• Fixed equipment hours showing duplicates when a driver reviews a job\n• Fixed default additional equipment settings not saving on shared company accounts\n• Fixed add-ons getting duplicated when changing equipment type on a job\n───\nIn Progress (not yet customer-facing)\n• PostGIS Geofence Improvements — backend calculation and API groundwork shipped, product-facing features pending\n• Default Onsite Minutes — backend support for company-level default pickup/dropoff times added, frontend configuration pending"
+    },
+    {
+      "ts": "1775233090.758699",
+      "version": "Mobile v1.106.0",
+      "releaseDate": "2026-04-03",
+      "isMobile": true,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1775233090758699?thread_ts=1775226250.615769&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Mobile v1.106.0 (2026-04-03)\nNew Features\nStaging Site Support\nStaging waypoints now appear on job maps with markers and camera bounds, giving drivers clear visibility into staging locations.\nShift Add-Ons & Equipment Time\nDrivers can now add, edit, and delete add-on charges and equipment hours on shifts (feature flagged).\nJob Equipment Hours\nEquipment hours are now visible on job review screens (feature flagged).\nHold/Weather Hold Enforcement\nDrivers are blocked from starting jobs when the order is on Hold or Weather Hold.\nImprovements\n• Added Recurring & Collaborator fields to RPMx Foreman create order form\n• Material field added to the job edit form\n• Shift notes now visible on the Logged Hours card\n• Removed driver signature from the digital ticket flow\n• Unit of Measure visibility improvements\n• Large text accessibility improvements for foreman views\n• Offline mode groundwork — data storage and offline actions for jobs and driver shifts\nBug Fixes\n• Fixed push notifications silently broken on startup and login/logout\n• Fixed feature flag crashes on app startup\n• Fixed digital ticket UOM not defaulting correctly\n• Fixed equipment selector showing external \"View Only\" equipment\n• Fixed long equipment names breaking the account profile layout\n• Fixed ticket capacity quantity after deleting and resaving\n• Stability improvements (multiple Sentry crash fixes)"
+    },
+    {
+      "ts": "1775233087.499419",
+      "version": "Deploy #441",
+      "releaseDate": "2026-04-02",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1775233087499419?thread_ts=1775186272.275849&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #441 (2026-04-02)\nNew Features\nJob Notification Emails\nConfigurable email notifications for job events are now available.\nTax Rate Schedules on Projects & Orders\nTax rate schedules can now be selected on Project and Order forms and automatically cascade through to invoices.\nPaver Tracker: Equipment Controls\nNew \"Use Paver Tracker equipment\" checkbox on the Site edit modal, plus equipment editing on moving site geofences.\nPrevailing Wage & Contract Number on Forms\nToggle prevailing wage on Projects/Orders with configurable work week start day. Contract number field now available on both forms.\nTrailer Auto-Assignment\nTrailers are now auto-assigned when dispatching drivers, with a new trailer column on the Driver grid.\nImprovements\n• Support for capturing \"Printed At\" timestamp on imported tickets\n• AI ticket scanning now retries on API failures and only uses allowed units of measure\nBug Fixes\n• Fixed vendor rate being overwritten by customer rate in sub-dispatch flow (P0)\n• Fixed ticket numbers not populating correctly in Settlements view (P1)\n• Fixed urgent dispatch issues and incorrect automatic start times (P1)\n• Fixed Material Shipped showing wrong unit of measure\n• Fixed geofence delay being incorrectly applied to loading/unloading geofences\n• Fixed rate matching logic when no conditions match\n• Fixed 404 error when removing add-ons under a rate card\n• Fixed company form sending null coordinates causing validation error\n• Fixed duplicated payloads for canceled orders not re-committing"
+    },
+    {
+      "ts": "1775233083.674719",
+      "version": "Deploy #440",
+      "releaseDate": "2026-04-01",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1775233083674719?thread_ts=1775027104.659559&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #440 (2026-04-01)\nNew Features\nPaver Tracker Sync Controls\nBackground sync now respects a remote sync override flag, giving dispatchers more control over equipment-to-site assignments.\nEditable Internal Notes on Job Approvals\nInternal notes can now be edited directly from the Approve Jobs screen.\nTax Rate Schedules\nNew Settings page for managing tax rate schedules with full CRUD support.\nImprovements\n• Added contract number field to Projects and Orders\n• Prevailing wage benefit catalog management (backend)\nBug Fixes\n• Fixed order metrics showing incorrect \"In Transit\" tonnage for completed orders\n• Fixed site-mapped orders being created under the wrong company\n• Fixed 3rd party site defaulting to wrong location for Dufferin imports\n• Fixed default additional equipment not applying correctly for shared drivers\n• AI ticket approval badge now hidden on duplicate tickets"
+    },
+    {
+      "ts": "1774970603.769909",
+      "version": "Deploy #439",
+      "releaseDate": "2026-03-30",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1774970603769909?thread_ts=1774919171.858809&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #439 (2026-03-30)\nNew Features\nProject-level Rates\nTeams can now define rates with multiple conditions — site, equipment type, material, and service class — that automatically resolve at order and job time. The dropoff site is now also available as a rate condition, and when equipment type varies, rate summaries display accordingly at both the order and job level.\nDigital Ticket Filtering on Dispatch & Approvals\nDispatchers and approvers can now filter orders by digital ticket view type on the dispatch and approvals pages, making it faster to find and process the right tickets.\nCompliance Notification Toggle\nAdmins can now enable or disable compliance notifications via a new toggle in the compliance settings.\nAPEX Connector: Additional Order States & Site Mapping\nThe APEX integration now supports Hold, Weather Hold, and Canceled order states, and correctly maps sites for imported orders.\nAuto-Start Jobs with Active Telematics\nJobs are now automatically started when an active telematics integration is detected, reducing manual steps for dispatchers.\nImprovements\n• Rate information (driver or vendor rate, based on job assignment) is now shown on Job Card PDFs\n• Trailer is now displayed in the Drivers table, next to the equipment column\n• Improved duplicate ticket filtering in the AI loads review workflow\n• Staging map pin display is now consistent on dispatch routes\nBug Fixes\n• Fixed a P1 issue where integration addresses and job sites were not matching correctly\n• Fixed internal notes not displaying correctly across parent/child company structures\n• Fixed a crash when selecting a site contact name on the order page\n• Fixed a crash when editing invoice rates\n• Fixed missing label translations across several areas of the app"
+    },
+    {
+      "ts": "1774624660.322329",
+      "version": "Deploy #436",
+      "releaseDate": "2026-03-26",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1774624660322329?thread_ts=1774574242.902629&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #436 (2026-03-26)\nNew Features\nProject-Level Freight Rates\nProject managers can now define multi-condition freight rates directly on a project — combining site, service class, equipment type, and material so the right rate applies automatically. The system cascades the correct customer, vendor, and driver pricing to every ticket, eliminating manual overrides. (Rolling out to select customers)\nPhase Tracking on Loads\nPhases can now be linked to project materials and automatically cascade to orders, jobs, and loads when a material is selected. A new Phase column on the dispatch and approvals loads tables shows the phase name and code at a glance, and phases are also supported when importing tickets.\nInternal Notes on Jobs\nBack-office users can now add and edit internal notes directly on jobs. Notes are company-scoped — only visible to users within the same company — making it easy to pass billing instructions and context through the dispatch chain without exposing them to other parties.\nShift Notes\nA Shift Notes field is now available on the DriverDay Shift tab, giving reviewers helpful context (e.g., late arrivals, equipment issues, dispatcher adjustments) right where they need it while reviewing shift hours.\nStaging Site on Dispatch Routes (Rolling out to select customers)\nDispatchers can now assign a staging site as an intermediate stop between pickup and dropoff. The staging site can be set across all dispatch forms — new orders, job edits, bulk edits, projects, and quick orders.\nTrailer in Dispatch Side Panel (Rolling out to select customers)\nTrailer details are now visible in the side panel on the Dispatch page for quick reference without leaving the current view.\nImprovements\n• Compliance document expiration email notifications can now be controlled per document type in user notification preferences\n• Job Card PDF now shows pickup and dropoff site with an updated layout\n• Driver rate amounts are now shown on the Payables invoice for internal drivers\n• Imported sites from external systems now have their addresses automatically geocoded\n• Duplicate ticket detection now uses a dedicated field instead of an AI review state, making the duplicate quick filter more accurate and reliable\nBug Fixes\n• Fixed a P1 issue where internal drivers could not see their driver rate amount in the app or on web\n• Fixed the Approve button incorrectly appearing for non-completed loads when the new approvals feature was enabled\n• Fixed a permissions issue preventing some users from accessing the Data Importer\n• Fixed missing label for email notification method settings on the User Profile page"
+    },
+    {
+      "ts": "1774380861.103209",
+      "version": "Deploy #434",
+      "releaseDate": "2026-03-23",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1774380861103209?thread_ts=1774319639.294459&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #434 (2026-03-23)\n───\nNew Features\nOrder Metrics UI Updates\nThe Order Metrics tab on Dispatch has been updated with a new layout, improved labels, additional job states, and pickup/dropoff site names for better clarity.\nStaging Waypoint Support\nOrders and jobs now support a staging site between pickup and dropoff. Staging sites appear correctly across Approvals, Loads, Settlements, and all reports. Full form editing and dispatch card display are coming in a follow-up release.\nUnapproved Jobs & Loads Filters\nThe Approve Jobs screen now includes sticky filters for \"Unapproved Jobs\" and \"Unapproved Loads,\" making it faster to find items that still need attention.\nNext Load Navigation Across Orders\nWhen approving loads, dispatchers can now navigate to the next load across different orders — no need to back out and re-enter each order individually.\nAuditor Role\nA new read-only \"Auditor\" role allows users to view all tenant data across companies without the ability to make changes — ideal for compliance and oversight needs.\nRestrict Equipment Options by Vendor\nCompanies can now configure which equipment types are available to vendors on a per-job basis, and dispatchers see a filtered equipment list when assigning trucks on dispatch.\nMultiple Geofences Per Job\nThe geofence admin tool now supports configuring multiple geofences with associated tags on a single job, replacing the previous single-geofence limit.\nHold Enforcement for Drivers\nWhen an order is on Hold or Weather Hold, drivers are now blocked from starting their jobs — preventing accidental hold removal that previously affected all trucks on the order.\n───\nImprovements\n• Load summaries now include distance travelled information\n• Dispatchers can view mileage data on load details\n───\nBug Fixes\n• Fixed an issue where compliance document dates were saved incorrectly due to timezone differences\n• Fixed an issue where clearing an external ID on a compliance document type would not persist on save\n• Fixed a validation error when updating vendor assignments on certain accounts\n• Fixed waypoint columns in Approvals and Settlements showing incorrect sites when a staging waypoint was present\n───\nIn Progress (not yet customer-facing)\n• Project-level Rates — backend foundation shipped (1 of 5 tickets), frontend pending\n• Quoting — backend state machine and company scoping prep, full UI on separate branch\n• Project Material Phase Linking — backend phase_id support shipped, frontend phase dropdown and auto-fill pending\n• Mobile Offline Mode — backend driver day endpoint updates shipped, mobile implementation ongoing"
+    },
+    {
+      "ts": "1774380844.967019",
+      "version": "Mobile v1.105.0",
+      "releaseDate": "2026-03-16",
+      "isMobile": true,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1774380844967019?thread_ts=1773672189.633129&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Mobile v1.105.0 (2026-03-16)\n───\nNew Features\nDigital Ticket Experience Overhaul\nDrivers now default directly into the digital ticket view when enabled on an order, with a redesigned layout that hides empty fields for a cleaner experience. The tickets list has been streamlined with a simplified menu, and load details are now easier to scan on both Order and Job screens.\nSignature Prompts & Warnings\nDrivers are now prompted to capture a signature when completing a load. If a dropoff signature is missing, a visual warning appears on the ticket row and when saving — helping ensure complete documentation on every delivery.\nSSO Login Support\nDrivers can now log in using Single Sign-On (SSO), matching the login experience already available on the web platform.\nSet Truck License Number in App\nDrivers can now enter and update their truck license number directly from the mobile app, eliminating the need to contact a dispatcher.\nNew Site Creation in Order Form\nUsers with the appropriate permissions can now create new sites directly from the Create Order and Edit Order forms without leaving the workflow.\n───\nImprovements\n• Prevented accidental double-taps on buttons throughout the app\n• Updated the Loads list UI on Order and Job detail screens for better readability\n• Added staging waypoint type support for future dispatch routing features\n───\nBug Fixes\n• Fixed an issue where pickup and dropoff sites were not populating when selecting a project on the foreman order form\n• Fixed the \"Copy & Edit\" button appearing for users without the correct permissions\n• Improved app stability and resolved several intermittent connection errors\n───\nIn Progress (not yet customer-facing)\n• Migrate to Company-Scoped Endpoints — deprecated endpoint cleanup underway, no user-facing changes yet\n• Comprehensive Testing Infrastructure — unit test coverage expansion in progress\n• Swift Package Manager Migration — iOS build tooling migration, no user-facing impact"
+    },
+    {
+      "ts": "1774380791.245419",
+      "version": "Deploy #432",
+      "releaseDate": "2026-03-19",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1774380791245419?thread_ts=1773978899.957609&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #432 (2026-03-19)\n───\nNew Features\nOrder Metrics on Dispatch\nDispatchers can now view per-order delivery metrics directly from the Dispatch screen, including delivery progress, events, truck activity, and onsite times — all in a new \"Metrics\" tab on each order.\nApproval Status Filters on Approve Jobs\nDispatchers can now filter by job and load approval status on the Approve Jobs page, making it easier to find unapproved items that need attention.\nAI Ticket Chaser Enabled by Default\nThe ticket chaser feature — which automatically follows up on missing tickets — is now enabled by default for new projects, reducing manual follow-up work.\n───\nImprovements\n• Maps are now displayed on distance calculation pages for better visual context\n• Improved ticket matching accuracy via vendor-scoped equipment name and external ID matching\n• Imported tickets no longer require a dispatch ID, improving integration flexibility\n• Increased the maximum load count when vendor job splitting is enabled\n• Selected calendar date range now persists on Approve Jobs when using search\n• Reduced page flickering on the Dispatch view when smart updates are enabled\n• Companies can now delete their company logo\n───\nBug Fixes\n• Fixed a P0 issue where job pause time was not being deducted from billable hours\n• Fixed a P1 issue where flat commission and commission rate cards were not calculating correctly\n• Fixed an issue where updating delivered quantity on a load incorrectly adjusted values on voided settlements\n• Fixed compliance document types requiring an external ID when it should be optional\n• Fixed file attachments not saving correctly on compliance document types\n• Fixed inactive materials appearing in typeahead search results\n• Fixed distance units saving incorrectly based on company settings\n• Fixed vendor accounts created after 9pm EST showing as created on the following day\n• Fixed the Manage button being cropped in narrow action columns\n───\nIn Progress (not yet customer-facing)\n• Staging Waypoint on Dispatch Routes — backend foundation shipped (enum, model associations, ingest services, webhooks, copy tests), frontend work pending in next deploy\n• Job Notification Emails v1 — API implementation shipped, frontend integration pending\n• National Lime and Stone Integrations — ticket processing improvements shipped, broader integration work ongoing"
+    }
+  ],
+  "themes": {
+    "2026-05": {
+      "label": "May 2026",
+      "narrative": "Project-level Rates landed on Mobile, completing the cross-platform pricing rulebook started in April. Idle Time Tracking shipped to production with dispatch indicators and per-load metrics. A Sales Quoting workflow and live Project Timeline opened up new project-management surfaces, and Self-Service API Clients reached full GA. Mobile shifted to manual offline control with queued signatures, and a new notification system gave users per-channel control over job and order events.",
+      "themes": [
+        {
+          "name": "Project-level Rates — Mobile parity + polish",
+          "tag": "Platform",
+          "tagClass": "platform",
+          "items": [
+            "Mobile v1.109.0: full Rates UX on mobile order forms — rate cards, add-ons, inline editing",
+            "Mobile v1.110.0: Edit Job form redesign with rate card support; \"Site rate schedule\" → \"Rate Card Selection\"",
+            "Web polish: terminology updates (\"Base Rate\", \"Rate Card\", \"Freight Rates\"); confirmation modals for star/unstar; partial-save recovery",
+            "Race conditions fixed across order, project, and rate card forms; Edit Job dialog close + concurrent edit handling",
+            "Material & Freight rates separated on Invoices and Settlements (Deploy #450 carry-through)"
+          ]
+        },
+        {
+          "name": "Idle Time Tracking — launched",
+          "tag": "Ops",
+          "tagClass": "ops",
+          "items": [
+            "Deploy #459: idle indicator on driver panel, threshold line on speed timeline, per-load/job/order auto-calculation",
+            "Deploy #471 polish: higher-contrast yellow markers on live map, clearer route history indicators",
+            "Idle data wired into Load, Job, Order, and DriverDay views; rolling out per-company"
+          ]
+        },
+        {
+          "name": "Sales Quoting + Project Timeline",
+          "tag": "Platform",
+          "tagClass": "platform",
+          "items": [
+            "Deploy #463: Quotes tab on Projects with Draft → Quoted → Active → Completed lifecycle",
+            "Deploy #453: real-time Project Timeline showing creation, rate changes, site updates, schedule mods",
+            "Deploy #465: timeline entries now identify which specific rate card was changed"
+          ]
+        },
+        {
+          "name": "Mobile Offline — manual mode",
+          "tag": "Mobile",
+          "tagClass": "mobile",
+          "items": [
+            "Manual offline control replacing auto-detection (more predictable for drivers)",
+            "Required signatures queued offline and submitted on reconnect",
+            "Map auto-centers during navigation; delayed green marker removed in favor of live blue pin",
+            "Local geofence notifications when approaching pickup/dropoff sites"
+          ]
+        },
+        {
+          "name": "Notifications + Self-Service API",
+          "tag": "Platform",
+          "tagClass": "platform",
+          "items": [
+            "Deploy #471: per-channel push/SMS/email opt-ins for job events (accepted, rejected, canceled, completed) and new orders/projects",
+            "Deploy #453: Self-Service API Client management reached full GA in Settings",
+            "Bulk Download Files now respects page filters (date range, driver)"
+          ]
+        }
+      ],
+      "heroFeatures": [
+        {
+          "name": "Project-level Rates on Mobile (v1.109.0)",
+          "desc": "Full rate card experience on phone/tablet — cards, add-ons, overrides, edit job."
+        },
+        {
+          "name": "Idle Time Tracking",
+          "desc": "Dispatchers see truck idle directly on Dispatch; idle minutes auto-calculated per load/job/order."
+        },
+        {
+          "name": "Sales Quoting Workflow",
+          "desc": "Quotes tab on Projects with full lifecycle (Draft → Quoted → Active → Completed)."
+        },
+        {
+          "name": "Notifications System Overhaul",
+          "desc": "Per-channel push, SMS, and email opt-ins for job and order events."
+        }
+      ],
+      "inProgress": [
+        {
+          "name": "Idle Time",
+          "note": "metric calculations & driver panel integration continuing"
+        },
+        {
+          "name": "Bulk Download Files",
+          "note": "approved-only filtering and higher download limits next"
+        },
+        {
+          "name": "Project-level Rates",
+          "note": "web reporting integration, rollout to remaining accounts"
+        }
+      ]
+    },
+    "2026-04": {
+      "label": "April 2026",
+      "narrative": "Project-level Rates went from prototype to full launch — the multi-condition pricing rulebook (pickup/dropoff site, equipment, material) shipped in Deploy #448 and expanded across the month. Self-Service API Clients shipped admin management UI, Prevailing Wage rolled out across Dispatch/Approvals/Payables/Receivables, and Mobile Offline gained ticket creation and a smarter connectivity model. AI Ticket Reviews moved into the ticket drawer with duplicate detection and custom review instructions.",
+      "themes": [
+        {
+          "name": "Project-level Rates — full launch",
+          "tag": "Platform",
+          "tagClass": "platform",
+          "items": [
+            "Deploy #448: complete pricing rulebook on projects — conditions, auto-matching, starring, add-ons, manual overrides",
+            "Deploy #449: star a rate to apply to every job on an order; override on individual jobs and invoices",
+            "Deploy #450: Material & Freight rates separated on invoices and settlements",
+            "Deploy #451: invoice rate selectors show project-level rates; \"Type\" column distinguishing Material/Freight",
+            "Deploy #452: rate selection now on Edit Job form; users can clear rates to reset to auto-match"
+          ]
+        },
+        {
+          "name": "Mobile Offline foundation",
+          "tag": "Mobile",
+          "tagClass": "mobile",
+          "items": [
+            "v1.108.0: offline ticket creation with auto-sync (images included) on reconnect",
+            "v1.108.0: offline accept/reject and start/stop actions (feature-flagged per org)",
+            "v1.108.0: smarter offline banner — checks backend reachability, not just internet",
+            "v1.107.0: connection checker in app settings for field troubleshooting",
+            "v1.106.0: offline groundwork — data storage and offline actions for jobs and driver shifts"
+          ]
+        },
+        {
+          "name": "Self-Service API Clients",
+          "tag": "Platform",
+          "tagClass": "platform",
+          "items": [
+            "Deploy #451: admin UI shipped — create, view, and revoke API clients from Settings",
+            "Deploy #452: creation flow complete with one-time API key delivery",
+            "Active clients displayed with masked keys; instant revoke"
+          ]
+        },
+        {
+          "name": "Prevailing Wage rollout",
+          "tag": "Ops",
+          "tagClass": "ops",
+          "items": [
+            "Deploy #441: prevailing wage toggle on Projects/Orders with configurable work week start day",
+            "Deploy #445: Settings pages for Overtime Rules and Prevailing Wage Benefits; PW badge on Projects/Dispatch",
+            "Deploy #448: PW badges and filters across Dispatch, Approvals, Payables, Receivables; rate card PW fields",
+            "Deploy #450: PW flag now correctly carries from orders to invoices for accurate filtering"
+          ]
+        },
+        {
+          "name": "AI Ticket Reviews",
+          "tag": "AI",
+          "tagClass": "ai",
+          "items": [
+            "Deploy #448: AI ticket reviews now appear directly in the ticket drawer; duplicate ticket indicators",
+            "Deploy #442: custom review instructions per company; reduced false flags on small quantity differences",
+            "Deploy #450: dispatch can now filter loads by duplicate ticket status"
+          ]
+        },
+        {
+          "name": "Mobile Dispatch parity",
+          "tag": "Mobile",
+          "tagClass": "mobile",
+          "items": [
+            "v1.107.0: edit order state directly from mobile; Department filter on Dispatch tab",
+            "v1.107.0: site geofences (circles + polygons, tag-based colors) render on all in-app maps",
+            "v1.106.0: hold/weather hold enforcement — drivers blocked from starting jobs on Hold orders"
+          ]
+        },
+        {
+          "name": "Other launches",
+          "tag": "Platform",
+          "tagClass": "platform",
+          "items": [
+            "Tax Rate Schedules: new Settings page with full CRUD; cascading to invoices",
+            "Phase Code Management: bulk paste from Excel in slide-out drawer",
+            "Restore Jobs: dispatchers can uncancel jobs; auto-creates a load if none active",
+            "Job Notification Emails (v1 foundation)",
+            "Trailer Auto-Assignment with trailer column on Driver grid"
+          ]
+        }
+      ],
+      "heroFeatures": [
+        {
+          "name": "Project-level Rates (GA)",
+          "desc": "Complete pricing rulebook per project — site, equipment, material conditions auto-match the right rate."
+        },
+        {
+          "name": "Self-Service API Client Management",
+          "desc": "Admins create, view, and revoke API clients from Settings; masked keys, instant revoke."
+        },
+        {
+          "name": "Offline Ticket Creation (Mobile)",
+          "desc": "Create tickets while offline — auto-sync with images on reconnect."
+        },
+        {
+          "name": "AI Ticket Reviews in Drawer",
+          "desc": "AI-powered reviews and duplicate detection now surface directly in the ticket drawer."
+        },
+        {
+          "name": "Phase Code Bulk Paste",
+          "desc": "Manage phase codes in a table view; paste dozens of codes from Excel at once."
+        },
+        {
+          "name": "Tax Rate Schedules",
+          "desc": "Full CRUD settings page; tax rate schedules cascade through to invoices."
+        }
+      ],
+      "inProgress": [
+        {
+          "name": "Prevailing Wage Phase 1B",
+          "note": "rate card integration and rate calculation"
+        },
+        {
+          "name": "PostGIS Geofence",
+          "note": "backend pipeline improvements; product-facing features pending"
+        },
+        {
+          "name": "Project Timeline Events",
+          "note": "backend event recording shipped; API + UI pending"
+        }
+      ]
+    },
+    "2026-03": {
+      "label": "March 2026",
+      "narrative": "Foundations month. Order Metrics on Dispatch gave dispatchers per-order delivery telemetry, and Staging Site support rolled out across all dispatch forms for select customers. Phase Tracking linked phases through to loads, while Internal Notes and Shift Notes added context-sharing surfaces. Mobile shipped a Digital Ticket experience overhaul with signature prompts, SSO login, and in-flow site creation. Project-level Rates' multi-condition backend foundation began rolling out to select customers, setting up April's full launch.",
+      "themes": [
+        {
+          "name": "Project-level Rates — backend foundation",
+          "tag": "Platform",
+          "tagClass": "platform",
+          "items": [
+            "Deploy #434: backend foundation shipped (1 of 5 tickets)",
+            "Deploy #436: project-level freight rates rolling out to select customers (site, service class, equipment, material conditions)",
+            "Deploy #439: dropoff site available as a rate condition; rate summaries when equipment varies"
+          ]
+        },
+        {
+          "name": "Order Metrics + Approvals workflow",
+          "tag": "Ops",
+          "tagClass": "ops",
+          "items": [
+            "Deploy #432: per-order Metrics tab on Dispatch with delivery progress, events, truck activity, onsite times",
+            "Deploy #434: updated Order Metrics layout with new job states and pickup/dropoff site names",
+            "Deploy #432: approval status filters on Approve Jobs page",
+            "Deploy #434: sticky \"Unapproved Jobs\" and \"Unapproved Loads\" filters",
+            "Deploy #434: navigate to next load across different orders during approval"
+          ]
+        },
+        {
+          "name": "Staging Site on Dispatch Routes",
+          "tag": "Ops",
+          "tagClass": "ops",
+          "items": [
+            "Deploy #434: backend staging waypoint support across Approvals, Loads, Settlements, reports",
+            "Deploy #436: staging site assignable on all dispatch forms (new orders, edits, bulk, projects, quick orders)",
+            "Deploy #439: staging map pin display consistent on dispatch routes"
+          ]
+        },
+        {
+          "name": "Mobile Digital Ticket overhaul",
+          "tag": "Mobile",
+          "tagClass": "mobile",
+          "items": [
+            "v1.105.0: drivers default into digital ticket view; redesigned layout hides empty fields",
+            "v1.105.0: signature prompts on load completion; visual warnings when dropoff signature missing",
+            "v1.105.0: SSO login support on mobile (matching web)",
+            "v1.105.0: drivers can update truck license number from app; create sites in order forms"
+          ]
+        },
+        {
+          "name": "Notes & Compliance",
+          "tag": "Platform",
+          "tagClass": "platform",
+          "items": [
+            "Deploy #436: Internal Notes on Jobs — company-scoped, for billing context in dispatch chains",
+            "Deploy #436: Shift Notes on DriverDay Shift tab for reviewer context",
+            "Deploy #434: Auditor read-only role for tenant-wide compliance access",
+            "Deploy #439: admin toggle for compliance notifications"
+          ]
+        },
+        {
+          "name": "AI & Integrations",
+          "tag": "AI",
+          "tagClass": "ai",
+          "items": [
+            "Deploy #432: AI Ticket Chaser enabled by default for new projects",
+            "Deploy #439: APEX connector adds Hold, Weather Hold, Canceled order states + site mapping",
+            "Deploy #439: auto-start jobs with active telematics integration"
+          ]
+        }
+      ],
+      "heroFeatures": [
+        {
+          "name": "Order Metrics on Dispatch",
+          "desc": "Per-order delivery progress, events, truck activity, and onsite times in a new Metrics tab."
+        },
+        {
+          "name": "Staging Site on Dispatch Routes",
+          "desc": "Intermediate stop between pickup and dropoff (orders, jobs, bulk edits, quick orders) for select customers."
+        },
+        {
+          "name": "Digital Ticket Experience (Mobile)",
+          "desc": "Redesigned ticket view, signature prompts/warnings, SSO login, in-app license number."
+        },
+        {
+          "name": "Project-Level Freight Rates (preview)",
+          "desc": "Multi-condition rates (site, service class, equipment, material) cascading customer/vendor/driver pricing — select customers."
+        },
+        {
+          "name": "Internal Notes + Shift Notes",
+          "desc": "Company-scoped notes on jobs and shifts for billing context and review handoffs."
+        },
+        {
+          "name": "Auditor Role",
+          "desc": "Read-only cross-company tenant access for compliance and oversight."
+        }
+      ],
+      "inProgress": [
+        {
+          "name": "Project-level Rates",
+          "note": "backend foundation 1 of 5 tickets; frontend pending (April launch)"
+        },
+        {
+          "name": "Quoting",
+          "note": "backend state machine + scoping; full UI on separate branch"
+        },
+        {
+          "name": "Mobile Offline Mode",
+          "note": "backend driver day endpoint updates; mobile implementation in progress"
+        },
+        {
+          "name": "Project Material Phase Linking",
+          "note": "backend phase_id; frontend phase dropdown pending"
+        }
+      ]
+    }
+  }
+}
