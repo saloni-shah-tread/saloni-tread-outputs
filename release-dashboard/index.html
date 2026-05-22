@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tread Product Release Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f7f8fa;
+  color: #1a1d29;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.wrap { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
+
+/* Header */
+.header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.title { font-size: 24px; font-weight: 700; color: #0b1020; letter-spacing: -0.01em; margin: 0 0 4px; }
+.subtitle { color: #6a7280; font-size: 13px; margin: 0; }
+.refresh-meta { font-size: 12px; color: #8a93a4; display: flex; align-items: center; gap: 8px; }
+.spinner { width: 12px; height: 12px; border: 2px solid #d8def0; border-top-color: #5b6ee1; border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.stat { background: #fff; border: 1px solid #e7eaf1; border-radius: 10px; padding: 14px 16px; }
+.stat-label { color: #6a7280; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+.stat-value { font-size: 22px; font-weight: 700; color: #0b1020; margin-top: 4px; line-height: 1.1; }
+.stat-sub { font-size: 12px; color: #8a93a4; margin-top: 2px; }
+.stat-accent .stat-value { color: #4a5cd1; }
+
+/* Timeline */
+.section-title { font-size: 13px; font-weight: 600; color: #4b5161; text-transform: uppercase; letter-spacing: 0.06em; margin: 28px 0 12px; }
+.timeline { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-bottom: 8px; }
+.tl-card { background: #fff; border: 1px solid #e7eaf1; border-left: 3px solid #5b6ee1; border-radius: 8px; padding: 12px 14px; cursor: pointer; transition: transform .12s, box-shadow .12s; }
+.tl-card:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06); }
+.tl-card.mobile { border-left-color: #10b981; }
+.tl-date { font-size: 11px; color: #8a93a4; font-weight: 500; }
+.tl-version { font-size: 14px; font-weight: 600; color: #0b1020; margin-top: 2px; }
+.tl-type { display: inline-block; margin-top: 6px; font-size: 10px; padding: 2px 7px; border-radius: 4px; background: #eef0ff; color: #4a5cd1; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.tl-card.mobile .tl-type { background: #e6f7f1; color: #0d8a64; }
+
+/* Filters */
+.filters { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.search { flex: 1; min-width: 200px; }
+.search input { width: 100%; padding: 9px 12px; border: 1px solid #d6dbe6; border-radius: 8px; background: #fff; font-size: 13px; color: #1a1d29; outline: none; }
+.search input:focus { border-color: #5b6ee1; box-shadow: 0 0 0 3px rgba(91, 110, 225, 0.15); }
+.toggle { display: inline-flex; background: #fff; border: 1px solid #d6dbe6; border-radius: 8px; padding: 2px; gap: 2px; }
+.toggle button { background: transparent; border: 0; padding: 7px 12px; border-radius: 6px; font-size: 12px; font-weight: 500; color: #4b5161; cursor: pointer; }
+.toggle button.active { background: #0b1020; color: #fff; }
+
+/* Releases list */
+.release { background: #fff; border: 1px solid #e7eaf1; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+.release-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; cursor: pointer; gap: 12px; }
+.release-head:hover { background: #fafbfd; }
+.release-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.chip { font-size: 10px; padding: 3px 8px; border-radius: 999px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
+.chip-web { background: #eef0ff; color: #4a5cd1; }
+.chip-mobile { background: #e6f7f1; color: #0d8a64; }
+.release-version { font-weight: 600; font-size: 14px; color: #0b1020; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.release-date { font-size: 12px; color: #6a7280; white-space: nowrap; }
+.release-counts { display: flex; gap: 8px; align-items: center; font-size: 11px; color: #6a7280; flex-shrink: 0; }
+.count-pill { padding: 2px 7px; border-radius: 4px; background: #f4f5f9; font-weight: 500; }
+.count-pill.new { background: #eef7ff; color: #1d5fb3; }
+.count-pill.improve { background: #fff7e6; color: #b5710a; }
+.count-pill.fix { background: #fdebef; color: #b5325b; }
+.expand-icon { font-size: 14px; color: #8a93a4; transition: transform .15s; }
+.release.open .expand-icon { transform: rotate(90deg); }
+.release-body { display: none; padding: 0 18px 18px; border-top: 1px solid #f0f2f7; padding-top: 14px; }
+.release.open .release-body { display: block; }
+.release-body h4 { font-size: 12px; font-weight: 700; color: #4b5161; text-transform: uppercase; letter-spacing: 0.06em; margin: 16px 0 8px; }
+.release-body h4:first-child { margin-top: 0; }
+.release-body h5 { font-size: 13px; font-weight: 600; color: #0b1020; margin: 12px 0 4px; }
+.release-body p { margin: 4px 0 8px; color: #2d3340; }
+.release-body ul { margin: 4px 0 8px; padding-left: 20px; }
+.release-body li { margin: 3px 0; color: #2d3340; }
+.release-body .feature { background: #f7f9fc; border-left: 3px solid #5b6ee1; padding: 10px 14px; border-radius: 6px; margin: 6px 0 10px; }
+.release-body .feature .feat-name { font-weight: 600; color: #0b1020; margin-bottom: 2px; }
+.release-body .feature .feat-desc { color: #4b5161; font-size: 13px; }
+.release-body .permalink { margin-top: 14px; font-size: 12px; }
+.release-body .permalink a { color: #4a5cd1; text-decoration: none; }
+.release-body .permalink a:hover { text-decoration: underline; }
+
+.empty { padding: 30px; text-align: center; color: #8a93a4; background: #fff; border: 1px dashed #d6dbe6; border-radius: 10px; }
+.banner { background: #fff8e1; border: 1px solid #ffe28a; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #8a5d00; margin-bottom: 14px; display: none; }
+.banner.show { display: block; }
+
+@media (max-width: 720px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .release-counts { display: none; }
+  .month-hero-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Tabs */
+.tabs { display: inline-flex; background: #fff; border: 1px solid #e7eaf1; border-radius: 10px; padding: 4px; gap: 2px; margin-bottom: 22px; }
+.tab { background: transparent; border: 0; padding: 9px 16px; border-radius: 7px; font-size: 13px; font-weight: 600; color: #4b5161; cursor: pointer; }
+.tab:hover { color: #0b1020; }
+.tab.active { background: #0b1020; color: #fff; }
+
+/* Insights view */
+.insight-summary { background: #fff; border: 1px solid #e7eaf1; border-radius: 10px; padding: 18px 20px; margin-bottom: 24px; }
+.insight-summary p { margin: 0; color: #2d3340; }
+.insight-summary p + p { margin-top: 10px; }
+.chart-wrap { background: #fff; border: 1px solid #e7eaf1; border-radius: 10px; padding: 16px 18px 8px; margin-bottom: 24px; }
+.chart-wrap h3 { font-size: 13px; font-weight: 600; color: #4b5161; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 12px; }
+.chart-canvas-box { position: relative; height: 220px; }
+
+.month-card { background: #fff; border: 1px solid #e7eaf1; border-radius: 12px; padding: 22px 24px; margin-bottom: 18px; }
+.month-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.month-title { font-size: 20px; font-weight: 700; color: #0b1020; margin: 0; letter-spacing: -0.01em; }
+.month-sub { font-size: 12px; color: #6a7280; }
+.month-stats { display: flex; gap: 14px; font-size: 12px; color: #4b5161; }
+.month-stats span b { color: #0b1020; font-weight: 700; }
+.month-narrative { color: #2d3340; font-size: 14px; line-height: 1.6; margin: 10px 0 4px; padding: 12px 14px; background: #f7f9fc; border-left: 3px solid #5b6ee1; border-radius: 6px; }
+
+.theme-block { margin-top: 18px; }
+.theme-section-title { font-size: 11px; font-weight: 700; color: #6a7280; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 10px; }
+.theme { margin-bottom: 14px; padding: 12px 14px; border-radius: 8px; background: #fafbfd; border: 1px solid #eef1f6; }
+.theme-name { font-weight: 600; font-size: 14px; color: #0b1020; display: flex; align-items: center; gap: 8px; }
+.theme-tag { font-size: 10px; padding: 2px 7px; border-radius: 4px; background: #eef0ff; color: #4a5cd1; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.theme-tag.mobile { background: #e6f7f1; color: #0d8a64; }
+.theme-tag.platform { background: #fef0f5; color: #b5325b; }
+.theme-tag.ai { background: #f4ecff; color: #6c3fb8; }
+.theme-tag.ops { background: #fff5e6; color: #b5710a; }
+.theme-list { margin: 8px 0 0; padding-left: 18px; }
+.theme-list li { font-size: 13px; color: #2d3340; margin: 3px 0; line-height: 1.5; }
+
+.month-hero-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 8px; }
+.hero-card { background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%); border: 1px solid #d8def0; border-radius: 8px; padding: 12px 14px; }
+.hero-card .hero-name { font-weight: 600; font-size: 13px; color: #0b1020; }
+.hero-card .hero-desc { font-size: 12px; color: #4b5161; margin-top: 3px; line-height: 1.5; }
+
+.inprogress-list { margin: 8px 0 0; padding-left: 18px; }
+.inprogress-list li { font-size: 13px; color: #4b5161; margin: 3px 0; }
+.inprogress-list li b { color: #0b1020; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <div>
+    <h1 class="title">Tread Product Release Dashboard</h1>
+    <p class="subtitle">Release notes posted in #shipit, last ~3 months — refreshes live from Slack on each open</p>
+  </div>
+  <div class="refresh-meta" id="refreshMeta">
+    <span id="refreshText">Generated <span id="generatedAt">—</span></span>
+  </div>
+</div>
+
+<div class="banner" id="banner"></div>
+
+<div class="tabs" id="tabs">
+  <button class="tab active" data-tab="releases">Release Log</button>
+  <button class="tab" data-tab="insights">Monthly Insights</button>
+</div>
+
+<section id="releaseView">
+
+<div class="stats">
+  <div class="stat stat-accent">
+    <div class="stat-label">Total Releases</div>
+    <div class="stat-value" id="statTotal">—</div>
+    <div class="stat-sub" id="statRange">—</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Web Deploys</div>
+    <div class="stat-value" id="statWeb">—</div>
+    <div class="stat-sub" id="statWebSub">—</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Mobile Releases</div>
+    <div class="stat-value" id="statMobile">—</div>
+    <div class="stat-sub" id="statMobileSub">—</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Latest</div>
+    <div class="stat-value" id="statLatest">—</div>
+    <div class="stat-sub" id="statLatestDate">—</div>
+  </div>
+</div>
+
+<div class="section-title">Recent Timeline</div>
+<div class="timeline" id="timeline"></div>
+
+<div class="section-title" style="margin-top: 32px;">Release Log</div>
+<div class="filters">
+  <div class="search"><input type="text" id="searchInput" placeholder="Search release notes (feature name, fix, area)…"></div>
+  <div class="toggle" id="typeToggle">
+    <button data-type="all" class="active">All</button>
+    <button data-type="web">Web</button>
+    <button data-type="mobile">Mobile</button>
+  </div>
+</div>
+<div id="releaseLog"></div>
+
+</section>
+
+<section id="insightsView" style="display:none">
+  <div class="insight-summary" id="insightSummary"></div>
+  <div class="chart-wrap">
+    <h3>Releases per month</h3>
+    <div class="chart-canvas-box"><canvas id="monthlyChart"></canvas></div>
+  </div>
+  <div id="monthlyInsights"></div>
+</section>
+
+</div>
+
+<script>
+// ============================================================
+// PRE-BAKED RELEASE DATA (from #shipit search at build time)
+// The dashboard refreshes from Slack on each open and merges
+// any new releases not present in this list.
+// ============================================================
+const PREBAKED = [
+  {ts:"1779462738.657739",version:"Deploy #471",releaseDate:"2026-05-21",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1779462738657739?thread_ts=1779426038.669409&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #471 (2026-05-21)
+
+New Features
+
+Job and Order Notifications
+Users can now opt into push, SMS, and email notifications for key job events — accepted, rejected, canceled, and completed — as well as when new orders or projects are created. Notification preferences are configurable per channel on the User Profile Notifications screen, so each team member receives only the alerts they care about.
+
+Bulk Download Filters
+Bulk Download Files now respects your page filters (date range, driver) so downloads match exactly what you see on screen. The download dialog also displays which filters are applied before you download, eliminating guesswork about what's included.
+
+───
+
+Improvements
+
+• Idle time visibility on the live map — Idle truck markers now use a higher-contrast yellow, and route history idle indicators have been updated with clearer colors and styling for better at-a-glance readability
+• Projects page for parent+child companies — The Projects page now shows projects from both parent and child companies by default
+• API pagination documentation — Documentation for upcoming pagination changes is now available in the API developer reference
+
+───
+
+Bug Fixes
+
+Project-level Rates
+
+• Fixed switching the pickup site on Copy & Edit not clearing the previous rate card selection
+• Fixed the driver rate being lost when the "Use vendor rate" toggle was checked
+• Fixed incorrect add-ons being saved when canceling and re-saving on the Edit Job rematch step
+• Fixed the Copy & Edit order form not preserving the selected rate card from the original order
+• Fixed editing existing site rates in the project form being silently dropped on save
+• Rates are now properly decoupled from the project when an order is canceled, matching the existing completion behavior
+• Fixed stamped order rates on completion incorrectly referencing project-level add-on assignments
+
+Other
+
+• Fixed jittery UI behavior during job event transitions (e.g., accepting or completing a job)
+• Fixed Live Map zoom buttons not working, and fixed a follow-up issue where map panning broke after the zoom fix
+• Fixed job creation failing when an order referenced a user who no longer has the Foreman role
+• Fixed driver counts on the dispatch page not updating after job state changes like cancellation
+• Fixed live site data broadcasting scoping incorrectly, which could cause missed site proximity updates
+• Fixed CRH ticket integration incorrectly importing kilogram values as tons
+
+───
+
+In Progress (not yet customer-facing)
+
+• Idle Time — Live map idle indicators and route history polishes shipped; metric calculations and driver panel integration continue
+• Bulk Download Files — Date and driver filters now work; approved-only load filtering and higher download limits coming next`},
+  {ts:"1779376122.826889",version:"Mobile v1.110.0",releaseDate:"2026-05-20",isMobile:true,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1779376122826889?thread_ts=1779296335.596119&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Mobile v1.110.0 (2026-05-20)
+
+New Features
+
+Edit Job Form Redesign with Rate Card Support
+The Edit Job form now includes full rate card support on mobile. Dispatchers can select from project or order rate cards, toggle vendor rate and add-ons per rate card, and override the system-matched rate. Rate display logic on order details has been updated to show the starred customer rate or hide rates when none are starred. The field formerly labeled "Site rate schedule" is now called "Rate Card Selection" for clarity.
+
+Manual Offline Mode
+Offline mode is now manually controlled rather than triggered by automatic detection, giving drivers more predictable behavior. Drivers can also complete required signatures while offline — signatures are queued and submitted once connectivity returns.
+
+Map Improvements
+The driver map now auto-centers on your current location while navigating. The confusing delayed green marker has been removed in favor of the live blue pin. Local geofence notifications alert drivers when approaching pickup or dropoff sites, and map cursor alignment and orientation have been improved.
+
+───
+
+Improvements
+
+• Softer in-app update prompt — App updates now appear as a gentle notification on the Accounts tab instead of forcing an immediate update
+• Load-level sites on orders — Orders now display pickup and dropoff sites at the load level, so drivers can see exactly where each load needs to go even when dispatch doesn't set order-level waypoints
+• Ticket quantity validation — The app now validates ticket quantity after a ticket is added, preventing incomplete submissions
+
+───
+
+Bug Fixes
+
+• Drivers can no longer upload tickets to canceled jobs
+• Fixed an issue where newly added mid-day drivers could see scale tickets instead of digital tickets on orders configured for digital tickets
+• Fixed an issue where unstarring a rate card on an order didn't trigger a rate rematch
+• Fixed percentage add-on values displaying incorrectly in the add-on selector
+• Fixed an accessibility issue where large text settings could block button taps on certain screens
+• Fixed an app crash that could occur when reconnecting to Tread after losing Wi-Fi
+• Reduced iOS app hangs caused by permission checks during app resume
+
+───
+
+In Progress (not yet customer-facing)
+
+• Project-level Rates — Mobile rate card support is now live; web-side polishes, reporting integration, and rollout to remaining accounts continue`},
+  {ts:"1779203040.374739",version:"Deploy #465",releaseDate:"2026-05-18",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1779203040374739?thread_ts=1779157936.641679&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #465 (2026-05-18)
+
+Improvements
+
+Project-level Rates
+
+• Project timeline entries now identify which specific rate card was changed, including its name and conditions — making it easy to tell which rate was modified on projects with multiple rate cards
+• When editing a job, saving condition changes alongside manual rate edits now triggers a confirmation dialog so the rate re-match doesn't silently override your manual pricing
+• Deleting a starred rate card on an order now prompts a confirmation and triggers a system re-match, consistent with the existing unstar behavior
+• Project and order forms now gracefully recover from partial save failures — if some rate cards or add-ons fail to save, the form stays open with a clear error message and retry option instead of silently losing data
+• The order form now correctly indicates when rates are decoupled from the project after an order moves back from Completed status
+
+───
+
+Bug Fixes
+
+Project-level Rates
+
+• Fixed an issue where add-on cascading could incorrectly target assignments across companies
+• Replacing an add-on type and adding another with the same rate in a single edit no longer fails to save
+• Editing only add-ons on the Edit Job form now correctly enables the Save button
+• Previously matched vendor and driver rates are now properly cleared when switching to a rate card that doesn't include them
+• Vendors in a sub-dispatch chain can no longer edit the customer rate through the Receivables Invoice
+• Rate matching no longer runs on projects that don't use site rates, preventing inherited add-ons from being unintentionally removed
+• Fixed a race condition where saving add-ons could intermittently fail when deletions and updates overlapped — now fixed across order, project, and rate card forms
+• Fixed an issue where the Edit Job dialog could fail to close after saving
+
+Other
+
+• The External tab badge count now updates correctly when orders transition between states
+• Driver list export now includes truck numbers and shows all visible drivers (including vendor drivers), not just company drivers
+
+───
+
+In Progress (not yet customer-facing)
+
+• Idle Time — Improved driver idle indicators on the dispatch page with real-time updates in the driver panel, jobs table, and live map; visual refinements to idle icons`},
+  {ts:"1778857746.773719",version:"Deploy #463",releaseDate:"2026-05-14",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1778857746773719?thread_ts=1778814136.234059&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #463 (2026-05-14)
+
+New Features
+
+Sales Quoting Workflow
+The Projects page now includes a Quotes tab with full lifecycle tracking. Move projects through Draft, Quoted, Active, and Completed states directly from the page. Status chips and transition actions make it easy to manage your sales pipeline at a glance.
+
+───
+
+Improvements
+
+• Order Metrics redesign — The Order Metrics view has been refreshed with new data including first truck arrival time, total work time, scheduled start, and idle time breakdowns at pickup and dropoff. Truck status badges now show completed-vs-accepted counts at a glance
+• Project-level Rates terminology — "Unnamed Schedule" renamed to "Base Rate" and the invoice rate selector renamed to "Rate Card" for clearer naming
+• Improved automatic ticket matching for orders dispatched with placeholder jobs
+• The "Running" checkbox on job edit forms is now always editable
+
+───
+
+Bug Fixes
+
+• Project-level Rates — Add-ons now properly sync from Invoice to Settlement; clearing a rate value no longer causes a save error; duplicating an order preserves the default rate card; fixed cases where customer rates could disappear; deleting a starred rate on a project no longer causes errors on linked orders
+• Driver and vendor rates are now correctly preserved when duplicating orders
+• Shared equipment no longer appears in the Telematics equipment selector
+• Add-ons applied after rate matching now correctly update invoice reconciliation
+• Order truck count no longer briefly shows 0 after creating an order
+• Duplicating an order now preserves tax rate and external tax accounting settings
+• Improved settlement processing reliability
+• Fixed a state transition error that could block load arrival
+
+───
+
+In Progress (not yet customer-facing)
+
+• Idle Time — Idle time data fields wired into Load, Job, Order, and DriverDay views; rolling out per-company
+• PostGIS Geofence Processing — continued backend improvements and bug fixes`},
+  {ts:"1778598431.693709",version:"Deploy #459",releaseDate:"2026-05-11",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1778598431693709?thread_ts=1778557528.752779&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #459 (2026-05-11)
+
+New Features
+
+Idle Time Tracking
+Dispatchers can now see when trucks are idle directly on the Dispatch page. An idle indicator appears on the driver panel, and a threshold line is shown on the speed timeline so you can quickly spot idle periods. Idle time is automatically calculated per load, job, and order upon completion.
+
+───
+
+Improvements
+
+• Project-level Rates polish — "Site Rate Schedule" renamed to "Freight Rates" for clarity, a confirmation modal now appears before starring a rate to prevent unintended cascading changes, and a "Rate Card Selection" label has been added to the site rate selector
+• Load notes are now visible in order-level load lists and the load drawer, with edits immediately reflected after saving
+• New branded Tread email layout for transactional emails
+• Apex orders now default to Running Loads
+
+───
+
+Bug Fixes
+
+• Fixed an issue where changes to an order's tax configuration were not propagating to existing Invoices and Settlements, causing incorrect tax amounts on bills
+• Project-level Rates fixes — Edit Order form no longer overwrites concurrent rate edits; validation errors now show readable field names instead of technical paths; changing rates at the order level after completion correctly cascades to jobs
+• Fixed WBS/Phase code not being saved to the order after creation
+• Fixed job map not displaying site locations correctly
+• Fixed autocomplete dropdown arrow misalignment in dispatch and approvals tables
+• Fixed driver auto-assignment when matching equipment from resolved tickets
+
+───
+
+In Progress (not yet customer-facing)
+
+• PostGIS Geofence Processing — continued backend pipeline improvements and bug fixes
+• Prevailing Wage — backend data models in maintenance; rate calculation and UI pending
+• Quoting — backend sales state machine shipped; full quoting workflow pending`},
+  {ts:"1778166619.217609",version:"Deploy #456",releaseDate:"2026-05-06",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1778166619217609?thread_ts=1778090461.678029&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #456 (2026-05-06)
+
+Bug Fixes
+
+• Fixed "Copy and Edit" on orders clearing rates instead of carrying them over — rates now properly persist when duplicating orders, including those assigned to projects
+
+───
+
+In Progress (not yet customer-facing)
+
+• PostGIS Geofence Processing — continued backend pipeline improvements; product-facing features pending`},
+  {ts:"1777993693.211799",version:"Deploy #453",releaseDate:"2026-05-05",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1777993693211799?thread_ts=1777946845.213399&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #453 (2026-05-05)
+
+New Features
+
+Project Timeline
+Projects now display a real-time timeline of key events — including creation, rate changes, site updates, and schedule modifications. Teams can track a project's full activity history at a glance without leaving the project view.
+
+───
+
+Improvements
+
+Project-level Rates
+• Orders with no rates now show a clear empty-state UI, making it obvious when pricing hasn't been configured
+• Project-level rates now take precedence over order-level fallbacks during automatic rate matching
+• Starring a rate on an order now cascades that rate to all jobs on the order
+• Customer rate is now visible directly on the Dispatch page
+• A confirmation banner now appears when unstarring rates to prevent accidental changes
+• Sub-vendors in the dispatch chain can no longer edit the customer rate
+
+Self-Service API Clients — Full Release
+• API client management is now fully released with a polished interface — create, view, and revoke API clients directly from Settings
+
+Other Improvements
+• The automated ticket review now detects when an uploaded image isn't actually a ticket and prevents automatic approval, improving billing accuracy
+• "Axle" has been renamed to "Telematics" throughout the platform
+• Users can now set a preferred language on their profile
+• Pickup and dropoff site selectors are now available on the load drawer
+• Orders can now be deleted via the API
+• Drivers are now automatically assigned to driverless jobs when a matching ticket is ingested
+• The Accounting ID field is now available on updated user profile forms
+
+───
+
+Bug Fixes
+
+• Fixed sent job counts showing 0 in cross-company dispatch when sent jobs actually exist
+• Fixed stale add-ons persisting when site or material changes trigger a different rate match
+• Fixed "Copy and Edit" on projects not carrying over freight rates
+• Fixed "Copy and Edit" on orders not preserving all order details
+• Fixed customer rate intermittently disappearing on orders
+• Fixed clearing a system-matched rate card not resetting all associated values
+• Fixed rate matching not retriggering when changing sites on an order or job
+• Fixed add-on percentage calculations showing incorrect totals after editing line items
+• Fixed duplicate add-ons appearing on projects
+• Fixed settlement column settings not persisting when navigating away
+• Fixed admin geofence page showing incorrect view on initial load
+• Fixed driver dispatch SMS showing incorrect driver quantity
+• Fixed shared-site multi-load not advancing fully through the pickup cycle
+• Fixed order site changes not cascading updates to associated jobs
+
+───
+
+In Progress (not yet customer-facing)
+
+• Idle Time — backend speed-based detection infrastructure shipped; live map indicators and timeline UI pending
+• Prevailing Wage — foundational data models complete; rate calculation, classification, and billing integration pending`},
+  {ts:"1777907778.423449",version:"Mobile v1.109.0",releaseDate:"2026-05-04",isMobile:true,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1777907778423449?thread_ts=1777904472.427809&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Mobile v1.109.0 (2026-05-04)
+
+New Features
+
+Project-Level Rates on Mobile
+The full Rates experience is now available on mobile order forms — including project-level rate cards, add-ons, and inline rate editing. Dispatchers can manage pricing directly from their phone or tablet.
+
+Send Message from Mobile
+Dispatchers can now text individual drivers or all drivers on an order directly from the mobile app, making field communication faster and easier.
+
+Driver Signature on DriverDay Log
+Drivers can now provide a signature on their DriverDay log when stopping, adding accountability and compliance documentation to daily workflows. Currently rolling out to select organizations.
+
+───
+
+Improvements
+
+• Load notes now have their own dedicated section in load and ticket details for easier viewing
+• Site creation now pins to the typed address instead of defaulting to the current GPS location
+
+───
+
+Bug Fixes
+
+• Fixed SSO login on mobile no longer incorrectly redirecting to the web app after sign-in
+• Fixed Foreman role incorrectly showing rate information on the Job Details (Schedule) tab
+• Improved offline detection accuracy — reduced false-positive "offline" alerts`},
+  {ts:"1777648225.038759",version:"Deploy #452",releaseDate:"2026-04-30",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1777648225038759?thread_ts=1777590066.234499&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #452 (2026-04-30)
+
+Improvements
+
+Project-level Rates
+• The new rate selection experience is now available on the Edit Job form, giving dispatchers the same streamlined pricing controls when modifying existing jobs
+• Users can now clear rates on a job to reset to automatic rate matching
+
+Self-Service API Clients
+• API client creation flow is now complete — create a new client, assign a role, and receive a one-time API key all from the Settings page
+
+───
+
+Bug Fixes
+
+• Fixed "Copy and Edit" on projects incorrectly linking copied add-ons to the original project — copied projects are now fully independent
+
+───
+
+In Progress (not yet customer-facing)
+
+• Project-level Rates — mobile support and reporting enhancements in progress
+• Self-Service API Clients — security enhancements and additional management capabilities coming soon`},
+  {ts:"1777562205.652329",version:"Deploy #451",releaseDate:"2026-04-29",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1777562205652329?thread_ts=1777525269.609899&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #451 (2026-04-29)
+New Features
+Self-Service API Client Management
+Company admins can now create, view, and revoke API clients directly from the new API Clients page in Settings. Active clients are displayed with masked keys, and access can be revoked instantly with a single click.
+───
+Improvements
+Project-level Rates
+• Invoice rate selectors now show project-level rates instead of only company-wide rates, so billing matches the pricing configured on each project
+• Invoice line items now display a "Type" column distinguishing Material and Freight charges
+• Each rate card now includes a "Use vendor rate and add-ons for driver rate" option, letting driver rates stay in sync with vendor pricing automatically
+• Material rates now properly validate unit of measure when a sell price is set
+• Material rate selections are now correctly saved and displayed on orders
+• Improved handling when a material rate's unit differs from the material's default unit
+• Removed deprecated Flat Commission and Commission from Customer Rate types
+Other Improvements
+• The Automatic Settlement Add-ons table now shows a "Default Qty" column for easier verification
+• Jobs now only auto-start when GPS reports the driver is actually moving, reducing false starts from stationary location pings
+• Milling equipment now automatically uses the equipment site as the pickup location
+• User profiles now support an Accounting ID field for correlating users with external payroll and accounting systems
+───
+Bug Fixes
+• Fixed site rates not auto-populating on the Update Order form when a site is added
+• Fixed material rate not being saved when selecting a rate on completed orders
+• Fixed editing a job not updating pickup and dropoff locations when the job site changes
+• Fixed driver job counts showing inconsistent numbers across views
+• Fixed sub-vendors being unable to see ticket images in the Loads tab
+• Fixed ticket scanning not triggering in certain file upload timing scenarios
+• Fixed settlement rebill totals calculating incorrectly
+• Fixed bulk settlement creation showing an endless spinner when no invoices are groupable
+• Fixed settlement add-ons not visible in the read-only view when no job line items exist
+• Fixed duplicate ticket detection missing duplicates across sub-companies on the same order
+• Fixed stale duplicate ticket flags remaining after ticket numbers are cleared
+• Fixed precision rounding issues in rate and quantity calculations
+• Fixed table header styling and cell alignment issues
+───
+In Progress (not yet customer-facing)
+• PostGIS Geofence Processing — new event processing pipeline shipped; product-facing features pending
+• Project Timeline Events — backend event recording infrastructure shipped; API and UI pending`},
+  {ts:"1777043544.718539",version:"Deploy #450",releaseDate:"2026-04-23",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1777043544718539?thread_ts=1776998066.392199&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #450 (2026-04-23)
+New Features
+Separated Material & Freight Rates on Invoices
+Invoices and settlements now break out material rates and freight rates as separate line items, giving you a clearer cost breakdown. The combined view remains available for invoices without itemized material rates.
+───
+Improvements
+• Duplicate Ticket Filtering — The Dispatch page now supports filtering loads by duplicate ticket status, making it easier to find and resolve duplicates before billing or payment
+───
+Bug Fixes
+• Fixed an issue preventing project attachments from being deleted
+• Fixed restored jobs going to "To Pickup" instead of incorrectly landing on "Unloaded" status
+• Fixed prevailing wage flag not carrying over from orders to invoices, so the prevailing wage filter in Payables and Receivables now returns correct results
+• Fixed automated order imports matching the wrong shared site when routing to sub-companies
+───
+In Progress (not yet customer-facing)
+• Self-Service API Key Management — backend service shipped; admin UI pending
+• PostGIS Geofence Processing — backend pipeline improvements shipped; product-facing features pending`},
+  {ts:"1776871033.115609",version:"Deploy #449",releaseDate:"2026-04-21",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1776871033115609?thread_ts=1776819707.699869&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #449 (2026-04-21)
+New Features
+Phase Code Management — Bulk Paste from Excel
+Manage phase codes in a new slide-out drawer with a full table view. Bulk-add dozens of phase codes by pasting directly from Excel — no more entering them one at a time.
+Restore Jobs
+Dispatchers can now restore canceled jobs from a dropdown menu. Restoring a job with no active loads automatically creates one so work can resume immediately.
+Streamlined Ticket Entry
+Ticket number is now optional on the web (configurable per organization). The ticket form auto-opens with smart defaults for date, time, and unit of measure — fewer clicks to log a ticket.
+───
+Improvements
+• Project-level Rates: Star a rate to apply it to every job on an order, overriding condition-based matching. Override matched rates on individual jobs and invoices. Rate cards now default to open when no rates are set.
+• Prevailing wage filter added to Payables and Receivables
+• License plate and VIN now visible on the Remote Vehicle Integration page
+• Invite type selection now uses a cleaner button toggle
+• Improved ticket scanning accuracy
+• Unified material rates view on projects — all material rates managed in a single form
+• Improved address geocoding accuracy
+───
+Bug Fixes
+• Fixed crash in Payables when entering certain values in the add-on quantity field
+• Fixed Payables/Receivables not using correct per-load material data
+• Fixed vendor equipment update failing with an error
+• Fixed Export Jobs CSV "Truck ID" column showing vendor name instead of truck identifier
+• Fixed error when calculating fuel surcharge on certain invoices
+• Fixed truck count not updating when creating a job from an order
+• Fixed Add-Ons picker returning empty list for sub-company users
+• Fixed "Add Material Rate" button not appearing when material was not set on a project
+• Fixed error when saving a freight rate without selecting a rate type
+• Fixed rate matching not re-running when order or job attributes change
+• Improved Bulk Uploader date format documentation
+• Fixed SSO authentication issues for users with pending invitations
+• Fixed equipment type creation using wrong company version
+───
+In Progress (not yet customer-facing)
+• PostGIS Geofence — backend service improvements shipped; product-facing features pending
+• Self-Service API Key Management — security backend and permissions shipped; admin UI pending`},
+  {ts:"1776871022.632849",version:"Mobile v1.108.0",releaseDate:"2026-04-21",isMobile:true,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1776871022632849?thread_ts=1776792878.378509&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Mobile v1.108.0 (2026-04-21)
+New Features
+Offline Ticket Creation
+Create tickets while offline — they automatically sync (including images) once you reconnect. No more lost work in low-connectivity areas.
+Offline Actions Toggle
+Accept/reject and start/stop actions while offline can now be enabled per organization via feature flags.
+Smarter Offline Banner
+The offline indicator now checks actual backend reachability, not just internet connectivity, giving you a more accurate picture of your connection status.
+───
+Improvements
+• Faster map loads on job and order views — reduced redundant network calls
+• Better inline error messages on Create Site and Job Location forms
+• More reliable feature flag evaluation, especially while offline
+───
+Bug Fixes
+• Fixed Foreman role seeing rate information on the Order Details tab
+• Fixed contacts not saving when creating a new site (misleading "Site not created" error)
+• Fixed History tab intermittently disappearing for drivers`},
+  {ts:"1776352536.803259",version:"Deploy #448",releaseDate:"2026-04-15",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1776352536803259?thread_ts=1776304253.919819&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #448 (2026-04-15)
+New Features
+Project-level Rates
+You can now define a complete pricing rulebook directly on a project — set customer, vendor, and driver rates with conditions based on pickup site, dropoff site, equipment type, and material. The system automatically matches the best rate for each job and stamps pricing when orders complete. Rate templates, add-ons, starring, and manual overrides are all supported.
+AI Ticket Reviews
+AI-powered ticket reviews now appear directly in the ticket drawer, with duplicate ticket indicators to help reviewers quickly spot and handle duplicates.
+───
+Improvements
+• Prevailing Wage badges and filters now available across Dispatch, Approvals, Payables, and Receivables
+• Prevailing wage fields now shown on rate cards when enabled for a project
+• Settled invoices now show an inactive "Approved" badge to prevent accidental un-approval
+• Bulk settlement actions added to the Approve Jobs tab
+• "View Settlement" link added to settlement toast notifications
+• Confirmation dialog now shown when bulk canceling jobs in dispatch
+• Trucks now display driver first and last name instead of "My Truck"
+• Default onsite minutes can now be configured in Settings
+• Multiple labels now shown on dispatch driver and vendor cards
+• Customer Portal Access now defaults to ON for new connected accounts
+• Rates and phase codes now visible on the ticket drawer
+• Tax Rate Schedules list is now searchable
+───
+Bug Fixes
+• Fixed material rates not saving when creating a project with blank units
+• Fixed receivable/payable subtotal showing a different total than individual line items due to rounding
+• Fixed duplicate line items appearing in invoices
+• Fixed driver rates unexpectedly changing on the mobile app
+• Fixed inability to update waypoints on individual loads
+• Fixed Sites page pagination — Previous button and page number issues resolved
+• Fixed jobs not becoming splittable again after driver unassignment
+• Fixed order creation failing with "Project is invalid" in certain dispatch scenarios
+• Fixed Tax Rate Schedules page missing pagination controls
+• Fixed default date range on Approve Jobs (Files) tab — now defaults to last 7 days
+• Fixed truck unit of measure not updating when order equipment changes
+• Fixed foreman role missing permissions for resource usage logs
+• Fixed inability to remove items in Update Project and Order forms
+• Improved search performance in data grid views
+• Fixed intermittent errors when loading user profile on poor connections
+───
+In Progress (not yet customer-facing)
+• PostGIS Geofence — internal infrastructure improvements shipped; product-facing features pending`},
+  {ts:"1776095124.498249",version:"Mobile v1.107.0",releaseDate:"2026-04-13",isMobile:true,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1776095124498249?thread_ts=1776089251.751119&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Mobile v1.107.0 (2026-04-13)
+New Features
+Site Geofences on Maps
+Site geofences (both circles and polygons) now render on all in-app maps with tag-based color coding (loading, unloading, check-in, scaling, ticketing), so drivers and foremen can see site boundaries directly on Job Details, Active Job, Order Detail, and Live Map views.
+Dispatch on Mobile: Edit Order State
+Dispatchers and company admins can now edit order state directly from mobile, bringing parity with the web experience.
+Dispatch Department Filter
+The Dispatch tab now has a Department filter, making it easier to narrow down orders in large organizations.
+Connection Checker in App Settings
+A new connection checker in app settings lets drivers manually troubleshoot connectivity issues in the field.
+───
+Improvements
+• Foreman create-order form now includes "Charge To Account" on Equipment orders (previously only on Trucking orders)
+• Clearer offline-mode UI cue so drivers know when they're working offline
+• Offline cache errors are now handled gracefully instead of surfacing cryptic messages
+• Ticket scanning banner is now correctly hidden for tickets coming from API integrations
+• Improved RTU connection stability — fewer spurious errors while the app is backgrounded
+───
+Bug Fixes
+• Fixed night-shift jobs disappearing from the Assigned page after midnight on tablets
+• Fixed splash screen text and icon not being centered horizontally
+───
+In Progress (not yet customer-facing)
+• Mobile Offline (drivers accept/reject, start/stop while offline) — offline UI groundwork and connectivity tooling shipped; full offline job lifecycle actions still in progress`},
+  {ts:"1775920137.954269",version:"Deploy #447",releaseDate:"2026-04-10",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1775920137954269?thread_ts=1775863802.657809&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #447 (2026-04-10)
+Bug Fixes
+• Fixed a 404 error when updating add-on charges on shifts`},
+  {ts:"1775920136.953329",version:"Deploy #446",releaseDate:"2026-04-10",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1775920136953329?thread_ts=1775839077.020289&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #446 (2026-04-10)
+Bug Fixes
+• Fixed text-to-accept SMS notifications using inconsistent timezones and added timezone indicators for clarity`},
+  {ts:"1775920135.709169",version:"Deploy #445",releaseDate:"2026-04-09",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1775920135709169?thread_ts=1775777400.899119&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #445 (2026-04-09)
+New Features
+Prevailing Wage Settings
+New settings pages for managing Overtime Rules and Prevailing Wage Benefits are now available, with a Prevailing Wage badge visible on Projects and Dispatch pages to easily identify PW jobs.
+Canceled/Rejected Orders in Dispatch
+Companies can now optionally show Canceled and Rejected orders in the dispatch Orders tab for full visibility into all order statuses.
+───
+Improvements
+• AI review instructions can now be edited directly from the Settings > Agents page
+• Duplicate Tickets quick filter now links directly to the Loads tab on the approvals page
+• Driver Type filter is now sticky — your selection persists when navigating between pages
+───
+Bug Fixes
+• Fixed rate cascades not flowing correctly from Order to Job and Invoice
+• New users now default to the company's timezone instead of Eastern
+• "Rates vary by equipment type" table now displays correctly on Create and Update Order forms
+• Tax rate schedule now persists correctly when editing orders
+• Fixed inability to change load count from the Edit Job button
+• Drivers now see material or unit of measure in text-to-accept messages, not just the number of loads
+• Company logo can now be properly removed and updated in General Settings
+• Fixed a race condition that could create duplicate invoices
+• Load approval states now update in real time when approving loads across multiple orders
+• Imported orders can now correctly transition out of Hold and Weather Hold states
+───
+In Progress (not yet customer-facing)
+• Prevailing Wage — rate card integration and rate calculation (Phase 1B) coming next
+• PostGIS Geofence — internal tooling improvements shipped, product-facing features pending`},
+  {ts:"1775694284.268709",version:"Deploy #442",releaseDate:"2026-04-07",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1775694284268709?thread_ts=1775600449.761119&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #442 (2026-04-07)
+New Features
+AI Review Improvements
+Companies can now add custom review instructions to tailor AI ticket reviews to their specific business rules. Review sensitivity has also been improved to reduce false flags on small quantity differences (e.g., 24 vs 26 tons).
+───
+Improvements
+• Rate cards now automatically re-match when a job's equipment type changes, ensuring the correct pricing is always applied
+• Imported tickets can now match to active jobs by truck even without a dispatch number
+• Order imports now support vendor assignments and site mapping for imported tickets, with improved duplicate detection
+───
+Bug Fixes
+• Fixed an issue where trucks couldn't be added back to an order after one was removed
+• Fixed the Settlements Equipment Type column pulling the wrong type instead of the Truck Type
+• Fixed equipment hours showing duplicates when a driver reviews a job
+• Fixed default additional equipment settings not saving on shared company accounts
+• Fixed add-ons getting duplicated when changing equipment type on a job
+───
+In Progress (not yet customer-facing)
+• PostGIS Geofence Improvements — backend calculation and API groundwork shipped, product-facing features pending
+• Default Onsite Minutes — backend support for company-level default pickup/dropoff times added, frontend configuration pending`},
+  {ts:"1775233090.758699",version:"Mobile v1.106.0",releaseDate:"2026-04-03",isMobile:true,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1775233090758699?thread_ts=1775226250.615769&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Mobile v1.106.0 (2026-04-03)
+New Features
+Staging Site Support
+Staging waypoints now appear on job maps with markers and camera bounds, giving drivers clear visibility into staging locations.
+Shift Add-Ons & Equipment Time
+Drivers can now add, edit, and delete add-on charges and equipment hours on shifts (feature flagged).
+Job Equipment Hours
+Equipment hours are now visible on job review screens (feature flagged).
+Hold/Weather Hold Enforcement
+Drivers are blocked from starting jobs when the order is on Hold or Weather Hold.
+Improvements
+• Added Recurring & Collaborator fields to RPMx Foreman create order form
+• Material field added to the job edit form
+• Shift notes now visible on the Logged Hours card
+• Removed driver signature from the digital ticket flow
+• Unit of Measure visibility improvements
+• Large text accessibility improvements for foreman views
+• Offline mode groundwork — data storage and offline actions for jobs and driver shifts
+Bug Fixes
+• Fixed push notifications silently broken on startup and login/logout
+• Fixed feature flag crashes on app startup
+• Fixed digital ticket UOM not defaulting correctly
+• Fixed equipment selector showing external "View Only" equipment
+• Fixed long equipment names breaking the account profile layout
+• Fixed ticket capacity quantity after deleting and resaving
+• Stability improvements (multiple Sentry crash fixes)`},
+  {ts:"1775233087.499419",version:"Deploy #441",releaseDate:"2026-04-02",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1775233087499419?thread_ts=1775186272.275849&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #441 (2026-04-02)
+New Features
+Job Notification Emails
+Configurable email notifications for job events are now available.
+Tax Rate Schedules on Projects & Orders
+Tax rate schedules can now be selected on Project and Order forms and automatically cascade through to invoices.
+Paver Tracker: Equipment Controls
+New "Use Paver Tracker equipment" checkbox on the Site edit modal, plus equipment editing on moving site geofences.
+Prevailing Wage & Contract Number on Forms
+Toggle prevailing wage on Projects/Orders with configurable work week start day. Contract number field now available on both forms.
+Trailer Auto-Assignment
+Trailers are now auto-assigned when dispatching drivers, with a new trailer column on the Driver grid.
+Improvements
+• Support for capturing "Printed At" timestamp on imported tickets
+• AI ticket scanning now retries on API failures and only uses allowed units of measure
+Bug Fixes
+• Fixed vendor rate being overwritten by customer rate in sub-dispatch flow (P0)
+• Fixed ticket numbers not populating correctly in Settlements view (P1)
+• Fixed urgent dispatch issues and incorrect automatic start times (P1)
+• Fixed Material Shipped showing wrong unit of measure
+• Fixed geofence delay being incorrectly applied to loading/unloading geofences
+• Fixed rate matching logic when no conditions match
+• Fixed 404 error when removing add-ons under a rate card
+• Fixed company form sending null coordinates causing validation error
+• Fixed duplicated payloads for canceled orders not re-committing`},
+  {ts:"1775233083.674719",version:"Deploy #440",releaseDate:"2026-04-01",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1775233083674719?thread_ts=1775027104.659559&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #440 (2026-04-01)
+New Features
+Paver Tracker Sync Controls
+Background sync now respects a remote sync override flag, giving dispatchers more control over equipment-to-site assignments.
+Editable Internal Notes on Job Approvals
+Internal notes can now be edited directly from the Approve Jobs screen.
+Tax Rate Schedules
+New Settings page for managing tax rate schedules with full CRUD support.
+Improvements
+• Added contract number field to Projects and Orders
+• Prevailing wage benefit catalog management (backend)
+Bug Fixes
+• Fixed order metrics showing incorrect "In Transit" tonnage for completed orders
+• Fixed site-mapped orders being created under the wrong company
+• Fixed 3rd party site defaulting to wrong location for Dufferin imports
+• Fixed default additional equipment not applying correctly for shared drivers
+• AI ticket approval badge now hidden on duplicate tickets`},
+  {ts:"1774970603.769909",version:"Deploy #439",releaseDate:"2026-03-30",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1774970603769909?thread_ts=1774919171.858809&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #439 (2026-03-30)
+New Features
+Project-level Rates
+Teams can now define rates with multiple conditions — site, equipment type, material, and service class — that automatically resolve at order and job time. The dropoff site is now also available as a rate condition, and when equipment type varies, rate summaries display accordingly at both the order and job level.
+Digital Ticket Filtering on Dispatch & Approvals
+Dispatchers and approvers can now filter orders by digital ticket view type on the dispatch and approvals pages, making it faster to find and process the right tickets.
+Compliance Notification Toggle
+Admins can now enable or disable compliance notifications via a new toggle in the compliance settings.
+APEX Connector: Additional Order States & Site Mapping
+The APEX integration now supports Hold, Weather Hold, and Canceled order states, and correctly maps sites for imported orders.
+Auto-Start Jobs with Active Telematics
+Jobs are now automatically started when an active telematics integration is detected, reducing manual steps for dispatchers.
+Improvements
+• Rate information (driver or vendor rate, based on job assignment) is now shown on Job Card PDFs
+• Trailer is now displayed in the Drivers table, next to the equipment column
+• Improved duplicate ticket filtering in the AI loads review workflow
+• Staging map pin display is now consistent on dispatch routes
+Bug Fixes
+• Fixed a P1 issue where integration addresses and job sites were not matching correctly
+• Fixed internal notes not displaying correctly across parent/child company structures
+• Fixed a crash when selecting a site contact name on the order page
+• Fixed a crash when editing invoice rates
+• Fixed missing label translations across several areas of the app`},
+  {ts:"1774624660.322329",version:"Deploy #436",releaseDate:"2026-03-26",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1774624660322329?thread_ts=1774574242.902629&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #436 (2026-03-26)
+New Features
+Project-Level Freight Rates
+Project managers can now define multi-condition freight rates directly on a project — combining site, service class, equipment type, and material so the right rate applies automatically. The system cascades the correct customer, vendor, and driver pricing to every ticket, eliminating manual overrides. (Rolling out to select customers)
+Phase Tracking on Loads
+Phases can now be linked to project materials and automatically cascade to orders, jobs, and loads when a material is selected. A new Phase column on the dispatch and approvals loads tables shows the phase name and code at a glance, and phases are also supported when importing tickets.
+Internal Notes on Jobs
+Back-office users can now add and edit internal notes directly on jobs. Notes are company-scoped — only visible to users within the same company — making it easy to pass billing instructions and context through the dispatch chain without exposing them to other parties.
+Shift Notes
+A Shift Notes field is now available on the DriverDay Shift tab, giving reviewers helpful context (e.g., late arrivals, equipment issues, dispatcher adjustments) right where they need it while reviewing shift hours.
+Staging Site on Dispatch Routes (Rolling out to select customers)
+Dispatchers can now assign a staging site as an intermediate stop between pickup and dropoff. The staging site can be set across all dispatch forms — new orders, job edits, bulk edits, projects, and quick orders.
+Trailer in Dispatch Side Panel (Rolling out to select customers)
+Trailer details are now visible in the side panel on the Dispatch page for quick reference without leaving the current view.
+Improvements
+• Compliance document expiration email notifications can now be controlled per document type in user notification preferences
+• Job Card PDF now shows pickup and dropoff site with an updated layout
+• Driver rate amounts are now shown on the Payables invoice for internal drivers
+• Imported sites from external systems now have their addresses automatically geocoded
+• Duplicate ticket detection now uses a dedicated field instead of an AI review state, making the duplicate quick filter more accurate and reliable
+Bug Fixes
+• Fixed a P1 issue where internal drivers could not see their driver rate amount in the app or on web
+• Fixed the Approve button incorrectly appearing for non-completed loads when the new approvals feature was enabled
+• Fixed a permissions issue preventing some users from accessing the Data Importer
+• Fixed missing label for email notification method settings on the User Profile page`},
+  {ts:"1774380861.103209",version:"Deploy #434",releaseDate:"2026-03-23",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1774380861103209?thread_ts=1774319639.294459&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #434 (2026-03-23)
+───
+New Features
+Order Metrics UI Updates
+The Order Metrics tab on Dispatch has been updated with a new layout, improved labels, additional job states, and pickup/dropoff site names for better clarity.
+Staging Waypoint Support
+Orders and jobs now support a staging site between pickup and dropoff. Staging sites appear correctly across Approvals, Loads, Settlements, and all reports. Full form editing and dispatch card display are coming in a follow-up release.
+Unapproved Jobs & Loads Filters
+The Approve Jobs screen now includes sticky filters for "Unapproved Jobs" and "Unapproved Loads," making it faster to find items that still need attention.
+Next Load Navigation Across Orders
+When approving loads, dispatchers can now navigate to the next load across different orders — no need to back out and re-enter each order individually.
+Auditor Role
+A new read-only "Auditor" role allows users to view all tenant data across companies without the ability to make changes — ideal for compliance and oversight needs.
+Restrict Equipment Options by Vendor
+Companies can now configure which equipment types are available to vendors on a per-job basis, and dispatchers see a filtered equipment list when assigning trucks on dispatch.
+Multiple Geofences Per Job
+The geofence admin tool now supports configuring multiple geofences with associated tags on a single job, replacing the previous single-geofence limit.
+Hold Enforcement for Drivers
+When an order is on Hold or Weather Hold, drivers are now blocked from starting their jobs — preventing accidental hold removal that previously affected all trucks on the order.
+───
+Improvements
+• Load summaries now include distance travelled information
+• Dispatchers can view mileage data on load details
+───
+Bug Fixes
+• Fixed an issue where compliance document dates were saved incorrectly due to timezone differences
+• Fixed an issue where clearing an external ID on a compliance document type would not persist on save
+• Fixed a validation error when updating vendor assignments on certain accounts
+• Fixed waypoint columns in Approvals and Settlements showing incorrect sites when a staging waypoint was present
+───
+In Progress (not yet customer-facing)
+• Project-level Rates — backend foundation shipped (1 of 5 tickets), frontend pending
+• Quoting — backend state machine and company scoping prep, full UI on separate branch
+• Project Material Phase Linking — backend phase_id support shipped, frontend phase dropdown and auto-fill pending
+• Mobile Offline Mode — backend driver day endpoint updates shipped, mobile implementation ongoing`},
+  {ts:"1774380844.967019",version:"Mobile v1.105.0",releaseDate:"2026-03-16",isMobile:true,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1774380844967019?thread_ts=1773672189.633129&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Mobile v1.105.0 (2026-03-16)
+───
+New Features
+Digital Ticket Experience Overhaul
+Drivers now default directly into the digital ticket view when enabled on an order, with a redesigned layout that hides empty fields for a cleaner experience. The tickets list has been streamlined with a simplified menu, and load details are now easier to scan on both Order and Job screens.
+Signature Prompts & Warnings
+Drivers are now prompted to capture a signature when completing a load. If a dropoff signature is missing, a visual warning appears on the ticket row and when saving — helping ensure complete documentation on every delivery.
+SSO Login Support
+Drivers can now log in using Single Sign-On (SSO), matching the login experience already available on the web platform.
+Set Truck License Number in App
+Drivers can now enter and update their truck license number directly from the mobile app, eliminating the need to contact a dispatcher.
+New Site Creation in Order Form
+Users with the appropriate permissions can now create new sites directly from the Create Order and Edit Order forms without leaving the workflow.
+───
+Improvements
+• Prevented accidental double-taps on buttons throughout the app
+• Updated the Loads list UI on Order and Job detail screens for better readability
+• Added staging waypoint type support for future dispatch routing features
+───
+Bug Fixes
+• Fixed an issue where pickup and dropoff sites were not populating when selecting a project on the foreman order form
+• Fixed the "Copy & Edit" button appearing for users without the correct permissions
+• Improved app stability and resolved several intermittent connection errors
+───
+In Progress (not yet customer-facing)
+• Migrate to Company-Scoped Endpoints — deprecated endpoint cleanup underway, no user-facing changes yet
+• Comprehensive Testing Infrastructure — unit test coverage expansion in progress
+• Swift Package Manager Migration — iOS build tooling migration, no user-facing impact`},
+  {ts:"1774380791.245419",version:"Deploy #432",releaseDate:"2026-03-19",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1774380791245419?thread_ts=1773978899.957609&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #432 (2026-03-19)
+───
+New Features
+Order Metrics on Dispatch
+Dispatchers can now view per-order delivery metrics directly from the Dispatch screen, including delivery progress, events, truck activity, and onsite times — all in a new "Metrics" tab on each order.
+Approval Status Filters on Approve Jobs
+Dispatchers can now filter by job and load approval status on the Approve Jobs page, making it easier to find unapproved items that need attention.
+AI Ticket Chaser Enabled by Default
+The ticket chaser feature — which automatically follows up on missing tickets — is now enabled by default for new projects, reducing manual follow-up work.
+───
+Improvements
+• Maps are now displayed on distance calculation pages for better visual context
+• Improved ticket matching accuracy via vendor-scoped equipment name and external ID matching
+• Imported tickets no longer require a dispatch ID, improving integration flexibility
+• Increased the maximum load count when vendor job splitting is enabled
+• Selected calendar date range now persists on Approve Jobs when using search
+• Reduced page flickering on the Dispatch view when smart updates are enabled
+• Companies can now delete their company logo
+───
+Bug Fixes
+• Fixed a P0 issue where job pause time was not being deducted from billable hours
+• Fixed a P1 issue where flat commission and commission rate cards were not calculating correctly
+• Fixed an issue where updating delivered quantity on a load incorrectly adjusted values on voided settlements
+• Fixed compliance document types requiring an external ID when it should be optional
+• Fixed file attachments not saving correctly on compliance document types
+• Fixed inactive materials appearing in typeahead search results
+• Fixed distance units saving incorrectly based on company settings
+• Fixed vendor accounts created after 9pm EST showing as created on the following day
+• Fixed the Manage button being cropped in narrow action columns
+───
+In Progress (not yet customer-facing)
+• Staging Waypoint on Dispatch Routes — backend foundation shipped (enum, model associations, ingest services, webhooks, copy tests), frontend work pending in next deploy
+• Job Notification Emails v1 — API implementation shipped, frontend integration pending
+• National Lime and Stone Integrations — ticket processing improvements shipped, broader integration work ongoing`}
+];
+
+// ============================================================
+// MONTHLY THEME ANALYSIS (synthesized from the release notes)
+// Each month: narrative, themes (groups of related work across releases),
+// hero features (headline launches), and in-progress items.
+// ============================================================
+const MONTHLY_THEMES = {
+  "2026-05": {
+    label: "May 2026",
+    narrative: "Project-level Rates landed on Mobile, completing the cross-platform pricing rulebook started in April. Idle Time Tracking shipped to production with dispatch indicators and per-load metrics. A Sales Quoting workflow and live Project Timeline opened up new project-management surfaces, and Self-Service API Clients reached full GA. Mobile shifted to manual offline control with queued signatures, and a new notification system gave users per-channel control over job and order events.",
+    themes: [
+      {
+        name: "Project-level Rates — Mobile parity + polish",
+        tag: "Platform",
+        tagClass: "platform",
+        items: [
+          "Mobile v1.109.0: full Rates UX on mobile order forms — rate cards, add-ons, inline editing",
+          "Mobile v1.110.0: Edit Job form redesign with rate card support; \"Site rate schedule\" → \"Rate Card Selection\"",
+          "Web polish: terminology updates (\"Base Rate\", \"Rate Card\", \"Freight Rates\"); confirmation modals for star/unstar; partial-save recovery",
+          "Race conditions fixed across order, project, and rate card forms; Edit Job dialog close + concurrent edit handling",
+          "Material & Freight rates separated on Invoices and Settlements (Deploy #450 carry-through)"
+        ]
+      },
+      {
+        name: "Idle Time Tracking — launched",
+        tag: "Ops",
+        tagClass: "ops",
+        items: [
+          "Deploy #459: idle indicator on driver panel, threshold line on speed timeline, per-load/job/order auto-calculation",
+          "Deploy #471 polish: higher-contrast yellow markers on live map, clearer route history indicators",
+          "Idle data wired into Load, Job, Order, and DriverDay views; rolling out per-company"
+        ]
+      },
+      {
+        name: "Sales Quoting + Project Timeline",
+        tag: "Platform",
+        tagClass: "platform",
+        items: [
+          "Deploy #463: Quotes tab on Projects with Draft → Quoted → Active → Completed lifecycle",
+          "Deploy #453: real-time Project Timeline showing creation, rate changes, site updates, schedule mods",
+          "Deploy #465: timeline entries now identify which specific rate card was changed"
+        ]
+      },
+      {
+        name: "Mobile Offline — manual mode",
+        tag: "Mobile",
+        tagClass: "mobile",
+        items: [
+          "Manual offline control replacing auto-detection (more predictable for drivers)",
+          "Required signatures queued offline and submitted on reconnect",
+          "Map auto-centers during navigation; delayed green marker removed in favor of live blue pin",
+          "Local geofence notifications when approaching pickup/dropoff sites"
+        ]
+      },
+      {
+        name: "Notifications + Self-Service API",
+        tag: "Platform",
+        tagClass: "platform",
+        items: [
+          "Deploy #471: per-channel push/SMS/email opt-ins for job events (accepted, rejected, canceled, completed) and new orders/projects",
+          "Deploy #453: Self-Service API Client management reached full GA in Settings",
+          "Bulk Download Files now respects page filters (date range, driver)"
+        ]
+      }
+    ],
+    heroFeatures: [
+      { name: "Project-level Rates on Mobile (v1.109.0)", desc: "Full rate card experience on phone/tablet — cards, add-ons, overrides, edit job." },
+      { name: "Idle Time Tracking", desc: "Dispatchers see truck idle directly on Dispatch; idle minutes auto-calculated per load/job/order." },
+      { name: "Sales Quoting Workflow", desc: "Quotes tab on Projects with full lifecycle (Draft → Quoted → Active → Completed)." },
+      { name: "Notifications System Overhaul", desc: "Per-channel push, SMS, and email opt-ins for job and order events." }
+    ],
+    inProgress: [
+      { name: "Idle Time", note: "metric calculations & driver panel integration continuing" },
+      { name: "Bulk Download Files", note: "approved-only filtering and higher download limits next" },
+      { name: "Project-level Rates", note: "web reporting integration, rollout to remaining accounts" }
+    ]
+  },
+  "2026-04": {
+    label: "April 2026",
+    narrative: "Project-level Rates went from prototype to full launch — the multi-condition pricing rulebook (pickup/dropoff site, equipment, material) shipped in Deploy #448 and expanded across the month. Self-Service API Clients shipped admin management UI, Prevailing Wage rolled out across Dispatch/Approvals/Payables/Receivables, and Mobile Offline gained ticket creation and a smarter connectivity model. AI Ticket Reviews moved into the ticket drawer with duplicate detection and custom review instructions.",
+    themes: [
+      {
+        name: "Project-level Rates — full launch",
+        tag: "Platform",
+        tagClass: "platform",
+        items: [
+          "Deploy #448: complete pricing rulebook on projects — conditions, auto-matching, starring, add-ons, manual overrides",
+          "Deploy #449: star a rate to apply to every job on an order; override on individual jobs and invoices",
+          "Deploy #450: Material & Freight rates separated on invoices and settlements",
+          "Deploy #451: invoice rate selectors show project-level rates; \"Type\" column distinguishing Material/Freight",
+          "Deploy #452: rate selection now on Edit Job form; users can clear rates to reset to auto-match"
+        ]
+      },
+      {
+        name: "Mobile Offline foundation",
+        tag: "Mobile",
+        tagClass: "mobile",
+        items: [
+          "v1.108.0: offline ticket creation with auto-sync (images included) on reconnect",
+          "v1.108.0: offline accept/reject and start/stop actions (feature-flagged per org)",
+          "v1.108.0: smarter offline banner — checks backend reachability, not just internet",
+          "v1.107.0: connection checker in app settings for field troubleshooting",
+          "v1.106.0: offline groundwork — data storage and offline actions for jobs and driver shifts"
+        ]
+      },
+      {
+        name: "Self-Service API Clients",
+        tag: "Platform",
+        tagClass: "platform",
+        items: [
+          "Deploy #451: admin UI shipped — create, view, and revoke API clients from Settings",
+          "Deploy #452: creation flow complete with one-time API key delivery",
+          "Active clients displayed with masked keys; instant revoke"
+        ]
+      },
+      {
+        name: "Prevailing Wage rollout",
+        tag: "Ops",
+        tagClass: "ops",
+        items: [
+          "Deploy #441: prevailing wage toggle on Projects/Orders with configurable work week start day",
+          "Deploy #445: Settings pages for Overtime Rules and Prevailing Wage Benefits; PW badge on Projects/Dispatch",
+          "Deploy #448: PW badges and filters across Dispatch, Approvals, Payables, Receivables; rate card PW fields",
+          "Deploy #450: PW flag now correctly carries from orders to invoices for accurate filtering"
+        ]
+      },
+      {
+        name: "AI Ticket Reviews",
+        tag: "AI",
+        tagClass: "ai",
+        items: [
+          "Deploy #448: AI ticket reviews now appear directly in the ticket drawer; duplicate ticket indicators",
+          "Deploy #442: custom review instructions per company; reduced false flags on small quantity differences",
+          "Deploy #450: dispatch can now filter loads by duplicate ticket status"
+        ]
+      },
+      {
+        name: "Mobile Dispatch parity",
+        tag: "Mobile",
+        tagClass: "mobile",
+        items: [
+          "v1.107.0: edit order state directly from mobile; Department filter on Dispatch tab",
+          "v1.107.0: site geofences (circles + polygons, tag-based colors) render on all in-app maps",
+          "v1.106.0: hold/weather hold enforcement — drivers blocked from starting jobs on Hold orders"
+        ]
+      },
+      {
+        name: "Other launches",
+        tag: "Platform",
+        tagClass: "platform",
+        items: [
+          "Tax Rate Schedules: new Settings page with full CRUD; cascading to invoices",
+          "Phase Code Management: bulk paste from Excel in slide-out drawer",
+          "Restore Jobs: dispatchers can uncancel jobs; auto-creates a load if none active",
+          "Job Notification Emails (v1 foundation)",
+          "Trailer Auto-Assignment with trailer column on Driver grid"
+        ]
+      }
+    ],
+    heroFeatures: [
+      { name: "Project-level Rates (GA)", desc: "Complete pricing rulebook per project — site, equipment, material conditions auto-match the right rate." },
+      { name: "Self-Service API Client Management", desc: "Admins create, view, and revoke API clients from Settings; masked keys, instant revoke." },
+      { name: "Offline Ticket Creation (Mobile)", desc: "Create tickets while offline — auto-sync with images on reconnect." },
+      { name: "AI Ticket Reviews in Drawer", desc: "AI-powered reviews and duplicate detection now surface directly in the ticket drawer." },
+      { name: "Phase Code Bulk Paste", desc: "Manage phase codes in a table view; paste dozens of codes from Excel at once." },
+      { name: "Tax Rate Schedules", desc: "Full CRUD settings page; tax rate schedules cascade through to invoices." }
+    ],
+    inProgress: [
+      { name: "Prevailing Wage Phase 1B", note: "rate card integration and rate calculation" },
+      { name: "PostGIS Geofence", note: "backend pipeline improvements; product-facing features pending" },
+      { name: "Project Timeline Events", note: "backend event recording shipped; API + UI pending" }
+    ]
+  },
+  "2026-03": {
+    label: "March 2026",
+    narrative: "Foundations month. Order Metrics on Dispatch gave dispatchers per-order delivery telemetry, and Staging Site support rolled out across all dispatch forms for select customers. Phase Tracking linked phases through to loads, while Internal Notes and Shift Notes added context-sharing surfaces. Mobile shipped a Digital Ticket experience overhaul with signature prompts, SSO login, and in-flow site creation. Project-level Rates' multi-condition backend foundation began rolling out to select customers, setting up April's full launch.",
+    themes: [
+      {
+        name: "Project-level Rates — backend foundation",
+        tag: "Platform",
+        tagClass: "platform",
+        items: [
+          "Deploy #434: backend foundation shipped (1 of 5 tickets)",
+          "Deploy #436: project-level freight rates rolling out to select customers (site, service class, equipment, material conditions)",
+          "Deploy #439: dropoff site available as a rate condition; rate summaries when equipment varies"
+        ]
+      },
+      {
+        name: "Order Metrics + Approvals workflow",
+        tag: "Ops",
+        tagClass: "ops",
+        items: [
+          "Deploy #432: per-order Metrics tab on Dispatch with delivery progress, events, truck activity, onsite times",
+          "Deploy #434: updated Order Metrics layout with new job states and pickup/dropoff site names",
+          "Deploy #432: approval status filters on Approve Jobs page",
+          "Deploy #434: sticky \"Unapproved Jobs\" and \"Unapproved Loads\" filters",
+          "Deploy #434: navigate to next load across different orders during approval"
+        ]
+      },
+      {
+        name: "Staging Site on Dispatch Routes",
+        tag: "Ops",
+        tagClass: "ops",
+        items: [
+          "Deploy #434: backend staging waypoint support across Approvals, Loads, Settlements, reports",
+          "Deploy #436: staging site assignable on all dispatch forms (new orders, edits, bulk, projects, quick orders)",
+          "Deploy #439: staging map pin display consistent on dispatch routes"
+        ]
+      },
+      {
+        name: "Mobile Digital Ticket overhaul",
+        tag: "Mobile",
+        tagClass: "mobile",
+        items: [
+          "v1.105.0: drivers default into digital ticket view; redesigned layout hides empty fields",
+          "v1.105.0: signature prompts on load completion; visual warnings when dropoff signature missing",
+          "v1.105.0: SSO login support on mobile (matching web)",
+          "v1.105.0: drivers can update truck license number from app; create sites in order forms"
+        ]
+      },
+      {
+        name: "Notes & Compliance",
+        tag: "Platform",
+        tagClass: "platform",
+        items: [
+          "Deploy #436: Internal Notes on Jobs — company-scoped, for billing context in dispatch chains",
+          "Deploy #436: Shift Notes on DriverDay Shift tab for reviewer context",
+          "Deploy #434: Auditor read-only role for tenant-wide compliance access",
+          "Deploy #439: admin toggle for compliance notifications"
+        ]
+      },
+      {
+        name: "AI & Integrations",
+        tag: "AI",
+        tagClass: "ai",
+        items: [
+          "Deploy #432: AI Ticket Chaser enabled by default for new projects",
+          "Deploy #439: APEX connector adds Hold, Weather Hold, Canceled order states + site mapping",
+          "Deploy #439: auto-start jobs with active telematics integration"
+        ]
+      }
+    ],
+    heroFeatures: [
+      { name: "Order Metrics on Dispatch", desc: "Per-order delivery progress, events, truck activity, and onsite times in a new Metrics tab." },
+      { name: "Staging Site on Dispatch Routes", desc: "Intermediate stop between pickup and dropoff (orders, jobs, bulk edits, quick orders) for select customers." },
+      { name: "Digital Ticket Experience (Mobile)", desc: "Redesigned ticket view, signature prompts/warnings, SSO login, in-app license number." },
+      { name: "Project-Level Freight Rates (preview)", desc: "Multi-condition rates (site, service class, equipment, material) cascading customer/vendor/driver pricing — select customers." },
+      { name: "Internal Notes + Shift Notes", desc: "Company-scoped notes on jobs and shifts for billing context and review handoffs." },
+      { name: "Auditor Role", desc: "Read-only cross-company tenant access for compliance and oversight." }
+    ],
+    inProgress: [
+      { name: "Project-level Rates", note: "backend foundation 1 of 5 tickets; frontend pending (April launch)" },
+      { name: "Quoting", note: "backend state machine + scoping; full UI on separate branch" },
+      { name: "Mobile Offline Mode", note: "backend driver day endpoint updates; mobile implementation in progress" },
+      { name: "Project Material Phase Linking", note: "backend phase_id; frontend phase dropdown pending" }
+    ]
+  }
+};
+
+// ============================================================
+// STATE
+// ============================================================
+let releases = PREBAKED.slice();
+let filterType = 'all';
+let searchQuery = '';
+
+// ============================================================
+// NOTE: Static build — no live Slack fetch. Data is regenerated
+// at publish time by the scheduled task. See README in the repo.
+// ============================================================
+async function fetchSlack_DISABLED() {
+  // Pull last 90 days worth of Release Notes from Saloni in #shipit
+  // We bake the channel id and user id to avoid an extra lookup.
+  const after = new Date(Date.now() - 95 * 24 * 60 * 60 * 1000)
+    .toISOString().slice(0, 10);
+  const query = '"Release Notes" from:<@U09FNPV2B9B> in:<#C057XJNGEGL> after:' + after;
+
+  // Page through up to 3 pages (60 results) to be safe.
+  const all = [];
+  let cursor = '';
+  for (let page = 0; page < 3; page++) {
+    const args = { query, sort: 'timestamp', sort_dir: 'desc', limit: 20, include_context: false };
+    if (cursor) args.cursor = cursor;
+    let resp;
+    try {
+      resp = await window.cowork.callMcpTool(
+        'mcp__3f64072c-e238-4ac1-9c8c-5e1131c45d3d__slack_search_public_and_private',
+        args
+      );
+    } catch (e) {
+      throw e;
+    }
+    // Normalize response shape
+    let text = '';
+    let nextCursor = '';
+    if (typeof resp === 'string') {
+      // Sometimes wrapped JSON, sometimes raw text
+      try {
+        const parsed = JSON.parse(resp);
+        text = parsed.results || resp;
+        nextCursor = extractCursor(parsed.pagination_info || '');
+      } catch {
+        text = resp;
+      }
+    } else if (resp && typeof resp === 'object') {
+      if (resp.results) {
+        text = resp.results;
+        nextCursor = extractCursor(resp.pagination_info || '');
+      } else if (resp.content && Array.isArray(resp.content) && resp.content[0]?.text) {
+        const inner = resp.content[0].text;
+        try {
+          const parsed = JSON.parse(inner);
+          text = parsed.results || inner;
+          nextCursor = extractCursor(parsed.pagination_info || '');
+        } catch {
+          text = inner;
+        }
+      } else {
+        text = JSON.stringify(resp);
+      }
+    }
+    const parsed = parseSlackText(text);
+    all.push(...parsed);
+    if (!nextCursor || parsed.length < 20) break;
+    cursor = nextCursor;
+  }
+  return all;
+}
+
+function extractCursor(info) {
+  if (!info) return '';
+  const m = info.match(/cursor `([^`]+)`/);
+  return m ? m[1] : '';
+}
+
+function parseSlackText(text) {
+  if (!text) return [];
+  // Split by result delimiter
+  const blocks = text.split(/### Result \d+ of \d+/);
+  const out = [];
+  for (let i = 1; i < blocks.length; i++) {
+    const b = blocks[i];
+    const tsMatch = b.match(/Message_ts:\s*([\d.]+)/);
+    const permalinkMatch = b.match(/Permalink:\s*\[link\]\(([^)]+)\)/);
+    // Text body: between "Text: \n" and the next "---" or "Context before:" or "Context after:"
+    const textIdx = b.indexOf('Text:');
+    if (textIdx < 0) continue;
+    let body = b.slice(textIdx + 'Text:'.length);
+    // Trim leading newlines
+    body = body.replace(/^\s*\n/, '');
+    // Stop at the trailing delimiter
+    const stops = ['\n---\n', '\nContext before:', '\nContext after:'];
+    let cut = body.length;
+    for (const s of stops) {
+      const idx = body.indexOf(s);
+      if (idx >= 0 && idx < cut) cut = idx;
+    }
+    body = body.slice(0, cut).trim();
+    if (!/Release Notes/i.test(body)) continue;
+    const titleLine = body.split('\n').find(l => /Release Notes/i.test(l));
+    if (!titleLine) continue;
+    // Title: ":clipboard: Release Notes — Deploy #471 (2026-05-21)" (em-dash or hyphen)
+    const titleMatch = titleLine.match(/Release Notes\s*[—–\-]\s*(.+?)\s*\((\d{4}-\d{2}-\d{2})\)/);
+    if (!titleMatch) continue;
+    const version = titleMatch[1].trim();
+    const releaseDate = titleMatch[2];
+    const isMobile = /mobile/i.test(version);
+    out.push({
+      ts: tsMatch ? tsMatch[1] : '',
+      version,
+      releaseDate,
+      isMobile,
+      permalink: permalinkMatch ? permalinkMatch[1] : '',
+      content: body
+    });
+  }
+  return out;
+}
+
+function mergeReleases(baked, fresh) {
+  const map = new Map();
+  for (const r of baked) map.set(r.ts, r);
+  for (const r of fresh) map.set(r.ts, r); // fresh wins
+  return Array.from(map.values()).sort((a, b) => {
+    if (b.releaseDate !== a.releaseDate) return b.releaseDate.localeCompare(a.releaseDate);
+    return parseFloat(b.ts) - parseFloat(a.ts);
+  });
+}
+
+// ============================================================
+// COUNTERS (for chips: features / improvements / fixes)
+// ============================================================
+function countSection(content, label) {
+  // Find the section header (case-insensitive), count "•" bullets or "h5"-style headers
+  const lines = content.split('\n');
+  let inSection = false;
+  let count = 0;
+  for (const line of lines) {
+    const stripped = line.replace(/^[─\s]+|[─\s]+$/g, '').trim();
+    if (!stripped) continue;
+    if (/^(new features|improvements|bug fixes|other)\b/i.test(stripped)) {
+      inSection = stripped.toLowerCase().startsWith(label.toLowerCase());
+      continue;
+    }
+    if (/^in progress\b/i.test(stripped)) { inSection = false; continue; }
+    if (!inSection) continue;
+    if (line.trim().startsWith('•')) count++;
+    else if (label === 'New Features' && /^[A-Z]/.test(line) && line.length > 8 && !line.startsWith('•') && !line.startsWith('───')) {
+      // Heuristic: feature subheadings (e.g., "Job and Order Notifications")
+      // Only count if the *next* non-empty line is a description (not another header)
+      // Simpler: count subheadings followed by a description line
+    }
+  }
+  // For "New Features", also count named feature blocks (subheading followed by description)
+  if (label === 'New Features') {
+    count = 0;
+    const parts = content.split(/\n(?:New Features)\b/i);
+    if (parts.length > 1) {
+      const section = parts[1].split(/\n(?:Improvements|Bug Fixes|In Progress|Other)\b/i)[0];
+      // A "feature" = a non-bulleted, non-empty, non-divider line that has the next line as description
+      const secLines = section.split('\n').map(l => l.trim()).filter(l => l && !/^─+$/.test(l));
+      for (let i = 0; i < secLines.length; i++) {
+        const l = secLines[i];
+        if (l.startsWith('•')) continue;
+        if (/^new features$/i.test(l)) continue;
+        // Heuristic for a feature title: 3..80 chars, no period at end, starts uppercase
+        if (l.length >= 3 && l.length <= 90 && /^[A-Z0-9"]/.test(l) && !l.endsWith('.') && !l.endsWith(':')) {
+          count++;
+        }
+      }
+    }
+  }
+  return count;
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function escapeHtml(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function fmtDate(iso) {
+  const d = new Date(iso + 'T12:00:00');
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+function fmtFullDate(iso) {
+  const d = new Date(iso + 'T12:00:00');
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function renderStats() {
+  const total = releases.length;
+  const web = releases.filter(r => !r.isMobile).length;
+  const mobile = releases.filter(r => r.isMobile).length;
+  const latest = releases[0];
+
+  const dates = releases.map(r => r.releaseDate).sort();
+  const first = dates[0];
+  const last = dates[dates.length - 1];
+
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statRange').textContent = first && last ? fmtFullDate(first) + ' → ' + fmtFullDate(last) : '';
+  document.getElementById('statWeb').textContent = web;
+  document.getElementById('statWebSub').textContent = 'Deploy releases';
+  document.getElementById('statMobile').textContent = mobile;
+  document.getElementById('statMobileSub').textContent = 'iOS / Android';
+  document.getElementById('statLatest').textContent = latest ? latest.version : '—';
+  document.getElementById('statLatestDate').textContent = latest ? fmtFullDate(latest.releaseDate) : '';
+}
+
+function renderTimeline() {
+  const tl = document.getElementById('timeline');
+  const recent = releases.slice(0, 6);
+  tl.innerHTML = recent.map(r => `
+    <div class="tl-card ${r.isMobile ? 'mobile' : ''}" data-ts="${r.ts}">
+      <div class="tl-date">${fmtFullDate(r.releaseDate)}</div>
+      <div class="tl-version">${escapeHtml(r.version)}</div>
+      <span class="tl-type">${r.isMobile ? 'Mobile' : 'Web Deploy'}</span>
+    </div>
+  `).join('');
+  tl.querySelectorAll('.tl-card').forEach(el => {
+    el.addEventListener('click', () => {
+      const ts = el.dataset.ts;
+      const target = document.querySelector(`.release[data-ts="${ts}"]`);
+      if (target) {
+        target.classList.add('open');
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+}
+
+function formatContentHtml(content) {
+  // Convert the plain-text Slack content into structured HTML
+  const lines = content.split('\n');
+  let html = '';
+  let i = 0;
+
+  // Skip the title line
+  if (lines[i] && /Release Notes/i.test(lines[i])) i++;
+
+  let currentSection = null;
+  let inFeatureBlock = false;
+  let openList = false;
+
+  function closeList() { if (openList) { html += '</ul>'; openList = false; } }
+
+  while (i < lines.length) {
+    let raw = lines[i];
+    let line = raw.trim();
+    i++;
+
+    if (!line || /^─+$/.test(line)) { closeList(); inFeatureBlock = false; continue; }
+
+    // Section header
+    if (/^(new features|improvements|bug fixes|in progress.*|other)\b/i.test(line) && line.length < 80) {
+      closeList(); inFeatureBlock = false;
+      currentSection = line.toLowerCase();
+      html += `<h4>${escapeHtml(line)}</h4>`;
+      continue;
+    }
+
+    // Sub-section like "Project-level Rates" (a line that's not a bullet, not too long, no period)
+    if (!line.startsWith('•') && /^[A-Z0-9"]/.test(line) && line.length <= 80 && !line.endsWith('.') && !line.endsWith(':')) {
+      closeList();
+      // Decide: feature block (has description on next line) vs sub-section header (followed by bullets)
+      const next = lines[i] ? lines[i].trim() : '';
+      if (currentSection && currentSection.startsWith('new features') && next && !next.startsWith('•') && !/^(improvements|bug fixes|in progress|other|new features)\b/i.test(next) && !/^─+$/.test(next)) {
+        // Feature block: title + description paragraph
+        let desc = '';
+        while (i < lines.length) {
+          const peek = lines[i].trim();
+          if (!peek || /^─+$/.test(peek)) break;
+          if (peek.startsWith('•')) break;
+          if (/^(improvements|bug fixes|in progress|other|new features)\b/i.test(peek) && peek.length < 80) break;
+          // Stop if this looks like a new sub-header (short line followed by another non-bullet)
+          desc += (desc ? ' ' : '') + peek;
+          i++;
+        }
+        html += `<div class="feature"><div class="feat-name">${escapeHtml(line)}</div><div class="feat-desc">${escapeHtml(desc)}</div></div>`;
+      } else {
+        // Sub-section header
+        html += `<h5>${escapeHtml(line)}</h5>`;
+      }
+      continue;
+    }
+
+    // Bullet
+    if (line.startsWith('•')) {
+      if (!openList) { html += '<ul>'; openList = true; }
+      html += `<li>${escapeHtml(line.slice(1).trim())}</li>`;
+      continue;
+    }
+
+    // Plain paragraph fallback
+    closeList();
+    html += `<p>${escapeHtml(line)}</p>`;
+  }
+  closeList();
+  return html;
+}
+
+function countsFor(r) {
+  // Lightweight counts from raw content
+  const features = (r.content.match(/^(?!•)(?:[A-Z0-9"][^\n]{2,80})$/gm) || [])
+    .filter(t => {
+      // Filter to feature names within "New Features" section
+      const idx = r.content.indexOf(t);
+      const before = r.content.slice(0, idx).toLowerCase();
+      const lastSection = ['new features', 'improvements', 'bug fixes', 'in progress', 'other']
+        .map(s => ({ s, i: before.lastIndexOf(s) }))
+        .filter(x => x.i >= 0)
+        .sort((a, b) => b.i - a.i)[0];
+      return lastSection && lastSection.s === 'new features';
+    }).length;
+  // Better: parse New Features named blocks
+  const nfBlock = r.content.split(/\bNew Features\b/i)[1];
+  let featuresCount = 0;
+  if (nfBlock) {
+    const stop = nfBlock.search(/\b(Improvements|Bug Fixes|In Progress|Other)\b/i);
+    const section = stop >= 0 ? nfBlock.slice(0, stop) : nfBlock;
+    const subs = section.split('\n').map(l => l.trim()).filter(Boolean).filter(l => !/^─+$/.test(l));
+    for (let i = 0; i < subs.length; i++) {
+      const l = subs[i];
+      if (l.startsWith('•')) continue;
+      if (l.length >= 3 && l.length <= 90 && /^[A-Z0-9"]/.test(l) && !l.endsWith('.') && !l.endsWith(':')) {
+        // It's a feature heading if followed by a description (non-bullet, non-heading)
+        const next = subs[i + 1];
+        if (next && !next.startsWith('•')) featuresCount++;
+      }
+    }
+  }
+
+  const improveBlock = r.content.split(/\bImprovements\b/i)[1];
+  let improveCount = 0;
+  if (improveBlock) {
+    const stop = improveBlock.search(/\b(Bug Fixes|In Progress|Other)\b/i);
+    const sec = stop >= 0 ? improveBlock.slice(0, stop) : improveBlock;
+    improveCount = (sec.match(/^•/gm) || []).length;
+  }
+
+  const fixBlock = r.content.split(/\bBug Fixes\b/i)[1];
+  let fixCount = 0;
+  if (fixBlock) {
+    const stop = fixBlock.search(/\b(In Progress|Other)\b/i);
+    const sec = stop >= 0 ? fixBlock.slice(0, stop) : fixBlock;
+    fixCount = (sec.match(/^•/gm) || []).length;
+  }
+
+  // "Other" section bullets get added to fixes (since they're typically misc fixes)
+  const otherBlock = r.content.split(/\bOther\b/i)[1];
+  if (otherBlock) {
+    const stop = otherBlock.search(/\b(In Progress)\b/i);
+    const sec = stop >= 0 ? otherBlock.slice(0, stop) : otherBlock;
+    const otherCount = (sec.match(/^•/gm) || []).length;
+    fixCount += otherCount;
+  }
+
+  return { features: featuresCount, improvements: improveCount, fixes: fixCount };
+}
+
+function renderLog() {
+  const log = document.getElementById('releaseLog');
+  const q = searchQuery.toLowerCase().trim();
+  const filtered = releases.filter(r => {
+    if (filterType === 'web' && r.isMobile) return false;
+    if (filterType === 'mobile' && !r.isMobile) return false;
+    if (q && !(r.content.toLowerCase().includes(q) || r.version.toLowerCase().includes(q))) return false;
+    return true;
+  });
+
+  if (filtered.length === 0) {
+    log.innerHTML = '<div class="empty">No releases match your filters.</div>';
+    return;
+  }
+
+  log.innerHTML = filtered.map(r => {
+    const c = countsFor(r);
+    return `
+      <div class="release" data-ts="${r.ts}">
+        <div class="release-head">
+          <div class="release-left">
+            <span class="chip ${r.isMobile ? 'chip-mobile' : 'chip-web'}">${r.isMobile ? 'Mobile' : 'Web'}</span>
+            <span class="release-version">${escapeHtml(r.version)}</span>
+            <span class="release-date">${fmtFullDate(r.releaseDate)}</span>
+          </div>
+          <div class="release-counts">
+            ${c.features ? `<span class="count-pill new">${c.features} new</span>` : ''}
+            ${c.improvements ? `<span class="count-pill improve">${c.improvements} improved</span>` : ''}
+            ${c.fixes ? `<span class="count-pill fix">${c.fixes} fixed</span>` : ''}
+            <span class="expand-icon">›</span>
+          </div>
+        </div>
+        <div class="release-body">
+          ${formatContentHtml(r.content)}
+          ${r.permalink ? `<div class="permalink"><a href="${escapeHtml(r.permalink)}" target="_blank" rel="noopener">View original Slack thread →</a></div>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  log.querySelectorAll('.release-head').forEach(head => {
+    head.addEventListener('click', () => {
+      head.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+function renderAll() {
+  renderStats();
+  renderTimeline();
+  renderLog();
+  renderInsights();
+}
+
+// ============================================================
+// INSIGHTS VIEW
+// ============================================================
+let monthlyChartInstance = null;
+
+function monthKeyOf(iso) { return iso.slice(0, 7); }
+
+function buildMonthlyBuckets() {
+  // Group releases by YYYY-MM, computing counts of releases / features / fixes / improvements
+  const buckets = {};
+  for (const r of releases) {
+    const k = monthKeyOf(r.releaseDate);
+    if (!buckets[k]) buckets[k] = { key: k, releases: [], mobileCount: 0, webCount: 0, features: 0, improvements: 0, fixes: 0 };
+    buckets[k].releases.push(r);
+    const c = countsFor(r);
+    buckets[k].features += c.features;
+    buckets[k].improvements += c.improvements;
+    buckets[k].fixes += c.fixes;
+    if (r.isMobile) buckets[k].mobileCount++; else buckets[k].webCount++;
+  }
+  // Sort newest first
+  return Object.values(buckets).sort((a, b) => b.key.localeCompare(a.key));
+}
+
+function fmtMonth(key) {
+  const [y, m] = key.split('-').map(Number);
+  return new Date(y, m - 1, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+}
+
+function renderInsights() {
+  const buckets = buildMonthlyBuckets();
+
+  // Summary up top
+  const totalReleases = releases.length;
+  const totalFeatures = buckets.reduce((s, b) => s + b.features, 0);
+  const totalImprovements = buckets.reduce((s, b) => s + b.improvements, 0);
+  const totalFixes = buckets.reduce((s, b) => s + b.fixes, 0);
+  const monthsCovered = buckets.length;
+  const earliest = buckets[buckets.length - 1]?.key;
+  const latest = buckets[0]?.key;
+
+  const summaryEl = document.getElementById('insightSummary');
+  summaryEl.innerHTML = `
+    <p><b>${monthsCovered} months</b> of releases tracked${earliest && latest ? ` (${fmtMonth(earliest)} → ${fmtMonth(latest)})` : ''} —
+    <b>${totalReleases}</b> releases shipping <b>${totalFeatures}</b> new features, <b>${totalImprovements}</b> improvements, and <b>${totalFixes}</b> bug fixes across web and mobile.</p>
+    <p>The dominant initiative of the period is <b>Project-level Rates</b> — a multi-month effort that started as a backend prototype in March, hit GA in April Deploy #448, expanded across the month with separate Material/Freight breakouts and API client management, and reached full Mobile parity in May. Other multi-release themes: <b>Idle Time Tracking</b>, <b>Mobile Offline Mode</b>, <b>Prevailing Wage</b>, and <b>AI Ticket Reviews</b>.</p>
+  `;
+
+  // Chart
+  renderMonthlyChart(buckets);
+
+  // Monthly cards
+  const list = document.getElementById('monthlyInsights');
+  list.innerHTML = buckets.map(b => {
+    const theme = typeof getThemeForMonth === 'function' ? getThemeForMonth(b.key) : MONTHLY_THEMES[b.key];
+    const isAi = !MONTHLY_THEMES[b.key] && !!theme;
+    if (!theme) {
+      return `
+        <div class="month-card" data-key="${b.key}">
+          <div class="month-head">
+            <div>
+              <h2 class="month-title">${fmtMonth(b.key)}</h2>
+              <div class="month-sub">${b.releases.length} release${b.releases.length === 1 ? '' : 's'} — analysis pending</div>
+            </div>
+            <div class="month-stats">
+              <span><b>${b.webCount}</b> web</span>
+              <span><b>${b.mobileCount}</b> mobile</span>
+              <span><b>${b.features}</b> features</span>
+              <span><b>${b.fixes}</b> fixes</span>
+            </div>
+          </div>
+          <p style="color:#6a7280;font-size:13px;margin-top:14px;">Claude will analyze this month automatically on the next refresh.</p>
+        </div>
+      `;
+    }
+    return `
+      <div class="month-card" data-key="${b.key}">
+        ${isAi ? '<div style="font-size:10px;color:#6c3fb8;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">✨ AI-generated summary</div>' : ''}
+        <div class="month-head">
+          <div>
+            <h2 class="month-title">${theme.label}</h2>
+            <div class="month-sub">${b.releases.length} release${b.releases.length === 1 ? '' : 's'} — ${b.webCount} web · ${b.mobileCount} mobile</div>
+          </div>
+          <div class="month-stats">
+            <span><b>${b.features}</b> features</span>
+            <span><b>${b.improvements}</b> improved</span>
+            <span><b>${b.fixes}</b> fixed</span>
+          </div>
+        </div>
+
+        <div class="month-narrative">${escapeHtml(theme.narrative)}</div>
+
+        <div class="theme-block">
+          <div class="theme-section-title">Hero Features</div>
+          <div class="month-hero-grid">
+            ${theme.heroFeatures.map(h => `
+              <div class="hero-card">
+                <div class="hero-name">${escapeHtml(h.name)}</div>
+                <div class="hero-desc">${escapeHtml(h.desc)}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="theme-block">
+          <div class="theme-section-title">Themes & Initiatives</div>
+          ${theme.themes.map(t => `
+            <div class="theme">
+              <div class="theme-name">
+                ${escapeHtml(t.name)}
+                <span class="theme-tag ${t.tagClass || ''}">${escapeHtml(t.tag)}</span>
+              </div>
+              <ul class="theme-list">
+                ${t.items.map(it => `<li>${escapeHtml(it)}</li>`).join('')}
+              </ul>
+            </div>
+          `).join('')}
+        </div>
+
+        ${theme.inProgress && theme.inProgress.length ? `
+          <div class="theme-block">
+            <div class="theme-section-title">In Progress at month-end</div>
+            <ul class="inprogress-list">
+              ${theme.inProgress.map(p => `<li><b>${escapeHtml(p.name)}</b> — ${escapeHtml(p.note)}</li>`).join('')}
+            </ul>
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function renderMonthlyChart(buckets) {
+  const canvas = document.getElementById('monthlyChart');
+  if (!canvas || typeof Chart === 'undefined') return;
+  // Chronological order for the chart
+  const ordered = buckets.slice().reverse();
+  const labels = ordered.map(b => fmtMonth(b.key));
+  const webData = ordered.map(b => b.webCount);
+  const mobileData = ordered.map(b => b.mobileCount);
+
+  if (monthlyChartInstance) monthlyChartInstance.destroy();
+  monthlyChartInstance = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Web Deploys', data: webData, backgroundColor: '#5b6ee1', borderRadius: 4, stack: 'a' },
+        { label: 'Mobile Releases', data: mobileData, backgroundColor: '#10b981', borderRadius: 4, stack: 'a' }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'top', align: 'end', labels: { boxWidth: 10, font: { size: 11 } } },
+        tooltip: { callbacks: {
+          footer: (items) => {
+            const sum = items.reduce((s, it) => s + it.parsed.y, 0);
+            return 'Total: ' + sum + ' release' + (sum === 1 ? '' : 's');
+          }
+        }}
+      },
+      scales: {
+        x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
+        y: { stacked: true, beginAtZero: true, ticks: { stepSize: 2, font: { size: 11 } }, grid: { color: '#eef0f5' } }
+      }
+    }
+  });
+}
+
+// ============================================================
+// TAB SWITCHING
+// ============================================================
+document.getElementById('tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('.tab');
+  if (!btn) return;
+  document.querySelectorAll('#tabs .tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const tab = btn.dataset.tab;
+  document.getElementById('releaseView').style.display = tab === 'releases' ? '' : 'none';
+  document.getElementById('insightsView').style.display = tab === 'insights' ? '' : 'none';
+  if (tab === 'insights') {
+    // Re-render the chart in case dimensions changed while hidden
+    const buckets = buildMonthlyBuckets();
+    renderMonthlyChart(buckets);
+  }
+});
+
+// ============================================================
+// EVENTS
+// ============================================================
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  searchQuery = e.target.value;
+  renderLog();
+});
+
+document.getElementById('typeToggle').addEventListener('click', (e) => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  document.querySelectorAll('#typeToggle button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterType = btn.dataset.type;
+  renderLog();
+});
+
+// ============================================================
+// Static build — AI theme generation is disabled here. The
+// publishing pipeline generates themes server-side and bakes
+// them into MONTHLY_THEMES before pushing.
+// ============================================================
+const aiThemeCache = {};
+function saveAiThemeCache() {}
+const generatingMonths = new Set();
+async function generateThemeForMonth_DISABLED(monthKey, monthReleases) {
+  if (generatingMonths.has(monthKey)) return null;
+  generatingMonths.add(monthKey);
+  try {
+    const releaseList = monthReleases.map(r => `### ${r.version} — ${r.releaseDate}\n${r.content}`).join('\n\n---\n\n');
+    const monthLabel = fmtMonth(monthKey);
+    const prompt = `You are analyzing Tread product release notes. Look at the ${monthReleases.length} release notes from ${monthLabel} below and produce a JSON object with this exact schema (no markdown fences, just JSON):
+
+{
+  "narrative": "2-3 sentences describing what was accomplished this month, written in past tense",
+  "themes": [
+    {
+      "name": "Theme name (e.g. 'Project-level Rates rollout')",
+      "tag": "Platform" | "Mobile" | "Ops" | "AI",
+      "items": ["specific accomplishment with deploy/version reference", "..."]
+    }
+  ],
+  "heroFeatures": [
+    { "name": "Feature name", "desc": "One-line description of what it does" }
+  ],
+  "inProgress": [
+    { "name": "Initiative", "note": "current status from In Progress sections" }
+  ]
+}
+
+Group related work across multiple releases into themes. Pick 3-7 themes. Pick 3-6 hero features (the biggest user-facing launches). For tag, use Platform for backend/data/API features, Mobile for mobile app features, Ops for dispatcher/operations workflows, AI for AI-driven features. Be specific, cite deploys/versions, and stick to what's actually in the notes.
+
+Output ONLY the JSON object, no preamble.`;
+
+    const response = await window.cowork.askClaude(prompt, [{ name: monthLabel + '_releases', content: releaseList }]);
+    let jsonText = typeof response === 'string' ? response : (response?.content?.[0]?.text || response?.text || JSON.stringify(response));
+    // Strip markdown fences if present
+    jsonText = jsonText.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim();
+    // Extract first { ... } block defensively
+    const firstBrace = jsonText.indexOf('{');
+    const lastBrace = jsonText.lastIndexOf('}');
+    if (firstBrace >= 0 && lastBrace > firstBrace) jsonText = jsonText.slice(firstBrace, lastBrace + 1);
+    const parsed = JSON.parse(jsonText);
+    parsed.label = monthLabel;
+    // Normalize tag classes
+    for (const t of (parsed.themes || [])) {
+      const tag = (t.tag || '').toLowerCase();
+      t.tagClass = tag === 'mobile' ? 'mobile' : tag === 'ai' ? 'ai' : tag === 'ops' ? 'ops' : 'platform';
+      if (!['Platform', 'Mobile', 'Ops', 'AI'].includes(t.tag)) t.tag = 'Platform';
+    }
+    aiThemeCache[monthKey] = { ...parsed, generatedAt: Date.now() };
+    saveAiThemeCache();
+    return parsed;
+  } catch (e) {
+    console.warn('Theme generation failed for', monthKey, e);
+    return null;
+  } finally {
+    generatingMonths.delete(monthKey);
+  }
+}
+
+function getThemeForMonth(monthKey) {
+  if (MONTHLY_THEMES[monthKey]) return MONTHLY_THEMES[monthKey];
+  if (aiThemeCache[monthKey]) return aiThemeCache[monthKey];
+  return null;
+}
+
+async function autoGenerateMissingThemes() {
+  const buckets = buildMonthlyBuckets();
+  for (const b of buckets) {
+    if (MONTHLY_THEMES[b.key] || aiThemeCache[b.key]) continue;
+    if (b.releases.length < 1) continue;
+    // Mark card as "Analyzing…"
+    markMonthAnalyzing(b.key, true);
+    const theme = await generateThemeForMonth(b.key, b.releases);
+    markMonthAnalyzing(b.key, false);
+    if (theme) renderInsights();
+  }
+}
+
+function markMonthAnalyzing(monthKey, state) {
+  const card = document.querySelector(`.month-card[data-key="${monthKey}"]`);
+  if (!card) return;
+  let badge = card.querySelector('.analyzing-badge');
+  if (state) {
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'analyzing-badge';
+      badge.style.cssText = 'font-size:11px;color:#5b6ee1;font-weight:600;display:inline-flex;align-items:center;gap:6px;margin-left:8px;';
+      badge.innerHTML = '<span class="spinner" style="width:10px;height:10px;border-width:2px;"></span> Analyzing with Claude…';
+      card.querySelector('.month-sub')?.appendChild(badge);
+    }
+  } else if (badge) {
+    badge.remove();
+  }
+}
+
+// ============================================================
+// BOOTSTRAP (static build)
+// ============================================================
+// GENERATED_AT is replaced at publish time by the scheduled task.
+const GENERATED_AT = "2026-05-22T22:20:20+00:00";
+
+renderAll();
+
+// Show generated-at timestamp
+(function () {
+  const el = document.getElementById('generatedAt');
+  if (!el) return;
+  const fallback = new Date().toISOString();
+  const iso = GENERATED_AT && GENERATED_AT !== '__' + 'GENERATED_AT__' ? GENERATED_AT : fallback;
+  try {
+    const d = new Date(iso);
+    el.textContent = d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+  } catch {
+    el.textContent = iso;
+  }
+})();
+
+// Disable auto-generated theme code paths in this static build
+function autoGenerateMissingThemes() {}
+function markMonthAnalyzing() {}
+function getThemeForMonth(monthKey) { return MONTHLY_THEMES[monthKey] || null; }
+</script>
+</body>
+</html>
