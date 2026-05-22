@@ -110,34 +110,61 @@ html, body {
 .chart-wrap h3 { font-size: 13px; font-weight: 600; color: #4b5161; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 12px; }
 .chart-canvas-box { position: relative; height: 220px; }
 
-.month-card { background: #fff; border: 1px solid #e7eaf1; border-radius: 12px; padding: 22px 24px; margin-bottom: 18px; }
-.month-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
-.month-title { font-size: 20px; font-weight: 700; color: #0b1020; margin: 0; letter-spacing: -0.01em; }
-.month-sub { font-size: 12px; color: #6a7280; }
-.month-stats { display: flex; gap: 14px; font-size: 12px; color: #4b5161; }
-.month-stats span b { color: #0b1020; font-weight: 700; }
-.month-narrative { color: #2d3340; font-size: 14px; line-height: 1.6; margin: 10px 0 4px; padding: 12px 14px; background: #f7f9fc; border-left: 3px solid #5b6ee1; border-radius: 6px; }
+.month-card { background: #fff; border: 1px solid #e7eaf1; border-radius: 14px; padding: 30px 34px; margin-bottom: 22px; }
+.month-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; padding-bottom: 18px; border-bottom: 1px solid #f0f2f7; margin-bottom: 22px; }
+.month-title { font-size: 30px; font-weight: 800; color: #0b1020; margin: 0; letter-spacing: -0.02em; line-height: 1.1; }
+.month-sub { font-size: 13px; color: #8a93a4; margin-top: 6px; font-weight: 500; }
+.month-stats-inline { display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
+.stat-inline { display: inline-flex; flex-direction: column; align-items: flex-end; }
+.stat-inline b { color: #0b1020; font-weight: 700; font-size: 22px; line-height: 1; letter-spacing: -0.01em; }
+.stat-inline span { color: #8a93a4; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
 
-.theme-block { margin-top: 18px; }
-.theme-section-title { font-size: 11px; font-weight: 700; color: #6a7280; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 10px; }
-.theme { margin-bottom: 14px; padding: 12px 14px; border-radius: 8px; background: #fafbfd; border: 1px solid #eef1f6; }
-.theme-name { font-weight: 600; font-size: 14px; color: #0b1020; display: flex; align-items: center; gap: 8px; }
-.theme-tag { font-size: 10px; padding: 2px 7px; border-radius: 4px; background: #eef0ff; color: #4a5cd1; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.month-narrative { font-size: 17px; line-height: 1.6; color: #2d3340; margin: 0 0 8px; padding: 0 0 0 16px; background: transparent; border: 0; border-left: 3px solid #5b6ee1; font-weight: 450; }
+
+.insight-section { margin-top: 30px; }
+.insight-section-title { font-size: 11px; font-weight: 700; color: #6a7280; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 16px; }
+
+/* Top Wins — numbered, prominent */
+.top-wins { display: grid; gap: 14px; }
+.top-win { display: flex; gap: 14px; align-items: flex-start; }
+.top-win-num { width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: linear-gradient(135deg, #6678ec 0%, #5b6ee1 100%); color: #fff; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; margin-top: 1px; box-shadow: 0 2px 4px rgba(91, 110, 225, 0.25); }
+.top-win-body { flex: 1; min-width: 0; }
+.top-win-name { font-weight: 700; font-size: 15px; color: #0b1020; margin-bottom: 3px; line-height: 1.35; }
+.top-win-desc { font-size: 13px; color: #4b5161; line-height: 1.5; }
+
+/* Initiatives — compact cards with one-line summary, expandable */
+.initiatives { display: grid; gap: 8px; }
+.initiative { border: 1px solid #eef1f6; border-radius: 10px; padding: 13px 16px; background: #fafbfd; cursor: pointer; transition: background .12s, border-color .12s; }
+.initiative:hover { background: #f4f6fb; border-color: #d8def0; }
+.initiative.expanded { background: #fff; border-color: #d8def0; }
+.initiative-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.initiative-name-block { flex: 1; min-width: 0; }
+.initiative-name { font-weight: 600; font-size: 14px; color: #0b1020; line-height: 1.35; }
+.initiative-summary { font-size: 13px; color: #4b5161; margin-top: 3px; line-height: 1.5; }
+.initiative-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.initiative-count { font-size: 11px; color: #8a93a4; font-weight: 500; }
+.initiative .expand-icon { font-size: 14px; color: #8a93a4; transition: transform .15s; }
+.initiative.expanded .expand-icon { transform: rotate(90deg); }
+.initiative-details { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid #eef1f6; }
+.initiative.expanded .initiative-details { display: block; }
+.initiative-details ul { margin: 0; padding-left: 18px; }
+.initiative-details li { font-size: 13px; color: #2d3340; margin: 4px 0; line-height: 1.55; }
+
+/* Tag pills */
+.theme-tag { font-size: 10px; padding: 3px 8px; border-radius: 4px; background: #eef0ff; color: #4a5cd1; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
 .theme-tag.mobile { background: #e6f7f1; color: #0d8a64; }
 .theme-tag.platform { background: #fef0f5; color: #b5325b; }
 .theme-tag.ai { background: #f4ecff; color: #6c3fb8; }
 .theme-tag.ops { background: #fff5e6; color: #b5710a; }
-.theme-list { margin: 8px 0 0; padding-left: 18px; }
-.theme-list li { font-size: 13px; color: #2d3340; margin: 3px 0; line-height: 1.5; }
 
-.month-hero-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 8px; }
-.hero-card { background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%); border: 1px solid #d8def0; border-radius: 8px; padding: 12px 14px; }
-.hero-card .hero-name { font-weight: 600; font-size: 13px; color: #0b1020; }
-.hero-card .hero-desc { font-size: 12px; color: #4b5161; margin-top: 3px; line-height: 1.5; }
+/* What's Next — pill-style cards */
+.inprogress-clean { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.inprogress-clean li { padding: 11px 16px; border-radius: 8px; background: #fef9e6; border-left: 3px solid #f0c14b; font-size: 13px; color: #4b5161; line-height: 1.5; }
+.inprogress-clean li b { color: #0b1020; font-weight: 600; }
 
-.inprogress-list { margin: 8px 0 0; padding-left: 18px; }
-.inprogress-list li { font-size: 13px; color: #4b5161; margin: 3px 0; }
-.inprogress-list li b { color: #0b1020; }
+/* AI-generated badge */
+.ai-badge-row { font-size: 10px; color: #6c3fb8; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+.ai-badge-row::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #6c3fb8; }
 </style>
 </head>
 <body>
@@ -1776,76 +1803,102 @@ function renderInsights() {
 
   // Monthly cards
   const list = document.getElementById('monthlyInsights');
-  list.innerHTML = buckets.map(b => {
+  list.innerHTML = buckets.map((b, idx) => {
     const theme = typeof getThemeForMonth === 'function' ? getThemeForMonth(b.key) : MONTHLY_THEMES[b.key];
     const isAi = !MONTHLY_THEMES[b.key] && !!theme;
+
+    // Next-month label for the "Heading into..." section
+    const [y, m] = b.key.split('-').map(Number);
+    const nextMonthLabel = new Date(y, m, 1).toLocaleDateString('en-US', { month: 'long' });
+
     if (!theme) {
       return `
         <div class="month-card" data-key="${b.key}">
           <div class="month-head">
             <div>
               <h2 class="month-title">${fmtMonth(b.key)}</h2>
-              <div class="month-sub">${b.releases.length} release${b.releases.length === 1 ? '' : 's'} — analysis pending</div>
+              <div class="month-sub">${b.releases.length} release${b.releases.length === 1 ? '' : 's'} • analysis pending</div>
             </div>
-            <div class="month-stats">
-              <span><b>${b.webCount}</b> web</span>
-              <span><b>${b.mobileCount}</b> mobile</span>
-              <span><b>${b.features}</b> features</span>
-              <span><b>${b.fixes}</b> fixes</span>
+            <div class="month-stats-inline">
+              <span class="stat-inline"><b>${b.features}</b><span>new</span></span>
+              <span class="stat-inline"><b>${b.improvements}</b><span>improved</span></span>
+              <span class="stat-inline"><b>${b.fixes}</b><span>fixed</span></span>
             </div>
           </div>
           <p style="color:#6a7280;font-size:13px;margin-top:14px;">Claude will analyze this month automatically on the next refresh.</p>
         </div>
       `;
     }
+
     return `
       <div class="month-card" data-key="${b.key}">
-        ${isAi ? '<div style="font-size:10px;color:#6c3fb8;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">✨ AI-generated summary</div>' : ''}
+        ${isAi ? '<div class="ai-badge-row">AI-generated summary</div>' : ''}
+
         <div class="month-head">
           <div>
             <h2 class="month-title">${theme.label}</h2>
-            <div class="month-sub">${b.releases.length} release${b.releases.length === 1 ? '' : 's'} — ${b.webCount} web · ${b.mobileCount} mobile</div>
+            <div class="month-sub">${b.releases.length} release${b.releases.length === 1 ? '' : 's'} • ${b.webCount} web • ${b.mobileCount} mobile</div>
           </div>
-          <div class="month-stats">
-            <span><b>${b.features}</b> features</span>
-            <span><b>${b.improvements}</b> improved</span>
-            <span><b>${b.fixes}</b> fixed</span>
+          <div class="month-stats-inline">
+            <span class="stat-inline"><b>${b.features}</b><span>new</span></span>
+            <span class="stat-inline"><b>${b.improvements}</b><span>improved</span></span>
+            <span class="stat-inline"><b>${b.fixes}</b><span>fixed</span></span>
           </div>
         </div>
 
         <div class="month-narrative">${escapeHtml(theme.narrative)}</div>
 
-        <div class="theme-block">
-          <div class="theme-section-title">Hero Features</div>
-          <div class="month-hero-grid">
-            ${theme.heroFeatures.map(h => `
-              <div class="hero-card">
-                <div class="hero-name">${escapeHtml(h.name)}</div>
-                <div class="hero-desc">${escapeHtml(h.desc)}</div>
+        <div class="insight-section">
+          <div class="insight-section-title">Top wins this month</div>
+          <div class="top-wins">
+            ${theme.heroFeatures.slice(0, 5).map((h, i) => `
+              <div class="top-win">
+                <div class="top-win-num">${i + 1}</div>
+                <div class="top-win-body">
+                  <div class="top-win-name">${escapeHtml(h.name)}</div>
+                  <div class="top-win-desc">${escapeHtml(h.desc)}</div>
+                </div>
               </div>
             `).join('')}
           </div>
         </div>
 
-        <div class="theme-block">
-          <div class="theme-section-title">Themes & Initiatives</div>
-          ${theme.themes.map(t => `
-            <div class="theme">
-              <div class="theme-name">
-                ${escapeHtml(t.name)}
-                <span class="theme-tag ${t.tagClass || ''}">${escapeHtml(t.tag)}</span>
-              </div>
-              <ul class="theme-list">
-                ${t.items.map(it => `<li>${escapeHtml(it)}</li>`).join('')}
-              </ul>
-            </div>
-          `).join('')}
+        <div class="insight-section">
+          <div class="insight-section-title">Initiatives that progressed${theme.themes.length ? ` (${theme.themes.length})` : ''}</div>
+          <div class="initiatives">
+            ${theme.themes.map(t => {
+              const items = t.items || [];
+              const summary = items[0] || '';
+              const remaining = Math.max(0, items.length - 1);
+              return `
+                <div class="initiative">
+                  <div class="initiative-head">
+                    <div class="initiative-name-block">
+                      <div class="initiative-name">${escapeHtml(t.name)}</div>
+                      <div class="initiative-summary">${escapeHtml(summary)}</div>
+                    </div>
+                    <div class="initiative-right">
+                      <span class="theme-tag ${t.tagClass || ''}">${escapeHtml(t.tag)}</span>
+                      ${remaining > 0 ? `<span class="initiative-count">+${remaining}</span><span class="expand-icon">›</span>` : ''}
+                    </div>
+                  </div>
+                  ${remaining > 0 ? `
+                    <div class="initiative-details">
+                      <ul>
+                        ${items.slice(1).map(it => `<li>${escapeHtml(it)}</li>`).join('')}
+                      </ul>
+                    </div>
+                  ` : ''}
+                </div>
+              `;
+            }).join('')}
+          </div>
         </div>
 
         ${theme.inProgress && theme.inProgress.length ? `
-          <div class="theme-block">
-            <div class="theme-section-title">In Progress at month-end</div>
-            <ul class="inprogress-list">
+          <div class="insight-section">
+            <div class="insight-section-title">${idx === 0 ? 'Currently in flight' : 'Heading into ' + nextMonthLabel}</div>
+            <ul class="inprogress-clean">
               ${theme.inProgress.map(p => `<li><b>${escapeHtml(p.name)}</b> — ${escapeHtml(p.note)}</li>`).join('')}
             </ul>
           </div>
@@ -1853,6 +1906,15 @@ function renderInsights() {
       </div>
     `;
   }).join('');
+
+  // Initiative cards: click to expand/collapse details (if they have details)
+  list.querySelectorAll('.initiative').forEach(el => {
+    if (el.querySelector('.initiative-details')) {
+      el.addEventListener('click', () => el.classList.toggle('expanded'));
+    } else {
+      el.style.cursor = 'default';
+    }
+  });
 }
 
 function renderMonthlyChart(buckets) {
@@ -2034,7 +2096,7 @@ function markMonthAnalyzing(monthKey, state) {
 // ============================================================
 // === BEGIN DATA: generated_at ===
 // GENERATED_AT is replaced at publish time by the scheduled task.
-const GENERATED_AT = "2026-05-22T22:26:07.771992+00:00";
+const GENERATED_AT = "2026-05-22T22:37:37.794527+00:00";
 // === END DATA: generated_at ===
 
 renderAll();
