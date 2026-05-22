@@ -103,6 +103,14 @@ html, body {
 .tab.active { background: #0b1020; color: #fff; }
 
 /* Insights view */
+.month-filter { display: flex; gap: 6px; margin-bottom: 22px; flex-wrap: wrap; align-items: center; padding: 14px 16px; background: #fff; border: 1px solid #e7eaf1; border-radius: 10px; }
+.month-filter-label { font-size: 11px; color: #6a7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-right: 10px; }
+.month-pill { background: transparent; border: 1px solid #d6dbe6; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 600; color: #4b5161; cursor: pointer; transition: background .12s, border-color .12s, color .12s; }
+.month-pill:hover { border-color: #5b6ee1; color: #5b6ee1; }
+.month-pill.active { background: #0b1020; border-color: #0b1020; color: #fff; }
+.month-pill .count { opacity: 0.6; font-weight: 500; margin-left: 5px; font-size: 11px; }
+.month-pill.active .count { opacity: 0.8; }
+
 .insight-summary { background: #fff; border: 1px solid #e7eaf1; border-radius: 10px; padding: 18px 20px; margin-bottom: 24px; }
 .insight-summary p { margin: 0; color: #2d3340; }
 .insight-summary p + p { margin-top: 10px; }
@@ -229,8 +237,9 @@ html, body {
 </section>
 
 <section id="insightsView" style="display:none">
+  <div class="month-filter" id="monthFilter"></div>
   <div class="insight-summary" id="insightSummary"></div>
-  <div class="chart-wrap">
+  <div class="chart-wrap" id="chartWrap">
     <h3>Releases per month</h3>
     <div class="chart-canvas-box"><canvas id="monthlyChart"></canvas></div>
   </div>
@@ -1779,27 +1788,72 @@ function fmtMonth(key) {
   return new Date(y, m - 1, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 }
 
+// Month filter state for the Monthly Insights view
+let monthFilter = 'all';
+
+function renderMonthFilter(buckets) {
+  const el = document.getElementById('monthFilter');
+  if (!el) return;
+  // If the active filter no longer exists in the data, reset to 'all'
+  if (monthFilter !== 'all' && !buckets.some(b => b.key === monthFilter)) {
+    monthFilter = 'all';
+  }
+  const pills = [{ key: 'all', label: 'All months', count: buckets.length }]
+    .concat(buckets.map(b => ({ key: b.key, label: fmtMonth(b.key), count: b.releases.length })));
+  el.innerHTML =
+    '<span class="month-filter-label">Filter</span>' +
+    pills.map(p => `
+      <button class="month-pill ${p.key === monthFilter ? 'active' : ''}" data-key="${p.key}">
+        ${escapeHtml(p.label)}<span class="count">${p.count}</span>
+      </button>
+    `).join('');
+  el.querySelectorAll('.month-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      monthFilter = btn.dataset.key;
+      renderInsights();
+      document.getElementById('insightsView')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
 function renderInsights() {
-  const buckets = buildMonthlyBuckets();
+  const allBuckets = buildMonthlyBuckets();
 
-  // Summary up top
-  const totalReleases = releases.length;
-  const totalFeatures = buckets.reduce((s, b) => s + b.features, 0);
-  const totalImprovements = buckets.reduce((s, b) => s + b.improvements, 0);
-  const totalFixes = buckets.reduce((s, b) => s + b.fixes, 0);
-  const monthsCovered = buckets.length;
-  const earliest = buckets[buckets.length - 1]?.key;
-  const latest = buckets[0]?.key;
+  // Render month-filter pills
+  renderMonthFilter(allBuckets);
 
+  // Apply filter
+  const buckets = monthFilter === 'all'
+    ? allBuckets
+    : allBuckets.filter(b => b.key === monthFilter);
+  const isSingleMonth = monthFilter !== 'all';
+
+  // Summary + chart: only show when "All" is selected
   const summaryEl = document.getElementById('insightSummary');
-  summaryEl.innerHTML = `
-    <p><b>${monthsCovered} months</b> of releases tracked${earliest && latest ? ` (${fmtMonth(earliest)} → ${fmtMonth(latest)})` : ''} —
-    <b>${totalReleases}</b> releases shipping <b>${totalFeatures}</b> new features, <b>${totalImprovements}</b> improvements, and <b>${totalFixes}</b> bug fixes across web and mobile.</p>
-    <p>The dominant initiative of the period is <b>Project-level Rates</b> — a multi-month effort that started as a backend prototype in March, hit GA in April Deploy #448, expanded across the month with separate Material/Freight breakouts and API client management, and reached full Mobile parity in May. Other multi-release themes: <b>Idle Time Tracking</b>, <b>Mobile Offline Mode</b>, <b>Prevailing Wage</b>, and <b>AI Ticket Reviews</b>.</p>
-  `;
+  const chartWrap = document.getElementById('chartWrap');
+  if (isSingleMonth) {
+    summaryEl.style.display = 'none';
+    if (chartWrap) chartWrap.style.display = 'none';
+  } else {
+    summaryEl.style.display = '';
+    if (chartWrap) chartWrap.style.display = '';
 
-  // Chart
-  renderMonthlyChart(buckets);
+    const totalReleases = releases.length;
+    const totalFeatures = allBuckets.reduce((s, b) => s + b.features, 0);
+    const totalImprovements = allBuckets.reduce((s, b) => s + b.improvements, 0);
+    const totalFixes = allBuckets.reduce((s, b) => s + b.fixes, 0);
+    const monthsCovered = allBuckets.length;
+    const earliest = allBuckets[allBuckets.length - 1]?.key;
+    const latest = allBuckets[0]?.key;
+
+    summaryEl.innerHTML = `
+      <p><b>${monthsCovered} months</b> of releases tracked${earliest && latest ? ` (${fmtMonth(earliest)} → ${fmtMonth(latest)})` : ''} —
+      <b>${totalReleases}</b> releases shipping <b>${totalFeatures}</b> new features, <b>${totalImprovements}</b> improvements, and <b>${totalFixes}</b> bug fixes across web and mobile.</p>
+      <p>The dominant initiative of the period is <b>Project-level Rates</b> — a multi-month effort that started as a backend prototype in March, hit GA in April Deploy #448, expanded across the month with separate Material/Freight breakouts and API client management, and reached full Mobile parity in May. Other multi-release themes: <b>Idle Time Tracking</b>, <b>Mobile Offline Mode</b>, <b>Prevailing Wage</b>, and <b>AI Ticket Reviews</b>.</p>
+    `;
+
+    renderMonthlyChart(allBuckets);
+  }
 
   // Monthly cards
   const list = document.getElementById('monthlyInsights');
@@ -2096,7 +2150,7 @@ function markMonthAnalyzing(monthKey, state) {
 // ============================================================
 // === BEGIN DATA: generated_at ===
 // GENERATED_AT is replaced at publish time by the scheduled task.
-const GENERATED_AT = "2026-05-22T22:37:37.794527+00:00";
+const GENERATED_AT = "2026-05-22T23:53:52.595287+00:00";
 // === END DATA: generated_at ===
 
 renderAll();
