@@ -266,6 +266,28 @@ html, body {
 // ============================================================
 // === BEGIN DATA: releases ===
 const PREBAKED = [
+  {ts:"1779894791.015509",version:"Deploy #472",releaseDate:"2026-05-26",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1779894791015509?thread_ts=1779835203.233309&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #472 (2026-05-26)
+
+Improvements
+
+• Add-ons sorted alphabetically — The add-on list now displays in alphabetical order instead of creation order, making it faster to find the one you need
+
+───
+
+Bug Fixes
+
+• Duplicate ticket detection improved — Duplicate ticket flagging now catches resubmissions within a 7-day window, even when the original ticket was missing a date. Previously, tickets submitted on different calendar days could slip through undetected
+• Scale tickets assigned to the correct driver on multi-truck orders — Fixed an issue where scale tickets with different truck IDs could be assigned to the wrong job when multiple trucks were dispatched on the same order
+• Email notification polish — Notification emails now display the Tread logo correctly, the call-to-action button links to the app, and a broken email preferences link has been removed from the footer
+
+───
+
+In Progress (not yet customer-facing)
+
+• Email Notifications — Logo, CTA, and footer fixes shipped; dedicated sender domain, one-click unsubscribe, and deep-link routes coming next
+• Duplicate Ticket Detection — 7-day detection window shipped; improved date extraction from handwritten tickets in progress
+
+cc: <@S04L0DFTPQE|product>`},
   {ts:"1779462738.657739",version:"Deploy #471",releaseDate:"2026-05-21",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1779462738657739?thread_ts=1779426038.669409&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #471 (2026-05-21)
 
 New Features
@@ -2161,7 +2183,7 @@ function markMonthAnalyzing(monthKey, state) {
 // ============================================================
 // === BEGIN DATA: generated_at ===
 // GENERATED_AT is replaced at publish time by the scheduled task.
-const GENERATED_AT = "2026-05-26T16:56:05.880657+00:00";
+const GENERATED_AT = "2026-05-27T16:40:10.439495+00:00";
 // === END DATA: generated_at ===
 
 renderAll();
