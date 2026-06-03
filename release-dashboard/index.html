@@ -266,6 +266,42 @@ html, body {
 // ============================================================
 // === BEGIN DATA: releases ===
 const PREBAKED = [
+  {ts:"1780499672.210459",version:"Deploy #474",releaseDate:"2026-06-02",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1780499672210459?thread_ts=1780462031.373249&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #474 (2026-06-02)
+
+New Features
+
+Idle Time Tracking on Live Map
+Trucks on the live map now display real-time idle status with a yellow indicator. Idle periods are highlighted on the map and route history, making it easy to spot when trucks are stationary. Offline periods are automatically filtered out for accuracy.
+
+CSV Export for Approvals & Settlements
+You can now export data to CSV from the Approve Jobs, Approve Work, Payables, Receivables, and Settlements pages.
+
+Default Pickup & Drop-off Sites on Maps
+Default pickup and drop-off sites for orders now appear directly on the map for quick reference.
+
+───
+
+Improvements
+
+• Paused job status now appears on the Driver Timeline scrubber
+• Reconciliation state is now visible on Settlement rows
+• Autocomplete dropdowns now show stack name and external ID for easier identification
+• Order metrics timestamps now display in the order's local timezone
+• Job approval list now supports sorting
+• Orders can now be filtered by external IDs
+• Updated Tilcon Apex integration
+
+───
+
+Bug Fixes
+
+• Fixed the live map entering a continuous refresh loop, impacting performance
+• Fixed rate card dropdowns on Receivables/Payables not scoping to the correct invoice account
+• Fixed company country always displaying as Canada regardless of actual address
+• Fixed ticket numbers column text overflowing in the table
+• Fixed duplicate add-on assignments being created in certain scenarios
+
+cc: <@S04L0DFTPQE|product>`},
   {ts:"1779894791.015509",version:"Deploy #472",releaseDate:"2026-05-26",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1779894791015509?thread_ts=1779835203.233309&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #472 (2026-05-26)
 
 Improvements
@@ -1371,6 +1407,73 @@ const MONTHLY_THEMES = {
         "note": "backend phase_id; frontend phase dropdown pending"
       }
     ]
+  },
+  "2026-06": {
+    "label": "June 2026",
+    "narrative": "June opened with Deploy #474, which brought the long-running Idle Time initiative to the live map: trucks now display real-time idle status with route-history highlighting and automatic filtering of offline periods. The release also rolled out CSV export across the Approvals and Settlements suite and surfaced default pickup and drop-off sites directly on order maps, alongside settlement reconciliation visibility and a fix for a live-map refresh loop that had been degrading performance.",
+    "themes": [
+      {
+        "name": "Idle Time on the Live Map",
+        "tag": "Ops",
+        "tagClass": "ops",
+        "items": [
+          "Live map now shows real-time idle status with a yellow indicator, with idle periods highlighted on the map and route history (Deploy #474)",
+          "Offline periods are automatically filtered out of idle tracking for accuracy (Deploy #474)"
+        ]
+      },
+      {
+        "name": "Data Export & Reporting",
+        "tag": "Platform",
+        "tagClass": "platform",
+        "items": [
+          "CSV export added to the Approve Jobs, Approve Work, Payables, Receivables, and Settlements pages (Deploy #474)",
+          "Order metrics timestamps now display in the order's local timezone (Deploy #474)"
+        ]
+      },
+      {
+        "name": "Dispatch & Map Usability",
+        "tag": "Ops",
+        "tagClass": "ops",
+        "items": [
+          "Default pickup and drop-off sites for orders now appear directly on the map (Deploy #474)",
+          "Paused job status now appears on the Driver Timeline scrubber (Deploy #474)",
+          "Autocomplete dropdowns now show stack name and external ID, and orders can be filtered by external ID (Deploy #474)"
+        ]
+      },
+      {
+        "name": "Settlements & Billing",
+        "tag": "Platform",
+        "tagClass": "platform",
+        "items": [
+          "Reconciliation state is now visible on Settlement rows (Deploy #474)",
+          "Fixed rate card dropdowns on Receivables/Payables not scoping to the correct invoice account (Deploy #474)"
+        ]
+      },
+      {
+        "name": "Reliability & Fixes",
+        "tag": "Platform",
+        "tagClass": "platform",
+        "items": [
+          "Fixed the live map entering a continuous refresh loop that was impacting performance (Deploy #474)",
+          "Fixed company country always displaying as Canada regardless of actual address, plus ticket-number column overflow (Deploy #474)"
+        ]
+      }
+    ],
+    "heroFeatures": [
+      {
+        "name": "Idle Time on the Live Map",
+        "desc": "Trucks display real-time idle status with map and route-history highlighting"
+      },
+      {
+        "name": "CSV Export for Approvals & Settlements",
+        "desc": "Export data from Approve Jobs, Approve Work, Payables, Receivables, and Settlements"
+      },
+      {
+        "name": "Default Sites on Maps",
+        "desc": "Pickup and drop-off sites for orders now render directly on the order map"
+      }
+    ],
+    "inProgress": []
   }
 };
 // === END DATA: themes ===
@@ -2183,7 +2286,7 @@ function markMonthAnalyzing(monthKey, state) {
 // ============================================================
 // === BEGIN DATA: generated_at ===
 // GENERATED_AT is replaced at publish time by the scheduled task.
-const GENERATED_AT = "2026-06-02T16:29:36.205357+00:00";
+const GENERATED_AT = "2026-06-03T16:19:36.018025+00:00";
 // === END DATA: generated_at ===
 
 renderAll();
