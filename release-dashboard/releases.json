@@ -1,6 +1,22 @@
 {
   "releases": [
     {
+      "ts": "1780672342.002839",
+      "version": "Deploy #477",
+      "releaseDate": "2026-06-04",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1780672342002839?thread_ts=1780631713.274829&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #477 (2026-06-04)\n\nNew Features\n\nView Quote PDF\nGenerate and view a branded Quote PDF directly from the Projects page. The PDF includes company details, customer information, materials, rates, add-ons, and pricing — ready to share with customers.\n\nRate Filters on Dispatch Page\nFilter orders on the Dispatch page by rate status — quickly find orders missing Customer, Vendor, or Driver rates.\n\nRequired Invite Type for New Users\nWhen creating a new user, the Invite Type (Email or SMS) is now required and prominently displayed. This prevents cases where new users were created without receiving their invitation.\n\n───\n\nImprovements\n\n• Default pickup and drop-off sites now load more reliably on order and project forms\n\n───\n\nBug Fixes\n\n• Fixed account types being overwritten during order integration, which could block shared driver assignments\n• Fixed geofence setup requiring multiple saves before changes would persist\n• Fixed foreman job approval permissions being tied to the wrong feature flag, preventing some foremen from approving jobs\n• Fixed a job event processing error that could cause job status transitions to fail in rare cases"
+    },
+    {
+      "ts": "1780585996.403279",
+      "version": "Mobile v1.111.0",
+      "releaseDate": "2026-06-04",
+      "isMobile": true,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1780585996403279?thread_ts=1780582085.744709&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Mobile v1.111.0 (2026-06-04)\n\nNew Features\n\nHired Truck Workflow: Job Loads Management\nForemen can now view and manage a driver's loads directly in the app. The new Job Loads tab displays load numbers, materials, quantities, sites, and phase codes — with the ability to edit loads inline. A \"View Loads & Details\" button provides quick navigation, and the tab supports real-time updates and pull-to-refresh.\n\nEditable Driver Hours\nThe Review Job screen now lets foremen and drivers add, edit, and delete driver hours alongside equipment hours, making job approvals faster and more accurate.\n\nOffline Signatures & Attachments\nDrivers can now capture signatures and add attachments while working offline. Data syncs automatically when connectivity is restored.\n\n───\n\nImprovements\n\n• Phase code is now displayed on load rows and available in the load edit form\n• Phone number fields auto-detect North American formatting across all forms\n• Clearer messaging and smoother flow when a forced app update is required\n• Added \"Language:\" label to the language setting for clarity\n• New option to clear offline cache for troubleshooting or freeing up space\n• Improved detection of backend connectivity issues for more reliable offline behavior\n\n───\n\nBug Fixes\n\n• Fixed a loading spinner that could get stuck when job creation failed\n• Fixed a misleading \"invalid phone number\" error when adding a new driver\n• Numerous crash fixes and stability improvements\n\n───\n\nIn Progress (not yet customer-facing)\n\n• Foreman Review Tab — Updated job cards and tab ordering are shipping behind a feature flag and will be enabled for select customers soon"
+    },
+    {
       "ts": "1780499672.210459",
       "version": "Deploy #474",
       "releaseDate": "2026-06-02",

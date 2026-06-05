@@ -266,6 +266,70 @@ html, body {
 // ============================================================
 // === BEGIN DATA: releases ===
 const PREBAKED = [
+  {ts:"1780672342.002839",version:"Deploy #477",releaseDate:"2026-06-04",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1780672342002839?thread_ts=1780631713.274829&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #477 (2026-06-04)
+
+New Features
+
+View Quote PDF
+Generate and view a branded Quote PDF directly from the Projects page. The PDF includes company details, customer information, materials, rates, add-ons, and pricing — ready to share with customers.
+
+Rate Filters on Dispatch Page
+Filter orders on the Dispatch page by rate status — quickly find orders missing Customer, Vendor, or Driver rates.
+
+Required Invite Type for New Users
+When creating a new user, the Invite Type (Email or SMS) is now required and prominently displayed. This prevents cases where new users were created without receiving their invitation.
+
+───
+
+Improvements
+
+• Default pickup and drop-off sites now load more reliably on order and project forms
+
+───
+
+Bug Fixes
+
+• Fixed account types being overwritten during order integration, which could block shared driver assignments
+• Fixed geofence setup requiring multiple saves before changes would persist
+• Fixed foreman job approval permissions being tied to the wrong feature flag, preventing some foremen from approving jobs
+• Fixed a job event processing error that could cause job status transitions to fail in rare cases`},
+  {ts:"1780585996.403279",version:"Mobile v1.111.0",releaseDate:"2026-06-04",isMobile:true,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1780585996403279?thread_ts=1780582085.744709&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Mobile v1.111.0 (2026-06-04)
+
+New Features
+
+Hired Truck Workflow: Job Loads Management
+Foremen can now view and manage a driver's loads directly in the app. The new Job Loads tab displays load numbers, materials, quantities, sites, and phase codes — with the ability to edit loads inline. A "View Loads & Details" button provides quick navigation, and the tab supports real-time updates and pull-to-refresh.
+
+Editable Driver Hours
+The Review Job screen now lets foremen and drivers add, edit, and delete driver hours alongside equipment hours, making job approvals faster and more accurate.
+
+Offline Signatures & Attachments
+Drivers can now capture signatures and add attachments while working offline. Data syncs automatically when connectivity is restored.
+
+───
+
+Improvements
+
+• Phase code is now displayed on load rows and available in the load edit form
+• Phone number fields auto-detect North American formatting across all forms
+• Clearer messaging and smoother flow when a forced app update is required
+• Added "Language:" label to the language setting for clarity
+• New option to clear offline cache for troubleshooting or freeing up space
+• Improved detection of backend connectivity issues for more reliable offline behavior
+
+───
+
+Bug Fixes
+
+• Fixed a loading spinner that could get stuck when job creation failed
+• Fixed a misleading "invalid phone number" error when adding a new driver
+• Numerous crash fixes and stability improvements
+
+───
+
+In Progress (not yet customer-facing)
+
+• Foreman Review Tab — Updated job cards and tab ordering are shipping behind a feature flag and will be enabled for select customers soon`},
   {ts:"1780499672.210459",version:"Deploy #474",releaseDate:"2026-06-02",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1780499672210459?thread_ts=1780462031.373249&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #474 (2026-06-02)
 
 New Features
@@ -2286,7 +2350,7 @@ function markMonthAnalyzing(monthKey, state) {
 // ============================================================
 // === BEGIN DATA: generated_at ===
 // GENERATED_AT is replaced at publish time by the scheduled task.
-const GENERATED_AT = "2026-06-03T16:19:36.018025+00:00";
+const GENERATED_AT = "2026-06-05T16:43:40.003513+00:00";
 // === END DATA: generated_at ===
 
 renderAll();
