@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "ts": "1781536262.729049",
+      "version": "Deploy #481",
+      "releaseDate": "2026-06-14",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1781536262729049?thread_ts=1781463877.750039&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #481 (2026-06-14)\n\nImprovements\n\n• Company logo upload limit has been significantly increased — you can now upload higher resolution logos (previously limited to very small file sizes)\n• Full-resolution company logos now display on quote PDFs instead of low-resolution thumbnails\n• The project import API now accepts dispatch numbers\n\n───\n\nBug Fixes\n\n• Fixed: Changing the prevailing wage on an order now correctly updates existing payable invoices\n• Fixed: Compliance document types now load correctly on the managed vendor settings page\n• Fixed: Sites no longer show errors on non-editable orders — they now display as read-only\n• Fixed: Resolved an intermittent error when loading jobs on certain orders\n• Fixed: \"Check internet connection\" error when downloading quote PDFs in Chrome has been resolved\n• Fixed: Job actions (such as ticket upload) could be incorrectly disabled when the connected company name didn't precisely match the account name\n\n───\n\nIn Progress (not yet customer-facing)\n\n• Project-level Rates — Automatic rate matching and pricing rulebook for projects; currently in testing and QA with migration fixes landing\n• Project Form V2 — Redesigned project creation experience (behind feature flag)\n\ncc: <@S04L0DFTPQE|product>"
+    },
+    {
       "ts": "1781104306.996989",
       "version": "Deploy #478",
       "releaseDate": "2026-06-09",
