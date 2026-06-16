@@ -62,6 +62,7 @@
   tbody td{padding:12px 13px;border-top:1px solid var(--line);font-size:13.5px;vertical-align:middle;}
   tbody tr:nth-child(even) td{background:var(--rowalt);}
   td.item{font-weight:600;} td.cust{color:var(--n700);font-size:12.5px;} td.notes{color:var(--n600);font-size:12px;font-style:italic;}
+  td.item a.ilink{color:var(--info);text-decoration:none;} td.item a.ilink:hover{text-decoration:underline;} td.item a.ilink .ar{font-size:10px;opacity:.7;}
   td.num{font-weight:700;color:var(--n500);text-align:center;width:38px;}
   td.owner{font-weight:600;color:var(--ink);} td.owner .empty{color:var(--n500);font-weight:400;font-style:italic;}
   .badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap;}
@@ -156,7 +157,7 @@ function render(rows){
   }).join("");
   document.getElementById("details").innerHTML=order.map((w,i)=>{
     const goal=GOALS[w]?'<div class="goal"><div class="lbl">Goal</div><p>'+esc(GOALS[w])+'</p></div>':'';
-    const body=groups[w].map((r,ri)=>'<tr><td class="num">'+(ri+1)+'</td><td class="item">'+esc(r.Item)+'</td><td class="c">'+plat(r.Platform)+'</td><td class="cust">'+esc(r["Customers (ACV)"])+'</td><td class="c">'+lvl(r.Impact)+'</td><td class="c">'+lvl(r.Effort)+'</td><td class="c">'+vibe(r["Vibeable?"])+'</td><td class="c">'+statusCell(r.Status)+'</td><td class="owner">'+owner(r["Product Owner"])+'</td><td class="notes">'+esc(r.Notes)+'</td></tr>').join("");
+    const body=groups[w].map((r,ri)=>'<tr><td class="num">'+(ri+1)+'</td><td class="item">'+(r["Link"]?'<a class="ilink" href="'+r["Link"].replace(/"/g,"%22")+'" target="_blank" rel="noopener">'+esc(r.Item)+' <span class="ar">↗</span></a>':esc(r.Item))+'</td><td class="c">'+plat(r.Platform)+'</td><td class="cust">'+esc(r["Customers (ACV)"])+'</td><td class="c">'+lvl(r.Impact)+'</td><td class="c">'+lvl(r.Effort)+'</td><td class="c">'+vibe(r["Vibeable?"])+'</td><td class="c">'+statusCell(r.Status)+'</td><td class="owner">'+owner(r["Product Owner"])+'</td><td class="notes">'+esc(r.Notes)+'</td></tr>').join("");
     return'<div class="detail" id="wf'+i+'"><div class="head" data-i="'+i+'"><span class="num">'+(i+1)+'</span><h2>'+esc(w)+'</h2>'+wfChip(groups[w])+'<span class="toggle"></span></div><div class="body">'+goal+'<div class="tablewrap"><table><thead><tr><th>#</th><th>Item</th><th class="c">Platform</th><th>Customers (ACV)</th><th class="c">Impact</th><th class="c">Effort</th><th class="c">Vibeable?</th><th class="c">Status</th><th>Product Owner</th><th>Notes</th></tr></thead><tbody>'+body+'</tbody></table></div></div></div>';
   }).join("");
   document.getElementById("rest").style.display="block";
