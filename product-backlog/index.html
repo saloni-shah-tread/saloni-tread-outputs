@@ -114,34 +114,6 @@ const SHEET_ID = "1mbwdKbiiiOnplz-oTUf0p0xPVzDblbH-j--aQW_bq1o";
 // Published-to-web CSV feed (File → Share → Publish to web → CSV, public). Auto-republishes on edit.
 const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoIsx0DFf6Wa8dg5wxssD5YU-Yb1ZVwxtfGSFYBLgGVyCK9YdKSHFOWs7x_nWRuk2XGx6YwiyMUbPv/pub?output=csv";
 
-// Baked-in snapshot — the page renders this immediately so it's NEVER blank.
-// If the live Sheet is reachable, that overrides this on load.
-const COLS=["Workflow","Item","Platform","Customers (ACV)","Impact","Effort","Vibeable?","Status","Product Owner","Notes"];
-const FALLBACK=[
-["Onboarding","Driver Model Redesign","Web + Mobile","All customers","High","High","No","","",""],
-["Onboarding","Vendor Reactivation","Web","Statewide ($205K), TransPhos ($42K)","Medium","Medium","TBD","","","Similar to Driver Model Redesign"],
-["Dispatch Management","Two-Way Messaging","Web + Mobile","NLS ($44K), Holcim GTA, GVA","High","High","TBD","","",""],
-["Dispatch Management","Driver ETA","Web","GVA, Daniela ($10K)","Medium","Medium","TBD","","",""],
-["Rate Set Up","Project Rates","Web","JW Golding, 4M ($52K), Brinks, Rock On ($30K)","High","High","No","In Progress","","Should include load-level rate matching"],
-["Rate Set Up","Enterprise Rate Hardening","Web","All customers","High","High","Yes","In Progress","",""],
-["Rate Set Up","Tax Visibility","Web","Rock On ($30K)","Medium","Medium","TBD","","",""],
-["Rate Set Up","Vendor-Specific Rates","Web","Rock On Trucks ($30K), Prime Aggregate ($75K), PJ Keating ($50K)","Medium","Medium","TBD","","",""],
-["Data Input","Hourly UX","Mobile + Web","Volker Stevin ($180K), Rock On ($30K)","High","Medium","Yes","In Progress","",""],
-["Data Input","Recurring Orders","Web","RPMx ($105K), Werdco ($170K), Volker Stevin ($180K)","High","Medium","Yes","","",""],
-["Approvals","Lock UoM on Scale Ticket","Mobile","TransPhos ($42K)","Medium","Low","Yes","Product Scoping","","Might be reporting"],
-["Approvals","Driver Ticket Flow Submission","Mobile + Web","TransPhos ($42K), AHS ($39K)","High","Medium","TBD","Product Scoping","",""],
-["Approvals","New Roles","Web","AHS ($39K), Tomlinson ($194K)","High","Medium","TBD","","",""],
-["Connected Customer Ecosystem","Allow Vendors to Make Billing Edits","Web","Arizona Agg, Rock On ($30K), Raj","Medium","Medium","TBD","","",""],
-["Parent Co View","Flatten Billing Data","Web","Statewide ($205K), NS Trucking, Leah, Quality, Whitaker ($38K)","Medium","High","TBD","","",""],
-["Exporting","Export Settlement Data (CSV)","Web","Statewide ($205K), any customer using settlements","Medium","Medium","Yes","","",""],
-["Exporting","QB Integration (Rutter)","Web","Rock On ($30K), Marex ($45K), 4M ($52K), Werdco ($170K), Pineridge ($49K)","High","High","Yes","","",""],
-["Exporting","BE PDF Generation","Web","Pineridge ($49K), Whitaker ($38K), TransPhos ($42K), Marex ($45K)","Medium","Medium","TBD","","","Blocking Bulk Download requests"],
-["Advanced","Prevailing Wage","Web","Rock On ($30K)","High","High","Yes","In Progress","",""],
-["Advanced","Material Costs per Load","Web","Daniela ($10K), AHS ($39K)","Medium","Low","Yes","","",""],
-["Advanced","Fuel Surcharge on Material Sold","Web","Walker Ag ($25K)","Low","Medium","TBD","","",""]
-];
-function fallbackRows(){ return FALLBACK.map(a=>{const o={};COLS.forEach((k,i)=>o[k]=a[i]);return o;}); }
-
 const GOALS = {
   "Onboarding":"Make it fast and reliable to set up and reactivate drivers and vendors, so customers can get their teams and partners operational without manual workarounds.",
   "Dispatch Management":"Give dispatchers real-time visibility and two-way communication with drivers so jobs stay coordinated and on-track.",
@@ -197,10 +169,9 @@ function render(rows){
 function openDetail(i,scroll){const el=document.getElementById("wf"+i);if(!el)return;el.classList.add("open");if(scroll)el.scrollIntoView({behavior:"smooth",block:"start"});}
 
 async function load(){
-  // Always render the baked-in snapshot first so the page is never blank.
-  render(fallbackRows());
-  document.getElementById("updated").textContent="· Built-in snapshot";
-  // Then try to refresh live from the Sheet (overrides snapshot if reachable).
+  document.getElementById("overview").innerHTML='<div class="state">Loading from Google Sheet…</div>';
+  document.getElementById("rest").style.display="none";
+  // Live Sheet is the single source of truth. Snapshot is used ONLY if the Sheet can't be reached.
   try{
     const res=await fetch(CSV_URL+"&_="+Date.now());
     if(!res.ok) throw new Error("HTTP "+res.status);
@@ -212,7 +183,9 @@ async function load(){
     render(rows);
     document.getElementById("updated").textContent="· Live · updated "+new Date().toLocaleString();
   }catch(e){
-    document.getElementById("updated").textContent="· Built-in snapshot (Sheet not connected)";
+    document.getElementById("rest").style.display="none";
+    document.getElementById("overview").innerHTML='<div class="state">Couldn\'t reach the Google Sheet ('+esc(e.message)+').<br>Check that it\'s still published to the web, then hit Refresh.</div>';
+    document.getElementById("updated").textContent="";
   }
 }
 document.getElementById("refresh").onclick=load;
