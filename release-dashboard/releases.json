@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "ts": "1781708869.584229",
+      "version": "Mobile Hotfix v1.111.2",
+      "releaseDate": "2026-06-16",
+      "isMobile": true,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1781708869584229?thread_ts=1781639372.909669&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Mobile Hotfix v1.111.2 (2026-06-16)\n\nImprovements\n\n• Notification settings in the mobile app now include all options available on web — ensuring full parity between platforms\n\n───\n\nBug Fixes\n\n• Fixed: Dismissing the ticket entry sheet now properly removes unsaved draft tickets instead of leaving them behind\n• Fixed: Resolved errors that could occur when attempting to approve a job\n• Fixed: Addressed an issue that could cause the app to temporarily freeze\n• Fixed: Location data now saves correctly on devices with limited storage\n• Fixed: Resolved a crash that could occur on the driver permissions screen\n• General stability improvements and crash fixes across navigation, job management, and background state handling\n\n───\n\ncc: <@S04L0DFTPQE|product>"
+    },
+    {
       "ts": "1781536262.729049",
       "version": "Deploy #481",
       "releaseDate": "2026-06-14",
