@@ -266,6 +266,63 @@ html, body {
 // ============================================================
 // === BEGIN DATA: releases ===
 const PREBAKED = [
+  {ts:"1781881670.966929",version:"Deploy #485",releaseDate:"2026-06-18",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1781881670966929?thread_ts=1781837124.202409&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #485 (2026-06-18)
+
+New Features
+
+Settings Redesign
+The Settings area has been completely reorganized — the sidebar now groups items into 6 labeled sections (Personal, Workspace, Accounts, AI & Integrations, Data Setup, Rates) with icons and a search/filter box. Every settings page now displays a consistent title and description header for easier navigation.
+
+Hide Driver Phone Numbers
+A new account-level toggle lets you hide driver phone numbers from upstream connected companies. When enabled, connected customers and vendors see driver names but phone numbers are redacted on live map popovers and other views.
+
+Material Type Management
+Companies can now create, edit, and delete their own material types directly from Settings, matching the existing equipment type management experience.
+
+"Report an Issue" on Reports
+A new "Report Issue" link on the Reports page lets you quickly flag issues with a specific report — it opens a support conversation with the report link pre-attached.
+
+Overdue & Suspended Billing Banner
+Company admins now see an in-app banner when their account is overdue or suspended, with clear guidance on how to resolve.
+
+───
+
+Improvements
+
+• Reports page URLs now reflect the selected report — you can bookmark, share, and use browser back/forward to navigate between reports
+• Users with the Viewer role can now access the Assigned (collaborator) tab on mobile to view job locations on the map
+• Invoice and settlement line items now track their taxable status for improved reporting accuracy
+• Added a truck count filter to dispatch
+• Job cancel and complete notifications now include email parity, matching the existing push/SMS pipeline
+
+───
+
+Bug Fixes
+
+• Fixed: Creating an order with a material no longer shows a false "Something went wrong" error — the order was created successfully but the UI failed to display it
+• Fixed: Editing a job's equipment type now correctly updates the accounting ID sent to external systems (e.g. SAP), not just the display name
+• Fixed: 403 error when updating a driver's shared company from the vendor management "Update Driver" modal
+• Fixed: Removing a project site contact now correctly persists when reopening the project
+• Fixed: Project truck count can now be properly cleared
+• Fixed: Company logo now displays correctly on quote PDFs in Chrome
+• Fixed: Live Map no longer crashes when navigating away quickly
+• Fixed: Vendor accounts with "/" in the name can now be updated
+• Fixed: Approved work time no longer loses a minute when entering decimal hours (e.g. 8.2h → previously displayed as 8.18h)
+• Fixed: Inline-created departments now remain available in the dropdown after clearing and reopening
+• Fixed: Clearing the Material dropdown on the project form no longer shows a raw validation message
+• Fixed: Phase codes can now be added from the New Order form for projects with existing phase codes
+• Fixed: Negative speed values no longer display on truck cards
+• Fixed: Auto-accepted and assigned jobs now correctly track through the "sent" state for accurate event history
+
+───
+
+In Progress (not yet customer-facing)
+
+• Project-level Rates — Automatic rate matching and pricing rulebook for projects; in QA/testing with migration refinements landing
+• Catena Telematics Integration — Self-service telematics integration; full backend pipeline and frontend connect UI shipped behind feature flag
+• Dispatch Truck Replay — GPS route-replay tab on dispatch order cards with by-truck map and load-status Gantt; Wave 1 shipped behind feature flag
+
+cc: <@S04L0DFTPQE|product>`},
   {ts:"1781708869.584229",version:"Mobile Hotfix v1.111.2",releaseDate:"2026-06-16",isMobile:true,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1781708869584229?thread_ts=1781639372.909669&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Mobile Hotfix v1.111.2 (2026-06-16)
 
 Improvements
@@ -2413,7 +2470,7 @@ function markMonthAnalyzing(monthKey, state) {
 // ============================================================
 // === BEGIN DATA: generated_at ===
 // GENERATED_AT is replaced at publish time by the scheduled task.
-const GENERATED_AT = "2026-06-18T17:29:48.734850+00:00";
+const GENERATED_AT = "2026-06-19T16:07:32.233722+00:00";
 // === END DATA: generated_at ===
 
 renderAll();
