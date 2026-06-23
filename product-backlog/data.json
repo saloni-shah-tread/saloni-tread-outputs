@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-23T14:12:36.550Z",
+  "generatedAt": "2026-06-23T17:08:50.611Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -159,19 +159,6 @@
     },
     {
       "Workflow": "Data Input",
-      "Item": "Error Handling Framework Improvements",
-      "Platform": "Mobile",
-      "Customers (ACV)": "",
-      "Impact": "Medium",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "In Progress",
-      "Product Owner": "",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/error-handling-framework-improvements-bad76d3319d4"
-    },
-    {
-      "Workflow": "Data Input",
       "Item": "Hourly Driver UX",
       "Platform": "Web + Mobile",
       "Customers (ACV)": "Volkerstevin, Rock On Trucks",
@@ -182,6 +169,19 @@
       "Product Owner": "Richard Leung",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/hourly-driver-ux-6cbe6a86e2cc"
+    },
+    {
+      "Workflow": "Data Input",
+      "Item": "Extend AI Ticket Scanning",
+      "Platform": "Web",
+      "Customers (ACV)": "",
+      "Impact": "Medium",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "Planned",
+      "Product Owner": "Richard Leung",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/extend-ai-ticket-scanning-08d8ceb05946"
     },
     {
       "Workflow": "Data Input",
@@ -221,6 +221,19 @@
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/recurring-orders-e3958b2e432f"
+    },
+    {
+      "Workflow": "Data Input",
+      "Item": "Error Handling Framework Improvements",
+      "Platform": "Mobile",
+      "Customers (ACV)": "",
+      "Impact": "Medium",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "Completed",
+      "Product Owner": "",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/error-handling-framework-improvements-bad76d3319d4"
     },
     {
       "Workflow": "Approvals",
@@ -373,7 +386,7 @@
       "Impact": "High",
       "Effort": "High",
       "Vibeable?": "TBD",
-      "Status": "In Progress",
+      "Status": "Paused",
       "Product Owner": "Sameer Bhalla",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/prevailing-wage-base-models-march-2026-a155576ce712"
