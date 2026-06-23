@@ -88,13 +88,13 @@
   </div>
   <div class="eyebrow">Prioritized · Workflow-Based</div>
   <h1>Product Backlog</h1>
-  <p>Live view — pulls the shared Google Sheet on every load.</p>
+  <p>Auto-synced from Linear — projects tagged with workflow labels.</p>
 </header>
 <main>
   <div class="sheetbar">
-    <span class="grow">✏️ Add items &amp; set Product Owner in the Sheet. <span class="updated" id="updated"></span></span>
+    <span class="grow">Source of truth is Linear. Tag a project with a workflow label (+ Impact/Effort/Vibeable) and it appears here. <span class="updated" id="updated"></span></span>
     <button class="ghost" id="refresh">↻ Refresh</button>
-    <a href="https://docs.google.com/spreadsheets/d/1mbwdKbiiiOnplz-oTUf0p0xPVzDblbH-j--aQW_bq1o/edit" target="_blank" rel="noopener">Open Google Sheet</a>
+    <a href="https://linear.app/treadapp/projects" target="_blank" rel="noopener">Open in Linear</a>
   </div>
   <p class="sec-label">Workflows · click to drill in</p>
   <p class="legend-key"><span class="dot">●</span> In Progress &nbsp;&nbsp; <span class="dot-scope">◆</span> Product Scoping</p>
@@ -111,9 +111,8 @@
 </main>
 <script>
 // === CONFIG ===
-const SHEET_ID = "1mbwdKbiiiOnplz-oTUf0p0xPVzDblbH-j--aQW_bq1o";
-// Published-to-web CSV feed (File → Share → Publish to web → CSV, public). Auto-republishes on edit.
-const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoIsx0DFf6Wa8dg5wxssD5YU-Yb1ZVwxtfGSFYBLgGVyCK9YdKSHFOWs7x_nWRuk2XGx6YwiyMUbPv/pub?output=csv";
+// data.json sits next to this page and is refreshed from Linear by the GitHub Action.
+const DATA_URL = "data.json";
 
 const GOALS = {
   "Onboarding":"Make it fast and reliable to set up and reactivate drivers and vendors, so customers can get their teams and partners operational without manual workarounds.",
@@ -170,22 +169,21 @@ function render(rows){
 function openDetail(i,scroll){const el=document.getElementById("wf"+i);if(!el)return;el.classList.add("open");if(scroll)el.scrollIntoView({behavior:"smooth",block:"start"});}
 
 async function load(){
-  document.getElementById("overview").innerHTML='<div class="state">Loading from Google Sheet…</div>';
+  document.getElementById("overview").innerHTML='<div class="state">Loading roadmap…</div>';
   document.getElementById("rest").style.display="none";
-  // Live Sheet is the single source of truth. Snapshot is used ONLY if the Sheet can't be reached.
+  // Single source of truth: data.json, refreshed from Linear by the GitHub Action.
   try{
-    const res=await fetch(CSV_URL+"&_="+Date.now());
+    const res=await fetch(DATA_URL+"?_="+Date.now());
     if(!res.ok) throw new Error("HTTP "+res.status);
-    const text=await res.text();
-    const table=parseCSV(text).filter(r=>r.length>1);
-    if(table.length<2) throw new Error("no rows");
-    const header=table[0].map(h=>h.trim());
-    const rows=table.slice(1).map(a=>{const o={};header.forEach((h,i)=>o[h]=(a[i]||"").trim());return o;});
+    const data=await res.json();
+    const rows=(data && data.rows) || [];
+    if(!rows.length) throw new Error("no rows");
     render(rows);
-    document.getElementById("updated").textContent="· Live · updated "+new Date().toLocaleString();
+    const when = data.generatedAt ? new Date(data.generatedAt).toLocaleString() : "";
+    document.getElementById("updated").textContent="· Synced from Linear"+(when?" · "+when:"");
   }catch(e){
     document.getElementById("rest").style.display="none";
-    document.getElementById("overview").innerHTML='<div class="state">Couldn\'t reach the Google Sheet ('+esc(e.message)+').<br>Check that it\'s still published to the web, then hit Refresh.</div>';
+    document.getElementById("overview").innerHTML='<div class="state">Couldn\'t load roadmap data ('+esc(e.message)+').<br>The hourly sync may not have run yet — check the repo\'s Actions tab.</div>';
     document.getElementById("updated").textContent="";
   }
 }
