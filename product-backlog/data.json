@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-23T17:08:50.611Z",
+  "generatedAt": "2026-06-23T19:45:42.419Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -94,6 +94,19 @@
     },
     {
       "Workflow": "Dispatch Management",
+      "Item": "Add job timeline to mobile",
+      "Platform": "Mobile",
+      "Customers (ACV)": "",
+      "Impact": "Medium",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "Backlog",
+      "Product Owner": "",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/add-job-timeline-to-mobile-91bb7c0bc7f2"
+    },
+    {
+      "Workflow": "Dispatch Management",
       "Item": "Live ETA to site",
       "Platform": "Web",
       "Customers (ACV)": "Lafarge GVA Construction, Amrize Holcim Lafarge GTA",
@@ -169,19 +182,6 @@
       "Product Owner": "Richard Leung",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/hourly-driver-ux-6cbe6a86e2cc"
-    },
-    {
-      "Workflow": "Data Input",
-      "Item": "Extend AI Ticket Scanning",
-      "Platform": "Web",
-      "Customers (ACV)": "",
-      "Impact": "Medium",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "Planned",
-      "Product Owner": "Richard Leung",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/extend-ai-ticket-scanning-08d8ceb05946"
     },
     {
       "Workflow": "Data Input",
@@ -367,16 +367,16 @@
     },
     {
       "Workflow": "Exporting",
-      "Item": "Export Settlement Data (CSV)",
+      "Item": "Settlement CSV Export",
       "Platform": "Web",
       "Customers (ACV)": "Statewide (SMT) ($200K)",
       "Impact": "Medium",
       "Effort": "Medium",
       "Vibeable?": "TBD",
       "Status": "Backlog",
-      "Product Owner": "",
+      "Product Owner": "Richard Leung",
       "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/export-settlement-data-csv-d9cb7c2ff6fb"
+      "PRD Brief Link": "https://linear.app/treadapp/project/settlement-csv-export-a3871e88ba00"
     },
     {
       "Workflow": "Advanced Billing",
