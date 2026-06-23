@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-23T01:02:14.643Z",
+  "generatedAt": "2026-06-23T04:54:57.750Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -44,7 +44,7 @@
       "Workflow": "Dispatch Management",
       "Item": "Mobile offline • Drivers can accept/reject, start/stop while offline",
       "Platform": "Web + Mobile",
-      "Customers (ACV)": "",
+      "Customers (ACV)": "All Customers, Whitaker",
       "Impact": "High",
       "Effort": "High",
       "Vibeable?": "TBD",
@@ -156,6 +156,19 @@
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/project-level-vendor-rate-exceptions-f79efdda0ea5"
+    },
+    {
+      "Workflow": "Data Input",
+      "Item": "Error Handling Framework Improvements",
+      "Platform": "Mobile",
+      "Customers (ACV)": "",
+      "Impact": "Medium",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "In Progress",
+      "Product Owner": "",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/error-handling-framework-improvements-bad76d3319d4"
     },
     {
       "Workflow": "Data Input",
@@ -273,6 +286,19 @@
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/allow-connected-vendors-to-edit-billing-fields-89a9f69e2c24"
+    },
+    {
+      "Workflow": "Connected Customer Ecosystem",
+      "Item": "Per Company Invoice/Settlement Approvals",
+      "Platform": "Web",
+      "Customers (ACV)": "",
+      "Impact": "High",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "Backlog",
+      "Product Owner": "Saloni Shah",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/per-company-invoicesettlement-approvals-8b411ff4aef4"
     },
     {
       "Workflow": "Parent Co View",
