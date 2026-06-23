@@ -24,11 +24,11 @@ async function gql(query, variables) {
   return json.data;
 }
 
-async function paged(field, selection) {
+async function paged(field, selection, pageSize = 50) {
   const out = []; let after = null;
   do {
     const data = await gql(
-      `query($after:String){ ${field}(first:100, after:$after){ pageInfo{ hasNextPage endCursor } nodes{ ${selection} } } }`,
+      `query($after:String){ ${field}(first:${pageSize}, after:$after){ pageInfo{ hasNextPage endCursor } nodes{ ${selection} } } }`,
       { after }
     );
     const conn = data[field];
@@ -45,9 +45,9 @@ function fmtRevenue(r) {
 }
 
 const projects = await paged("projects",
-  "id name url lead{ name } status{ name type } labels{ nodes{ name } } teams{ nodes{ key } }");
+  "id name url lead{ name } status{ name type } labels{ nodes{ name } } teams{ nodes{ key } }", 50);
 const customers = await paged("customers",
-  "name revenue needs(first:100){ nodes{ project{ id } } }");
+  "name revenue needs(first:50){ nodes{ project{ id } } }", 40);
 
 // projectId -> ["Customer ($ACV)", ...]
 const projCustomers = {};
