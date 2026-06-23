@@ -47,13 +47,13 @@ function fmtRevenue(r) {
 const projects = await paged("projects",
   "id name url lead{ name } status{ name type } labels{ nodes{ name } } teams{ nodes{ key } }", 50);
 const customers = await paged("customers",
-  "name revenue needs(first:50){ nodes{ project{ id } } }", 40);
+  "name revenue needs{ project{ id } }", 40);
 
 // projectId -> ["Customer ($ACV)", ...]
 const projCustomers = {};
 for (const cu of customers) {
   const tag = cu.name + fmtRevenue(cu.revenue);
-  for (const need of (cu.needs?.nodes || [])) {
+  for (const need of (cu.needs || [])) {
     const pid = need.project?.id; if (!pid) continue;
     (projCustomers[pid] ||= []);
     if (!projCustomers[pid].includes(tag)) projCustomers[pid].push(tag);
