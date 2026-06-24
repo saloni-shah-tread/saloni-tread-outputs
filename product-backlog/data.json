@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-23T23:48:30.320Z",
+  "generatedAt": "2026-06-24T01:50:40.499Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -68,6 +68,19 @@
     },
     {
       "Workflow": "Dispatch Management",
+      "Item": "2-Way Chat",
+      "Platform": "Web + Mobile",
+      "Customers (ACV)": "NLS, Lafarge GVA Construction, Amrize Holcim Lafarge GTA",
+      "Impact": "High",
+      "Effort": "High",
+      "Vibeable?": "TBD",
+      "Status": "Planned",
+      "Product Owner": "Sameer Bhalla",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/2-way-chat-1493d36ce248"
+    },
+    {
+      "Workflow": "Dispatch Management",
       "Item": "AI Route Segmentation from GPS",
       "Platform": "Web",
       "Customers (ACV)": "",
@@ -78,19 +91,6 @@
       "Product Owner": "Sameer Bhalla",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/ai-route-segmentation-from-gps-c4c886408873"
-    },
-    {
-      "Workflow": "Dispatch Management",
-      "Item": "2-Way Chat",
-      "Platform": "Web + Mobile",
-      "Customers (ACV)": "NLS, Lafarge GVA Construction, Amrize Holcim Lafarge GTA",
-      "Impact": "High",
-      "Effort": "High",
-      "Vibeable?": "TBD",
-      "Status": "Backlog",
-      "Product Owner": "Richard Leung",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/2-way-chat-1493d36ce248"
     },
     {
       "Workflow": "Dispatch Management",
