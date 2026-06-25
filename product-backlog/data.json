@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-25T16:12:44.409Z",
+  "generatedAt": "2026-06-25T18:59:19.318Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -91,6 +91,19 @@
       "Product Owner": "Sameer Bhalla",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/ai-route-segmentation-from-gps-c4c886408873"
+    },
+    {
+      "Workflow": "Dispatch Management",
+      "Item": "Route Sequencing Optimization — Shadow Deployment",
+      "Platform": "Web",
+      "Customers (ACV)": "",
+      "Impact": "High",
+      "Effort": "High",
+      "Vibeable?": "TBD",
+      "Status": "Product Scoping",
+      "Product Owner": "",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/route-sequencing-optimization-shadow-deployment-d8a0f7dfaa8f"
     },
     {
       "Workflow": "Dispatch Management",
