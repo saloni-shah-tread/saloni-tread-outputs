@@ -266,6 +266,80 @@ html, body {
 // ============================================================
 // === BEGIN DATA: releases ===
 const PREBAKED = [
+  {ts:"1782486507.182619",version:"Deploy #492",releaseDate:"2026-06-25",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1782486507182619?thread_ts=1782401124.816969&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #492 (2026-06-25)
+
+New Features
+
+Dispatch Rate Filters
+Filter orders on the Dispatch page by whether they have Customer Rates, Vendor Rates, or Driver Rates assigned — quickly spot orders that still need pricing.
+
+Order Completed Notification
+New "Order Completed" notification preference in User Profile settings — opt into push, SMS, and email alerts when an order is completed.
+
+Catena Telematics Onboarding
+A new welcome banner on the Catena Telematics page (Settings → Integrations) guides new users through connecting their fleet telematics provider with a simple three-step flow.
+
+Send Email and SMS Invites Together
+When adding a new user, you can now send both an email and SMS invite at the same time instead of choosing one or the other.
+
+Admin Panel User Deactivation
+Admins can now deactivate users directly from the Admin panel users table row menu.
+
+───
+
+Bug Fixes
+
+• Fixed: Files list Upload Date column now shows the full date (was displaying incomplete dates like "Thu-18-2026")
+• Fixed: Viewing cross-company job tickets in Approve Jobs no longer shows false error messages, and edit links are properly disabled for read-only records
+
+───
+
+In Progress (not yet customer-facing)
+
+• Truck Replay Tab — Revamped single-view UX with collapsible map, hover scrubber, and order site geofences (behind feature flag)
+• Order Form V3 — Schema-driven rebuild of the order creation form (behind feature flag)
+
+cc: <@S04L0DFTPQE|product>`},
+  {ts:"1782313646.490769",version:"Mobile v1.112.0",releaseDate:"2026-06-24",isMobile:true,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1782313646490769?thread_ts=1782310950.563639&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Mobile v1.112.0 (2026-06-24)
+
+New Features
+
+Read-Only Viewer Role
+Mobile users with the Viewer role now have a dedicated Assigned tab and read-only access to orders and job details, matching the web Viewer experience.
+
+Offline Editing
+Drivers can now edit load and ticket times, shift and log times and notes, and attach job photos while working offline. Changes sync automatically when connectivity returns.
+
+───
+
+Improvements
+
+• Foreman order form now supports setting pickup and dropoff site contacts, auto-attaches all project phases, and requires phase codes on Load, Job Hours, and Resource Usage forms
+• Drivers and foremen can now apply add-ons to jobs from the Review Job screen
+• Approved jobs now display an approvals card and hide add/edit actions for clearer status visibility
+• Scale ticket number is now optional for companies that don't require it
+• Configurable mandatory and hidden field controls on mobile order forms
+• Softer in-app "update available" prompt — less disruptive than the previous forced upgrade dialog
+• User language setting now displays consistently throughout the app
+• Job load list now wraps long material names and quantity/unit lines for better readability
+• Removed the "Charge to" field from Equipment Moves orders
+
+───
+
+Bug Fixes
+
+• Fixed: Changing the phase when editing an order request now saves correctly
+• Fixed: Copying an order no longer drops phases — all phases are now preserved
+• Fixed: Projects with 200+ phases now correctly copy all phases to an order
+• Stability improvements and crash fixes
+
+───
+
+In Progress (not yet customer-facing)
+
+• Hourly Driver UX — Timesheet and hours forms for per-hour jobs are built on mobile but disabled in production, pending web integration and QA
+
+cc: <@S04L0DFTPQE|product>`},
   {ts:"1781881670.966929",version:"Deploy #485",releaseDate:"2026-06-18",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1781881670966929?thread_ts=1781837124.202409&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #485 (2026-06-18)
 
 New Features
@@ -2470,7 +2544,7 @@ function markMonthAnalyzing(monthKey, state) {
 // ============================================================
 // === BEGIN DATA: generated_at ===
 // GENERATED_AT is replaced at publish time by the scheduled task.
-const GENERATED_AT = "2026-06-23T16:22:57.937036+00:00";
+const GENERATED_AT = "2026-06-26T16:14:25.226591+00:00";
 // === END DATA: generated_at ===
 
 renderAll();

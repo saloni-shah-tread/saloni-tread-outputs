@@ -1,6 +1,22 @@
 {
   "releases": [
     {
+      "ts": "1782486507.182619",
+      "version": "Deploy #492",
+      "releaseDate": "2026-06-25",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1782486507182619?thread_ts=1782401124.816969&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #492 (2026-06-25)\n\nNew Features\n\nDispatch Rate Filters\nFilter orders on the Dispatch page by whether they have Customer Rates, Vendor Rates, or Driver Rates assigned — quickly spot orders that still need pricing.\n\nOrder Completed Notification\nNew \"Order Completed\" notification preference in User Profile settings — opt into push, SMS, and email alerts when an order is completed.\n\nCatena Telematics Onboarding\nA new welcome banner on the Catena Telematics page (Settings → Integrations) guides new users through connecting their fleet telematics provider with a simple three-step flow.\n\nSend Email and SMS Invites Together\nWhen adding a new user, you can now send both an email and SMS invite at the same time instead of choosing one or the other.\n\nAdmin Panel User Deactivation\nAdmins can now deactivate users directly from the Admin panel users table row menu.\n\n───\n\nBug Fixes\n\n• Fixed: Files list Upload Date column now shows the full date (was displaying incomplete dates like \"Thu-18-2026\")\n• Fixed: Viewing cross-company job tickets in Approve Jobs no longer shows false error messages, and edit links are properly disabled for read-only records\n\n───\n\nIn Progress (not yet customer-facing)\n\n• Truck Replay Tab — Revamped single-view UX with collapsible map, hover scrubber, and order site geofences (behind feature flag)\n• Order Form V3 — Schema-driven rebuild of the order creation form (behind feature flag)\n\ncc: <@S04L0DFTPQE|product>"
+    },
+    {
+      "ts": "1782313646.490769",
+      "version": "Mobile v1.112.0",
+      "releaseDate": "2026-06-24",
+      "isMobile": true,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1782313646490769?thread_ts=1782310950.563639&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Mobile v1.112.0 (2026-06-24)\n\nNew Features\n\nRead-Only Viewer Role\nMobile users with the Viewer role now have a dedicated Assigned tab and read-only access to orders and job details, matching the web Viewer experience.\n\nOffline Editing\nDrivers can now edit load and ticket times, shift and log times and notes, and attach job photos while working offline. Changes sync automatically when connectivity returns.\n\n───\n\nImprovements\n\n• Foreman order form now supports setting pickup and dropoff site contacts, auto-attaches all project phases, and requires phase codes on Load, Job Hours, and Resource Usage forms\n• Drivers and foremen can now apply add-ons to jobs from the Review Job screen\n• Approved jobs now display an approvals card and hide add/edit actions for clearer status visibility\n• Scale ticket number is now optional for companies that don't require it\n• Configurable mandatory and hidden field controls on mobile order forms\n• Softer in-app \"update available\" prompt — less disruptive than the previous forced upgrade dialog\n• User language setting now displays consistently throughout the app\n• Job load list now wraps long material names and quantity/unit lines for better readability\n• Removed the \"Charge to\" field from Equipment Moves orders\n\n───\n\nBug Fixes\n\n• Fixed: Changing the phase when editing an order request now saves correctly\n• Fixed: Copying an order no longer drops phases — all phases are now preserved\n• Fixed: Projects with 200+ phases now correctly copy all phases to an order\n• Stability improvements and crash fixes\n\n───\n\nIn Progress (not yet customer-facing)\n\n• Hourly Driver UX — Timesheet and hours forms for per-hour jobs are built on mobile but disabled in production, pending web integration and QA\n\ncc: <@S04L0DFTPQE|product>"
+    },
+    {
       "ts": "1781881670.966929",
       "version": "Deploy #485",
       "releaseDate": "2026-06-18",
