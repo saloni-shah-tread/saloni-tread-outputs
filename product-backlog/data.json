@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T16:30:24.380Z",
+  "generatedAt": "2026-06-29T18:55:11.949Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -295,7 +295,7 @@
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
-      "Status": "Product Scoping",
+      "Status": "Backlog",
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/driver-ticket-submission-completeness-and-visibility-ae0991045c09"
@@ -321,7 +321,7 @@
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
-      "Status": "Backlog",
+      "Status": "Product Scoping",
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/connected-company-invoicesettlement-approvals-8b411ff4aef4"
