@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T01:55:07.300Z",
+  "generatedAt": "2026-06-30T05:58:58.825Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -325,6 +325,19 @@
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/connected-company-invoicesettlement-approvals-8b411ff4aef4"
+    },
+    {
+      "Workflow": "Connected Customer Ecosystem",
+      "Item": "External Tab — Received-as-Vendor Orders (Union)",
+      "Platform": "Web",
+      "Customers (ACV)": "",
+      "Impact": "High",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "Backlog",
+      "Product Owner": "Sameer Bhalla",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/external-tab-received-as-vendor-orders-union-e7f40ddb44d2"
     },
     {
       "Workflow": "Parent Co View",
