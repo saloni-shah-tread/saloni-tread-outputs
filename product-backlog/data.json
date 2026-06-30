@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T15:22:00.213Z",
+  "generatedAt": "2026-06-30T17:44:28.865Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -26,6 +26,19 @@
       "Product Owner": "Richard Leung",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/vendor-management-reactivate-deactivated-vendors-f229e28f7510"
+    },
+    {
+      "Workflow": "Dispatch Management",
+      "Item": "2-Way Chat",
+      "Platform": "Web + Mobile",
+      "Customers (ACV)": "NLS, Lafarge GVA Construction, Amrize Holcim Lafarge GTA",
+      "Impact": "High",
+      "Effort": "High",
+      "Vibeable?": "TBD",
+      "Status": "In Progress",
+      "Product Owner": "Sameer Bhalla",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/2-way-chat-1493d36ce248"
     },
     {
       "Workflow": "Dispatch Management",
@@ -65,19 +78,6 @@
       "Product Owner": "Richard Leung",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/idle-time-order-metrics-updates-86b49e6e3beb"
-    },
-    {
-      "Workflow": "Dispatch Management",
-      "Item": "2-Way Chat",
-      "Platform": "Web + Mobile",
-      "Customers (ACV)": "NLS, Lafarge GVA Construction, Amrize Holcim Lafarge GTA",
-      "Impact": "High",
-      "Effort": "High",
-      "Vibeable?": "TBD",
-      "Status": "Planned",
-      "Product Owner": "Sameer Bhalla",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/2-way-chat-1493d36ce248"
     },
     {
       "Workflow": "Dispatch Management",
