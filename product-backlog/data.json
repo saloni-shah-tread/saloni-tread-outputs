@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T19:26:34.961Z",
+  "generatedAt": "2026-06-30T21:20:42.482Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -52,6 +52,19 @@
       "Product Owner": "Sameer Bhalla",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/catena-telematics-integration-axle-decommission-5ed68c5a2108"
+    },
+    {
+      "Workflow": "Dispatch Management",
+      "Item": "Live ETA to site",
+      "Platform": "Web",
+      "Customers (ACV)": "Lafarge GVA Construction, Amrize Holcim Lafarge GTA",
+      "Impact": "High",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "In Progress",
+      "Product Owner": "Sameer Bhalla",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/live-eta-to-site-ae3ddfeb193f"
     },
     {
       "Workflow": "Dispatch Management",
@@ -117,19 +130,6 @@
       "Product Owner": "",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/add-job-timeline-to-mobile-91bb7c0bc7f2"
-    },
-    {
-      "Workflow": "Dispatch Management",
-      "Item": "Live ETA to site",
-      "Platform": "Web",
-      "Customers (ACV)": "Lafarge GVA Construction, Amrize Holcim Lafarge GTA",
-      "Impact": "High",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "Backlog",
-      "Product Owner": "",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/live-eta-to-site-439c285e826e"
     },
     {
       "Workflow": "Rate Set Up",
