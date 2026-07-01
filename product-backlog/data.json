@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-01T16:12:54.792Z",
+  "generatedAt": "2026-07-01T18:52:34.924Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -367,6 +367,19 @@
     },
     {
       "Workflow": "Exporting",
+      "Item": "Settlement CSV Export",
+      "Platform": "Web",
+      "Customers (ACV)": "Statewide (SMT) ($200K)",
+      "Impact": "Medium",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "Planned",
+      "Product Owner": "Richard Leung",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/settlement-csv-export-a3871e88ba00"
+    },
+    {
+      "Workflow": "Exporting",
       "Item": "Quick Vendor/Driver Payments",
       "Platform": "Web + Mobile",
       "Customers (ACV)": "",
@@ -390,19 +403,6 @@
       "Product Owner": "",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/bulk-pdf-generation-548eab783fe4"
-    },
-    {
-      "Workflow": "Exporting",
-      "Item": "Settlement CSV Export",
-      "Platform": "Web",
-      "Customers (ACV)": "Statewide (SMT) ($200K)",
-      "Impact": "Medium",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "Backlog",
-      "Product Owner": "Richard Leung",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/settlement-csv-export-a3871e88ba00"
     },
     {
       "Workflow": "Advanced Billing",
