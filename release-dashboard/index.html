@@ -266,6 +266,21 @@ html, body {
 // ============================================================
 // === BEGIN DATA: releases ===
 const PREBAKED = [
+  {ts:"1783005063.136919",version:"Mobile v1.112.1",releaseDate:"2026-07-01",isMobile:true,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1783005063136919?thread_ts=1782943373.900209&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Mobile v1.112.1 (2026-07-01)
+
+Improvements
+
+• Charge To list for RPMx dispatch now correctly shows only Pickup, Dropoff, and Split options
+
+───
+
+Bug Fixes
+
+• Fixed location updates silently stopping after force-quitting and reopening the app while on duty
+• Improved background location reliability when "Always" location permission isn't granted — tracking now automatically re-attaches when permission is re-granted
+• Stability improvements
+
+cc: <@S04L0DFTPQE|product>`},
   {ts:"1782486507.182619",version:"Deploy #492",releaseDate:"2026-06-25",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1782486507182619?thread_ts=1782401124.816969&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #492 (2026-06-25)
 
 New Features
@@ -1732,6 +1747,44 @@ const MONTHLY_THEMES = {
       }
     ],
     "inProgress": []
+  },
+  "2026-07": {
+    "label": "July 2026",
+    "narrative": "July opened with a mobile stability hotfix focused on keeping driver location tracking reliable in the field. The release fixed silent GPS drop-offs after app restarts and hardened background location behavior when full permissions aren't granted, alongside a dispatch UX correction for RPMx charge-to options.",
+    "themes": [
+      {
+        "name": "Location Tracking Reliability",
+        "tag": "Mobile",
+        "tagClass": "mobile",
+        "items": [
+          "Fixed location updates silently stopping after force-quitting and reopening the app while on duty (Mobile v1.112.1)",
+          "Improved background location reliability with automatic re-attach when \"Always\" permission is re-granted (Mobile v1.112.1)"
+        ]
+      },
+      {
+        "name": "Dispatch UX Fixes",
+        "tag": "Ops",
+        "tagClass": "ops",
+        "items": [
+          "Charge To list for RPMx dispatch now correctly shows only Pickup, Dropoff, and Split options (Mobile v1.112.1)"
+        ]
+      },
+      {
+        "name": "App Stability",
+        "tag": "Mobile",
+        "tagClass": "mobile",
+        "items": [
+          "General stability improvements (Mobile v1.112.1)"
+        ]
+      }
+    ],
+    "heroFeatures": [
+      {
+        "name": "Reliable Background Location",
+        "desc": "Driver tracking now re-attaches automatically and survives app restarts on duty"
+      }
+    ],
+    "inProgress": []
   }
 };
 // === END DATA: themes ===
@@ -2544,7 +2597,7 @@ function markMonthAnalyzing(monthKey, state) {
 // ============================================================
 // === BEGIN DATA: generated_at ===
 // GENERATED_AT is replaced at publish time by the scheduled task.
-const GENERATED_AT = "2026-06-26T16:14:25.226591+00:00";
+const GENERATED_AT = "2026-07-02T22:35:30.584727+00:00";
 // === END DATA: generated_at ===
 
 renderAll();
