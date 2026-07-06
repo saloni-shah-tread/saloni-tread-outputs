@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T19:30:23.728Z",
+  "generatedAt": "2026-07-06T21:16:50.410Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -282,7 +282,7 @@
       "Impact": "Medium",
       "Effort": "Low",
       "Vibeable?": "TBD",
-      "Status": "Product Scoping",
+      "Status": "Backlog",
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/approval-integrity-post-approval-change-controls-8d6136059c18"
@@ -308,23 +308,10 @@
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
-      "Status": "Paused",
-      "Product Owner": "Saloni Shah",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/allow-connected-vendors-to-edit-billing-fields-89a9f69e2c24"
-    },
-    {
-      "Workflow": "Connected Customer Ecosystem",
-      "Item": "Connected Company Invoice/Settlement Approvals",
-      "Platform": "Web",
-      "Customers (ACV)": "Buesing Corporation, Rock On Trucks, Peterson Companies ($10K)",
-      "Impact": "High",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
       "Status": "Product Scoping",
       "Product Owner": "Saloni Shah",
       "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/connected-company-invoicesettlement-approvals-8b411ff4aef4"
+      "PRD Brief Link": "https://linear.app/treadapp/project/allow-connected-vendors-to-edit-billing-fields-89a9f69e2c24"
     },
     {
       "Workflow": "Connected Customer Ecosystem",
