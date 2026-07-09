@@ -1,6 +1,19 @@
 {
-  "generatedAt": "2026-07-08T23:56:06.208Z",
+  "generatedAt": "2026-07-09T01:49:22.395Z",
   "rows": [
+    {
+      "Workflow": "Onboarding",
+      "Item": "Tread In-app Chat Agent",
+      "Platform": "Web",
+      "Customers (ACV)": "",
+      "Impact": "High",
+      "Effort": "High",
+      "Vibeable?": "TBD",
+      "Status": "In Progress",
+      "Product Owner": "",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/tread-in-app-chat-agent-f34abe6ed149"
+    },
     {
       "Workflow": "Onboarding",
       "Item": "Driver Model Redesign",
@@ -347,7 +360,7 @@
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
-      "Status": "Planned",
+      "Status": "In Progress",
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/rutter-accounting-integration-agave-replacement-fec7fd8eafb5"
