@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-09T17:09:21.472Z",
+  "generatedAt": "2026-07-09T19:15:24.030Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -211,6 +211,19 @@
     },
     {
       "Workflow": "Data Input",
+      "Item": "Project Effective Dates & Rates Cascades",
+      "Platform": "Web",
+      "Customers (ACV)": "Rock On Trucks, 4M Trucking",
+      "Impact": "High",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "Product Scoping",
+      "Product Owner": "Saloni Shah",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/project-effective-dates-and-rates-cascades-e8e925e477e4"
+    },
+    {
+      "Workflow": "Data Input",
       "Item": "Expose Internal Notes on Project Tab",
       "Platform": "Web",
       "Customers (ACV)": "Rock On Trucks, 4M Trucking",
@@ -221,19 +234,6 @@
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/expose-internal-notes-on-project-tab-834af203427d"
-    },
-    {
-      "Workflow": "Data Input",
-      "Item": "Project Effective Dates & Rates Cascades",
-      "Platform": "Web",
-      "Customers (ACV)": "Rock On Trucks, 4M Trucking",
-      "Impact": "High",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "Backlog",
-      "Product Owner": "Saloni Shah",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/project-effective-dates-and-rates-cascades-e8e925e477e4"
     },
     {
       "Workflow": "Data Input",
