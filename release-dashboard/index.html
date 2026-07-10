@@ -266,6 +266,56 @@ html, body {
 // ============================================================
 // === BEGIN DATA: releases ===
 const PREBAKED = [
+  {ts:"1783610091.498479",version:"Deploy #494",releaseDate:"2026-07-08",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1783610091498479?thread_ts=1783571287.910489&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #494 (2026-07-08)
+
+New Features
+
+Rate History Timeline
+View the full history of rate and pricing changes on your orders and jobs. See who made each change, when it happened, and the before/after values — all displayed in your local timezone. Access it from the order detail or load drawer.
+
+Project Delivery Tracker
+The order form now shows a material delivery summary when you select a project, making it easy to see how much has been delivered versus what was quoted.
+
+───
+
+Improvements
+
+• PaverTracker site sync can now be toggled per order directly from the order form
+• New "Service Class" filter on the Dispatch page for easier order filtering
+• Date is now shown alongside time in the Ticket Drawer for better context
+• When adding a user, you can now send both SMS and email invitations at once
+• Catena Telematics integration card now shows real fleet connection status, with an improved setup flow and the legacy card removed
+• New user SMS notifications now include a training video link
+• Sparse location pings are now visible on the route map for better trip coverage
+• Vendors' "+Add Load" button is disabled once the requested load limit is reached
+• "Reached Pickup" and "Left Pickup" order metrics now use pickup-specific data for improved accuracy
+
+───
+
+Bug Fixes
+
+• Fixed cycle time mismatch between reporting and the dispatch page
+• Fixed Live Map crash caused by invalid site coordinates in the order form
+• Fixed reject and cancel notifications not sending for owner-operator dispatches
+• Fixed equipment not carrying over when copying a job or order with dedicated equipment
+• Fixed orders incorrectly moving to the External tab when dispatching to an internal driver
+• Fixed order notes pulling from the wrong project notes field on order creation
+• Fixed order form not displaying project attachments when a project is selected
+• Fixed numeric form fields saving as 0 instead of clearing properly
+• Fixed CSV Uploader not recognizing all user roles
+• Fixed infinite loading loop when opening the Loads tab on a dispatch order
+• Fixed Settings > Sites crash on search
+• Fixed stale load-approval buttons appearing after a load's status changes
+
+───
+
+In Progress (not yet customer-facing)
+
+• 2-Way Chat — Backend and frontend foundations are in place; messaging UI coming in a future release
+• External Tab for Received Orders — New dispatch tab for vendor-received orders; rolling out behind feature flag
+• Dispatch Omni-search — Unified search and filter bar for the dispatch page; rolling out behind feature flag
+
+cc: <@S04L0DFTPQE|product>`},
   {ts:"1783042876.588299",version:"Deploy #493",releaseDate:"2026-07-02",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1783042876588299?thread_ts=1783012422.217469&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #493 (2026-07-02)
 
 Improvements
@@ -2611,7 +2661,7 @@ function markMonthAnalyzing(monthKey, state) {
 // ============================================================
 // === BEGIN DATA: generated_at ===
 // GENERATED_AT is replaced at publish time by the scheduled task.
-const GENERATED_AT = "2026-07-08T16:19:37.217116+00:00";
+const GENERATED_AT = "2026-07-10T15:46:58.522665+00:00";
 // === END DATA: generated_at ===
 
 renderAll();
