@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-09T22:59:49.719Z",
+  "generatedAt": "2026-07-10T00:04:15.364Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -321,7 +321,7 @@
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
-      "Status": "Product Scoping",
+      "Status": "Planned",
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/allow-connected-vendors-to-edit-billing-fields-89a9f69e2c24"
