@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T21:40:55.727Z",
+  "generatedAt": "2026-07-13T22:41:10.766Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -230,7 +230,7 @@
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
-      "Status": "Product Scoping",
+      "Status": "In Progress",
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/project-effective-dates-and-rates-cascades-e8e925e477e4"
