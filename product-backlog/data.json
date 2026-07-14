@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T17:47:30.218Z",
+  "generatedAt": "2026-07-14T17:51:54.755Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -78,19 +78,6 @@
       "Product Owner": "rafael@tread.io",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/mobile-offline-drivers-can-acceptreject-startstop-while-offline-6b688d27c8bd"
-    },
-    {
-      "Workflow": "Dispatch Management",
-      "Item": "Catena Telematics integration + Axle decommission",
-      "Platform": "Web",
-      "Customers (ACV)": "",
-      "Impact": "High",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "Maintenance",
-      "Product Owner": "Sameer Bhalla",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/catena-telematics-integration-axle-decommission-5ed68c5a2108"
     },
     {
       "Workflow": "Dispatch Management",
@@ -262,19 +249,6 @@
       "PRD Brief Link": "https://linear.app/treadapp/project/recurring-orders-e3958b2e432f"
     },
     {
-      "Workflow": "Data Input",
-      "Item": "Error Handling Framework Improvements",
-      "Platform": "Mobile",
-      "Customers (ACV)": "",
-      "Impact": "Medium",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "Completed",
-      "Product Owner": "",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/error-handling-framework-improvements-bad76d3319d4"
-    },
-    {
       "Workflow": "Approvals",
       "Item": "New Roles",
       "Platform": "Web",
@@ -289,16 +263,16 @@
     },
     {
       "Workflow": "Approvals",
-      "Item": "UX Improvements for \"Hired Truck\" workflow",
-      "Platform": "Web + Mobile",
-      "Customers (ACV)": "",
+      "Item": "Approve Time Log (Shift) and Approve Job UI change",
+      "Platform": "Web",
+      "Customers (ACV)": "NS Trucking, Jwgolding, R.W. Dunteman Co., Volkerstevin, Rock On Trucks, 4M Trucking, Statewide (SMT) ($200K)",
       "Impact": "High",
-      "Effort": "Medium",
+      "Effort": "High",
       "Vibeable?": "TBD",
-      "Status": "Maintenance",
+      "Status": "Product Scoping",
       "Product Owner": "Richard Leung",
       "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/ux-improvements-for-hired-truck-workflow-96b9e262d8a8"
+      "PRD Brief Link": "https://linear.app/treadapp/project/approve-time-log-shift-and-approve-job-ui-change-17f130419913"
     },
     {
       "Workflow": "Approvals",
@@ -351,19 +325,6 @@
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/allow-connected-vendors-to-edit-billing-fields-89a9f69e2c24"
-    },
-    {
-      "Workflow": "Connected Customer Ecosystem",
-      "Item": "External Tab — Received-as-Vendor Orders (Union)",
-      "Platform": "Web",
-      "Customers (ACV)": "",
-      "Impact": "High",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "Completed",
-      "Product Owner": "Sameer Bhalla",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/external-tab-received-as-vendor-orders-union-e7f40ddb44d2"
     },
     {
       "Workflow": "Parent Co View",
