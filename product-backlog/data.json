@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T21:42:52.279Z",
+  "generatedAt": "2026-07-14T22:42:38.909Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -273,6 +273,19 @@
       "Product Owner": "Richard Leung",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/approve-time-log-shift-and-approve-job-ui-change-17f130419913"
+    },
+    {
+      "Workflow": "Approvals",
+      "Item": "Charge-Based Settlements",
+      "Platform": "",
+      "Customers (ACV)": "",
+      "Impact": "High",
+      "Effort": "High",
+      "Vibeable?": "TBD",
+      "Status": "Product Scoping",
+      "Product Owner": "",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/charge-based-settlements-2239081ae977"
     },
     {
       "Workflow": "Approvals",
