@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T16:05:44.742Z",
+  "generatedAt": "2026-07-14T17:47:30.218Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -55,19 +55,6 @@
     },
     {
       "Workflow": "Dispatch Management",
-      "Item": "Catena Telematics integration + Axle decommission",
-      "Platform": "Web",
-      "Customers (ACV)": "",
-      "Impact": "High",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "In Progress",
-      "Product Owner": "Sameer Bhalla",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/catena-telematics-integration-axle-decommission-5ed68c5a2108"
-    },
-    {
-      "Workflow": "Dispatch Management",
       "Item": "Live ETA to site",
       "Platform": "Web",
       "Customers (ACV)": "Lafarge GVA Construction, Amrize Holcim Lafarge GTA",
@@ -91,6 +78,19 @@
       "Product Owner": "rafael@tread.io",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/mobile-offline-drivers-can-acceptreject-startstop-while-offline-6b688d27c8bd"
+    },
+    {
+      "Workflow": "Dispatch Management",
+      "Item": "Catena Telematics integration + Axle decommission",
+      "Platform": "Web",
+      "Customers (ACV)": "",
+      "Impact": "High",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "Maintenance",
+      "Product Owner": "Sameer Bhalla",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/catena-telematics-integration-axle-decommission-5ed68c5a2108"
     },
     {
       "Workflow": "Dispatch Management",
@@ -276,29 +276,42 @@
     },
     {
       "Workflow": "Approvals",
-      "Item": "UX Improvements for \"Hired Truck\" workflow",
-      "Platform": "Web + Mobile",
-      "Customers (ACV)": "",
-      "Impact": "High",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "In Progress",
-      "Product Owner": "Richard Leung",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/ux-improvements-for-hired-truck-workflow-96b9e262d8a8"
-    },
-    {
-      "Workflow": "Approvals",
       "Item": "New Roles",
       "Platform": "Web",
       "Customers (ACV)": "Advanced Hauling Solutions, LLC., R.W. Tomlinson Ltd.",
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
-      "Status": "Planned",
+      "Status": "In Progress",
       "Product Owner": "Richard Leung",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/new-roles-9d23b69b77bb"
+    },
+    {
+      "Workflow": "Approvals",
+      "Item": "UX Improvements for \"Hired Truck\" workflow",
+      "Platform": "Web + Mobile",
+      "Customers (ACV)": "",
+      "Impact": "High",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "Maintenance",
+      "Product Owner": "Richard Leung",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/ux-improvements-for-hired-truck-workflow-96b9e262d8a8"
+    },
+    {
+      "Workflow": "Approvals",
+      "Item": "Charge-Based Settlement (Load vs Hourly Job vs Daily)",
+      "Platform": "Web",
+      "Customers (ACV)": "Rajtransportinc, All Customers, Jwgolding, R.W. Dunteman Co., Volkerstevin, Rock On Trucks, 4M Trucking, Advanced Hauling Solutions, LLC., Trans-Phos",
+      "Impact": "High",
+      "Effort": "High",
+      "Vibeable?": "TBD",
+      "Status": "Product Scoping",
+      "Product Owner": "Richard Leung",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/charge-based-settlement-load-vs-hourly-job-vs-daily-542351cf7750"
     },
     {
       "Workflow": "Approvals",
@@ -347,7 +360,7 @@
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
-      "Status": "Backlog",
+      "Status": "Completed",
       "Product Owner": "Sameer Bhalla",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/external-tab-received-as-vendor-orders-union-e7f40ddb44d2"
