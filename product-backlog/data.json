@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T18:55:37.105Z",
+  "generatedAt": "2026-07-14T20:02:31.955Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -273,19 +273,6 @@
       "Product Owner": "Richard Leung",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/approve-time-log-shift-and-approve-job-ui-change-17f130419913"
-    },
-    {
-      "Workflow": "Approvals",
-      "Item": "Charge-Based Settlement (Load vs Hourly Job vs Daily)",
-      "Platform": "Web",
-      "Customers (ACV)": "Rajtransportinc, All Customers, Jwgolding, R.W. Dunteman Co., Volkerstevin, Rock On Trucks, 4M Trucking, Advanced Hauling Solutions, LLC., Trans-Phos",
-      "Impact": "High",
-      "Effort": "High",
-      "Vibeable?": "TBD",
-      "Status": "Product Scoping",
-      "Product Owner": "Richard Leung",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/charge-based-settlement-load-vs-hourly-job-vs-daily-542351cf7750"
     },
     {
       "Workflow": "Approvals",
