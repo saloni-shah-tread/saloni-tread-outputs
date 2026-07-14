@@ -65,6 +65,9 @@ for (const p of projects) {
   const labels = (p.labels?.nodes || []).map(l => l.name);
   const wf = labels.find(l => WORKFLOWS.includes(l));
   if (!wf) continue; // only include projects tagged with a workflow label
+  // Drop finished/maintenance projects from the roadmap view.
+  const statusName = (p.status?.name || "").trim().toLowerCase();
+  if (p.status?.type === "completed" || statusName === "maintenance") continue;
   const keys = (p.teams?.nodes || []).map(t => t.key);
   const platform = [keys.includes("TRE") && "Web", keys.includes("MBL") && "Mobile"].filter(Boolean).join(" + ");
   const flags = [labels.includes("At Risk") && "At Risk", labels.includes("Pause") && "Paused"].filter(Boolean).join(" · ");
