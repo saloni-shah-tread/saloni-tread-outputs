@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T18:49:21.808Z",
+  "generatedAt": "2026-07-15T19:58:36.313Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -173,7 +173,7 @@
     {
       "Workflow": "Rate Set Up",
       "Item": "Material Rates Restructure",
-      "Platform": "",
+      "Platform": "Web",
       "Customers (ACV)": "Trio Aggregates",
       "Impact": "High",
       "Effort": "Medium",
