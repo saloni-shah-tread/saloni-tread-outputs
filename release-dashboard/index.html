@@ -266,6 +266,97 @@ html, body {
 // ============================================================
 // === BEGIN DATA: releases ===
 const PREBAKED = [
+  {ts:"1784301351.655639",version:"Mobile v1.113.0",releaseDate:"2026-07-17",isMobile:true,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1784301351655639?thread_ts=1784298178.740189&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Mobile v1.113.0 (2026-07-17)
+
+New Features
+
+In-App Turn-by-Turn Navigation
+Drivers can now get turn-by-turn navigation for default job routes directly in the app, without switching to a separate maps app. Rolling out in phases.
+
+Expanded Offline Editing
+Drivers can now edit load and ticket notes, and manage signatures while offline — extending the offline capabilities introduced in the previous release.
+
+Timesheet Time Ticket Number Capture
+Timesheet attachments now automatically capture the time ticket number in its own dedicated field using AI scanning, making it easier for back-office to locate and match timesheets.
+
+───
+
+Improvements
+
+• Per Hour timesheet card now shows for external and hauler hourly drivers
+• Foremen can no longer see customer or vendor rates on order and job detail screens
+• Ticket Approver role now displays correctly on mobile
+• Edit Ticket and Load sheet opens instantly while offline (removed ~15-second stall)
+• Graceful recovery when jobs, loads, or tickets are deleted or unassigned server-side, instead of stale-data errors
+
+───
+
+Bug Fixes
+
+• Fixed various API error handling for deleted or unavailable resources
+• Fixed job-resource errors on Job Details and Active Job screens
+• Stability improvements and Sentry bug fixes
+
+───
+
+In Progress (not yet customer-facing)
+
+• 2-Way Chat — Messaging SDK integrated; dispatcher-to-driver in-app messaging coming soon
+
+cc: <@S04L0DFTPQE|product>`},
+  {ts:"1784301327.012019",version:"Deploy #497",releaseDate:"2026-07-16",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1784301327012019?thread_ts=1784262158.013919&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #497 (2026-07-16)
+
+New Features
+
+Selective Rate Apply for Projects
+New project-level toggle "Apply rate changes to existing orders" lets admins control whether project rate changes cascade to existing orders or only apply to new ones. Orders can be pinned to their current rates when project pricing is updated.
+
+Ticket Approver Role
+New dedicated role for team members who review and approve loads. Ticket Approvers can view orders, jobs, and loads, and manage load approvals — without access to settings or other configuration.
+
+AI Ticket Scanning Custom Instructions
+Admins can now add custom instructions for AI-powered ticket scanning under Settings > Agents, tailoring how scanned tickets are read and processed for your business.
+
+Order Importer: Department Support
+The Order Importer now supports setting the Department field via ingest payloads.
+
+───
+
+Improvements
+
+• Added São Paulo (America/Sao_Paulo) to the timezone picker in user settings
+• Load summary validations are now supported on the web
+• Reports now include the requested equipment type name field
+• Reports now include external ID and ticket external vendor ID fields
+• Driver Resource Usage Logs are now auto-generated when a hired-truck job reaches In Review
+
+───
+
+Bug Fixes
+
+• Fixed invoice rate changes not syncing to jobs or line items
+• Fixed material sell price edits on orders not reaching receivables or rate history
+• Fixed sub-dispatched vendors incorrectly seeing the order creator's vendor rate
+• Fixed rate edits silently failing when the login company differs from the dispatching company
+• Fixed Ticket Approver role missing permissions needed to approve loads
+• Fixed reassigning a job's vendor or customer orphaning the previous payable invoice
+• Fixed "Edit Rates" modal missing the Hauler Rate Type field
+• Fixed "Last geofence entry" label — now correctly reads "Last geofence exit" in Approvals
+• Fixed account reassignment reusing an invoice with stale data, causing errors on rate edits
+• Fixed searching in Receivables tab incorrectly switching back to the Payables tab
+• Fixed Live Map panel styling and crashes caused by unexpected websocket data
+
+───
+
+In Progress (not yet customer-facing)
+
+• Rutter Accounting Integration — New accounting integration replacing Agave is code-complete behind feature flag, pending production setup and phased customer rollout
+• Tread In-app Chat Agent — AI-powered in-app assistant with chat dock, in early development
+• Dispatch Omni-Search Polish — Enter-to-commit, match highlighting, and "why matched" badges, rolling out behind feature flag
+
+───
+
+cc: <@S04L0DFTPQE|product>`},
   {ts:"1783610091.498479",version:"Deploy #494",releaseDate:"2026-07-08",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1783610091498479?thread_ts=1783571287.910489&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #494 (2026-07-08)
 
 New Features
@@ -2661,7 +2752,7 @@ function markMonthAnalyzing(monthKey, state) {
 // ============================================================
 // === BEGIN DATA: generated_at ===
 // GENERATED_AT is replaced at publish time by the scheduled task.
-const GENERATED_AT = "2026-07-16T22:20:33.947478+00:00";
+const GENERATED_AT = "2026-07-17T16:02:20.616411+00:00";
 // === END DATA: generated_at ===
 
 renderAll();
