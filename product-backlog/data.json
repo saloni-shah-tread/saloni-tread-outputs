@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-22T12:18:25.188Z",
+  "generatedAt": "2026-07-22T14:50:44.005Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -143,19 +143,6 @@
       "Product Owner": "",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/add-job-timeline-to-mobile-91bb7c0bc7f2"
-    },
-    {
-      "Workflow": "Rate Set Up",
-      "Item": "Enterprise Rate Hardening",
-      "Platform": "Web",
-      "Customers (ACV)": "Jwgolding, Rock On Trucks, 4M Trucking",
-      "Impact": "High",
-      "Effort": "High",
-      "Vibeable?": "TBD",
-      "Status": "In Progress",
-      "Product Owner": "Peter Bailey",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/enterprise-rate-hardening-18e2834a7b9e"
     },
     {
       "Workflow": "Rate Set Up",
