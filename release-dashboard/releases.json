@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "ts": "1784819501.404459",
+      "version": "Mobile v1.114.0",
+      "releaseDate": "2026-07-22",
+      "isMobile": true,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1784819501404459?thread_ts=1784760888.639149&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Mobile v1.114.0 (2026-07-22)\n\nImprovements\n\n• RPMx Moves order form now requires both pickup and dropoff contacts before submission, ensuring dispatch teams have site contact information upfront\n• Upgraded to new Google Maps rendering engine (Navigation SDK) on Android, fixing map-load crashes and improving map reliability\n\n───\n\nBug Fixes\n\n• Fixed an app crash that could occur on certain tab navigation screens\n• Sentry bug fixes and stability improvements\n\n───\n\nIn Progress (not yet customer-facing)\n\n• AI Timesheet Processing — AI-powered scanning and auto-fill of uploaded timesheets shipping behind feature flag, pending phased rollout\n\ncc: <@S04L0DFTPQE>"
+    },
+    {
       "ts": "1784733269.342719",
       "version": "Deploy #500",
       "releaseDate": "2026-07-22",
