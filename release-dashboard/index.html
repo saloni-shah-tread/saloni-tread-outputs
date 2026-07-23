@@ -266,6 +266,66 @@ html, body {
 // ============================================================
 // === BEGIN DATA: releases ===
 const PREBAKED = [
+  {ts:"1784733269.342719",version:"Deploy #500",releaseDate:"2026-07-22",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1784733269342719?thread_ts=1784695267.043959&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #500 (2026-07-22)
+
+New Features
+
+Selective Rate Apply — Impact Side Sheet & Order-Level Cascade
+Major expansion of the Selective Rate Apply feature. The rate-change impact preview now opens as a detailed side sheet showing affected orders with dispatch number, status, and site info. Admins can filter by date range and selectively exclude orders. Add-on changes and rate card additions/deletions now trigger the impact dialog (not just rate-value edits), and the cascade now works at the order level — not just from the project form.
+
+Customer Account Promotion Tool
+Platform admins can promote a customer account to a fully connected company. The tool handles invoice remapping, accounting ID and external ID carry-over, and job visibility backfill in one workflow.
+
+Live Map: Color-Coded Truck Pins
+New "Color trucks by destination" toggle on the Live Map. Truck pins are color-coded by load phase (heading to pickup vs heading to dropoff), making fleet status visible at a glance.
+
+Driver & Vendor Onboarding Banners
+The Drivers and Vendors pages now display collapsible share banners with quick links to the Tread driver mobile app and vendor onboarding guide.
+
+───
+
+Improvements
+
+• Hauler rate type card now available on Order Form V3 and Project Form V2
+• Standardized search date filter persistence across the app (rolling out)
+• Navigation tabs now respond to clicks across the full tab area, eliminating dead clicks
+• Dispatch list auto-refresh no longer causes flicker or list jumps
+• Driver activation status now exposed on the API (enables resend-invitation flow)
+• Soft-deleted records (Projects, Orders, Jobs, Tickets) now retrievable via API
+• Ticket file attachments now use soft delete to prevent accidental data loss
+
+───
+
+Bug Fixes
+
+• Fixed job-level add-on changes not applying to invoice when project rate card is enabled
+• Fixed load approvals not reflecting in real time on Load Reports
+• Fixed order rematch reverting a manual vendor rate pin without re-syncing the payable invoice
+• Fixed duplicate order incorrectly copying job add-ons
+• Fixed order update crashing when a waypoint has an empty contact
+• Fixed order update failing when saving with empty phases
+• Fixed load completion failing when a driver's shift was concurrently ended
+• Fixed stale text-to-accept SMS reply causing errors when the job had already advanced
+• Fixed app crashing on sign-out or session expiry
+• Fixed "Failed to assign vendor" error when double-clicking Assign on an already-dispatched job
+• Fixed Driver Pay settlements form crash when settlement data loads asynchronously
+• Fixed project form customer account field going blank after inline account creation
+• Fixed project form v3 missing on-the-fly customer and material creation
+• Fixed project form v3 missing quote terms and broken create department dropdown
+• Fixed geofence pipeline errors for jobs with recurring loads
+
+───
+
+In Progress (not yet customer-facing)
+
+• Dark Mode (Web) — Semantic token layer, theme switch, and full color migration complete behind feature flag; pending QA and rollout
+• AI Route Segmentation from GPS — AI-powered job/load summaries with GPS-based stop detection, admin map overlay, and manual trigger; internal/admin only behind feature flag
+• Configurable Export Columns + PDF — Column picker and PDF export for Dispatch Orders behind feature flag; Approvals surfaces to follow
+• 2-Way Chat — Backend rate limiting infrastructure complete; Stream Chat vendor SDK removed in preparation for in-house messaging
+• Tread In-app Chat Agent — Backend message actions and chat dock, in early development
+• AI Timesheet Processing — Phase 2 AI vision extraction on uploaded timesheets behind feature flag
+
+cc: <@S04L0DFTPQE|product>`},
   {ts:"1784301351.655639",version:"Mobile v1.113.0",releaseDate:"2026-07-17",isMobile:true,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1784301351655639?thread_ts=1784298178.740189&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Mobile v1.113.0 (2026-07-17)
 
 New Features
@@ -2752,7 +2812,7 @@ function markMonthAnalyzing(monthKey, state) {
 // ============================================================
 // === BEGIN DATA: generated_at ===
 // GENERATED_AT is replaced at publish time by the scheduled task.
-const GENERATED_AT = "2026-07-20T15:03:51.469631+00:00";
+const GENERATED_AT = "2026-07-23T05:38:43.927687+00:00";
 // === END DATA: generated_at ===
 
 renderAll();
