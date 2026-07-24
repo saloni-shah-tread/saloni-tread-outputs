@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T18:07:48.538Z",
+  "generatedAt": "2026-07-24T20:07:10.073Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -120,7 +120,7 @@
     },
     {
       "Workflow": "Dispatch Management",
-      "Item": "Route Sequencing Optimization — Shadow Deployment",
+      "Item": "Route Sequencing Optimization",
       "Platform": "Web",
       "Customers (ACV)": "",
       "Impact": "High",
@@ -129,7 +129,7 @@
       "Status": "Product Scoping",
       "Product Owner": "",
       "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/route-sequencing-optimization-shadow-deployment-d8a0f7dfaa8f"
+      "PRD Brief Link": "https://linear.app/treadapp/project/route-sequencing-optimization-d8a0f7dfaa8f"
     },
     {
       "Workflow": "Dispatch Management",
