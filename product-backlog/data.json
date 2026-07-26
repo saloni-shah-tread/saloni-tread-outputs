@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-26T15:51:02.281Z",
+  "generatedAt": "2026-07-26T16:41:17.166Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -263,6 +263,19 @@
     },
     {
       "Workflow": "Approvals",
+      "Item": "Approve Time Log (Shift) and Approve Job UI change",
+      "Platform": "Web",
+      "Customers (ACV)": "NS Trucking, Jwgolding, R.W. Dunteman Co., Volkerstevin, Rock On Trucks, 4M Trucking, Statewide (SMT) ($200K)",
+      "Impact": "High",
+      "Effort": "High",
+      "Vibeable?": "TBD",
+      "Status": "In Progress",
+      "Product Owner": "Richard Leung",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/approve-time-log-shift-and-approve-job-ui-change-17f130419913"
+    },
+    {
+      "Workflow": "Approvals",
       "Item": "New Roles",
       "Platform": "Web",
       "Customers (ACV)": "Advanced Hauling Solutions, LLC., R.W. Tomlinson Ltd.",
@@ -273,19 +286,6 @@
       "Product Owner": "Richard Leung",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/new-roles-9d23b69b77bb"
-    },
-    {
-      "Workflow": "Approvals",
-      "Item": "Approve Time Log (Shift) and Approve Job UI change",
-      "Platform": "Web",
-      "Customers (ACV)": "NS Trucking, Jwgolding, R.W. Dunteman Co., Volkerstevin, Rock On Trucks, 4M Trucking, Statewide (SMT) ($200K)",
-      "Impact": "High",
-      "Effort": "High",
-      "Vibeable?": "TBD",
-      "Status": "Product Scoping",
-      "Product Owner": "Richard Leung",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/approve-time-log-shift-and-approve-job-ui-change-17f130419913"
     },
     {
       "Workflow": "Approvals",
