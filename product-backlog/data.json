@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-27T21:58:35.101Z",
+  "generatedAt": "2026-07-27T22:56:44.549Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -354,7 +354,7 @@
     },
     {
       "Workflow": "Exporting",
-      "Item": "Rutter Accounting Integration (Agave Replacement)",
+      "Item": "Quickbooks Integration (Rutter)",
       "Platform": "Web",
       "Customers (ACV)": "",
       "Impact": "High",
@@ -363,7 +363,7 @@
       "Status": "In Progress",
       "Product Owner": "Saloni Shah",
       "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/rutter-accounting-integration-agave-replacement-fec7fd8eafb5"
+      "PRD Brief Link": "https://linear.app/treadapp/project/quickbooks-integration-rutter-fec7fd8eafb5"
     },
     {
       "Workflow": "Exporting",
