@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "ts": "1785165081.539939",
+      "version": "Mobile v1.115.0",
+      "releaseDate": "2026-07-27",
+      "isMobile": true,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1785165081539939?thread_ts=1785161261.415159&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Mobile v1.115.0 (2026-07-27)\n\nImprovements\n\n• Polished the in-app turn-by-turn navigation interface for a smoother driving experience\n\n───\n\nBug Fixes\n\n• Fixed job addresses displaying the wrong location on the driver job screen\n• Restored the missing \"Timesheet\" option in the attachment category dropdown\n• Sentry bug fixes and stability improvements\n\n───\n\nIn Progress (not yet customer-facing)\n\n• 2-Way Chat — Old third-party chat SDK removed; in-house messaging infrastructure in progress\n\ncc: <@S04L0DFTPQE>"
+    },
+    {
       "ts": "1784819501.404459",
       "version": "Mobile v1.114.0",
       "releaseDate": "2026-07-22",
