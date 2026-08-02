@@ -1,6 +1,30 @@
 {
   "releases": [
     {
+      "ts": "1785597180.891789",
+      "version": "Deploy #506",
+      "releaseDate": "2026-07-31",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1785597180891789?thread_ts=1785536090.256669&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #506 (2026-07-31)\n\nNew Features\n\nParent-Company Consolidated Billing — Consolidated View\nParent companies can now view a consolidated roll-up of invoices and settlements across all child terminals from a single headquarters view. Filter by location to drill into specific terminal billing data, with an origin-company indicator on each line item.\n\n───\n\nImprovements\n\n• Vendor Approved Tickets Report now includes a \"Ticket Flagged\" column for tracking flagged tickets\n• File upload error messages now display properly when validation fails (e.g., wrong format or corrupt file), instead of silently discarding the upload\n\n───\n\nBug Fixes\n\n• Fixed rate changes not persisting when unchecking orders in the rate-change impact dialog — deselected orders previously re-synced on the next rate update\n• Fixed rates disappearing from the order form after completing an order\n• Fixed orders losing pickup and delivery sites when copying to a different date\n\n───\n\nIn Progress (not yet customer-facing)\n\n• Parent-Company Consolidated Billing — Consolidated settlement creation and export in QA; connect onboarding migration pending\n• Rates Cascades — Continued rate cascade and dereference refinements\n\ncc: <@S04L0DFTPQE>"
+    },
+    {
+      "ts": "1785510961.177279",
+      "version": "Deploy #505",
+      "releaseDate": "2026-07-30",
+      "isMobile": false,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1785510961177279?thread_ts=1785449883.157269&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Deploy #505 (2026-07-30)\n\nNew Features\n\nMaterial Rate Auto-Population\nThe order form now automatically fills the correct material buy/sell price based on the most specific matching rate. When multiple rates exist for a material, the system picks the right one by customer, project, and site specificity — so the most targeted rate always wins.\n\n───\n\nRate Visibility Controls for Drivers\nAdmins can now set \"Hide Rates\" on driver-role users from the driver creation and edit forms. This allows drivers to keep their role while being prevented from seeing financial rate information.\n\n───\n\nImprovements\n\n• Rates History — Event descriptions now show the rate card name, rule, and job number; the full timeline loads instead of truncating at 25 records; and internal system rows are filtered out\n• Rate card provenance on hover in the dispatch jobs table — see which rate card each party's rate came from; plus a new \"Rates Set\" indicator on project and order cards\n• Material Rates panel added to the Site form for viewing, adding, and editing rates in place\n• Default pickup/dropoff sites now shown inline below site selectors\n• \"Each\" unit of measure added for orders\n• Resend email/SMS invitations now available for drivers in Settings\n• Exact search filters for ticket number, order number, or TRD ID independently\n• Add-ons can now be deleted from Settings\n• \"Ask Tread\" assistant docked as a bottom bar — no longer overlaps page actions\n• Simplified rate card creation form (removed unused Equipment, Equipment Type, and Service Class fields)\n\n───\n\nBug Fixes\n\n• Fixed shift auto-end incorrectly ending drivers' shifts while still on active jobs\n• Fixed a crash when typing a date in the rate-change impact drawer\n• Fixed a permission issue where unpermitted rate changes could silently cascade to all orders\n• Fixed multiple issues with project rate dereference when unchecking orders from rate changes\n• Fixed pickup-site edits not propagating to child loads, causing stale pricing\n• Fixed company and billing contact names not saving in company settings\n• Fixed default country incorrectly set to Canada instead of United States\n• Fixed project form not pre-filling default Quote PDF terms\n• Fixed address suggestions being silently dropped on the project form\n• Fixed ticket AI vision discarding valid service dates when no time was extracted\n• Fixed dark mode rendering issues on Shift approval tab and timesheet scanning overlay\n• Fixed errors during order duplication\n\n───\n\nIn Progress (not yet customer-facing)\n\n• Live ETA to Site — Backend infrastructure complete; live dispatch board ETA column behind feature flag\n• Site-Based Material/PO Linking — Foundation shipped; terminal-based PO resolution in progress\n\ncc: <@S04L0DFTPQE>"
+    },
+    {
+      "ts": "1785510935.848379",
+      "version": "Mobile v1.116.0",
+      "releaseDate": "2026-07-30",
+      "isMobile": true,
+      "permalink": "https://treadinc.slack.com/archives/C057XJNGEGL/p1785510935848379?thread_ts=1785430820.058779&cid=C057XJNGEGL",
+      "content": ":clipboard: Release Notes — Mobile v1.116.0 (2026-07-30)\n\nNew Features\n\nDark Mode\nThe Tread mobile app now supports dark mode across all screens, following your device's system appearance setting.\n\n───\n\nOffline Timesheet Creation\nDrivers can now create timesheets while offline. Timesheets are queued locally and automatically synced when connectivity is restored.\n\n───\n\nBug Fixes\n\n• Fixed multiple navigation-related crashes on Android and iOS\n• General stability improvements\n\ncc: <@S04L0DFTPQE>"
+    },
+    {
       "ts": "1785165081.539939",
       "version": "Mobile v1.115.0",
       "releaseDate": "2026-07-27",
