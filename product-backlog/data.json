@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T15:12:52.604Z",
+  "generatedAt": "2026-08-04T17:25:23.403Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -169,6 +169,19 @@
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/project-level-rates-e29c60594b34"
+    },
+    {
+      "Workflow": "Rate Set Up",
+      "Item": "Rate Visibility",
+      "Platform": "Web + Mobile",
+      "Customers (ACV)": "",
+      "Impact": "High",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "In Progress",
+      "Product Owner": "Jonathan Schatz",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/rate-visibility-5845605f5648"
     },
     {
       "Workflow": "Rate Set Up",
@@ -364,19 +377,6 @@
       "Product Owner": "",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/flatten-billing-data-a0d80b004a6f"
-    },
-    {
-      "Workflow": "Exporting",
-      "Item": "Quickbooks Integration (Rutter)",
-      "Platform": "Web",
-      "Customers (ACV)": "",
-      "Impact": "High",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "In Progress",
-      "Product Owner": "Saloni Shah",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/quickbooks-integration-rutter-fec7fd8eafb5"
     },
     {
       "Workflow": "Exporting",
