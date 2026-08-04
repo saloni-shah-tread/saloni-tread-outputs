@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T23:55:53.811Z",
+  "generatedAt": "2026-08-04T01:17:33.327Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -238,7 +238,7 @@
     {
       "Workflow": "Data Input",
       "Item": "Project Effective Dates & Rates Cascades",
-      "Platform": "Web",
+      "Platform": "Web + Mobile",
       "Customers (ACV)": "Rock On Trucks, 4M Trucking",
       "Impact": "High",
       "Effort": "Medium",
