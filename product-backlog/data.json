@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T17:14:55.685Z",
+  "generatedAt": "2026-08-05T19:07:08.968Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -81,6 +81,19 @@
     },
     {
       "Workflow": "Dispatch Management",
+      "Item": "Route Sequencing Optimization",
+      "Platform": "Web",
+      "Customers (ACV)": "",
+      "Impact": "High",
+      "Effort": "High",
+      "Vibeable?": "TBD",
+      "Status": "In Progress",
+      "Product Owner": "",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/route-sequencing-optimization-d8a0f7dfaa8f"
+    },
+    {
+      "Workflow": "Dispatch Management",
       "Item": "Idle Time + Order Metrics updates",
       "Platform": "Web",
       "Customers (ACV)": "Trans-Phos, CRH Dufferin",
@@ -120,19 +133,6 @@
     },
     {
       "Workflow": "Dispatch Management",
-      "Item": "Route Sequencing Optimization",
-      "Platform": "Web",
-      "Customers (ACV)": "",
-      "Impact": "High",
-      "Effort": "High",
-      "Vibeable?": "TBD",
-      "Status": "Product Scoping",
-      "Product Owner": "",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/route-sequencing-optimization-d8a0f7dfaa8f"
-    },
-    {
-      "Workflow": "Dispatch Management",
       "Item": "Add job timeline to mobile",
       "Platform": "Mobile",
       "Customers (ACV)": "",
@@ -156,6 +156,19 @@
       "Product Owner": "",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/linked-orders-and-the-driver-day-model-dcf4462fc34b"
+    },
+    {
+      "Workflow": "Rate Set Up",
+      "Item": "Enterprise Rate Hardening",
+      "Platform": "Web",
+      "Customers (ACV)": "Jwgolding, Rock On Trucks, 4M Trucking",
+      "Impact": "High",
+      "Effort": "High",
+      "Vibeable?": "TBD",
+      "Status": "In Progress",
+      "Product Owner": "Peter Bailey",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/enterprise-rate-hardening-18e2834a7b9e"
     },
     {
       "Workflow": "Rate Set Up",
