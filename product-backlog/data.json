@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T15:04:41.289Z",
+  "generatedAt": "2026-08-05T17:14:55.685Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -81,19 +81,6 @@
     },
     {
       "Workflow": "Dispatch Management",
-      "Item": "Mobile offline • Drivers can accept/reject, start/stop while offline",
-      "Platform": "Web + Mobile",
-      "Customers (ACV)": "All Customers, Whitaker",
-      "Impact": "High",
-      "Effort": "High",
-      "Vibeable?": "TBD",
-      "Status": "In Progress",
-      "Product Owner": "rafael@tread.io",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/mobile-offline-drivers-can-acceptreject-startstop-while-offline-6b688d27c8bd"
-    },
-    {
-      "Workflow": "Dispatch Management",
       "Item": "Idle Time + Order Metrics updates",
       "Platform": "Web",
       "Customers (ACV)": "Trans-Phos, CRH Dufferin",
@@ -104,6 +91,19 @@
       "Product Owner": "Richard Leung",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/idle-time-order-metrics-updates-86b49e6e3beb"
+    },
+    {
+      "Workflow": "Dispatch Management",
+      "Item": "Mobile offline • Drivers can accept/reject, start/stop while offline",
+      "Platform": "Web + Mobile",
+      "Customers (ACV)": "All Customers, Whitaker",
+      "Impact": "High",
+      "Effort": "High",
+      "Vibeable?": "TBD",
+      "Status": "Paused",
+      "Product Owner": "rafael@tread.io",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/mobile-offline-drivers-can-acceptreject-startstop-while-offline-6b688d27c8bd"
     },
     {
       "Workflow": "Dispatch Management",
