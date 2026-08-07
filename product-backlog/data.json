@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-06T22:39:11.543Z",
+  "generatedAt": "2026-08-07T01:38:53.995Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -160,7 +160,7 @@
     {
       "Workflow": "Rate Set Up",
       "Item": "Enterprise Rate Hardening",
-      "Platform": "Web",
+      "Platform": "Web + Mobile",
       "Customers (ACV)": "Jwgolding, Rock On Trucks, 4M Trucking",
       "Impact": "High",
       "Effort": "High",
