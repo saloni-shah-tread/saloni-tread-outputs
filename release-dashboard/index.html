@@ -266,6 +266,136 @@ html, body {
 // ============================================================
 // === BEGIN DATA: releases ===
 const PREBAKED = [
+  {ts:"1786375169.498799",version:"Mobile v1.117.0",releaseDate:"2026-08-10",isMobile:true,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1786375169498799?thread_ts=1786374145.019239&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Mobile v1.117.0 (2026-08-10)
+
+New Features
+
+Cascade Rate Changes on Mobile
+The "Apply rate changes to existing orders" checkbox is now available on the Create, Copy & Edit, and Edit order forms in the mobile app. Before saving, an impact bottom sheet shows exactly which orders and jobs will be affected by the rate change, so you can review before confirming.
+
+Order Form Draft Autosave
+Order forms now survive backgrounding the app — if you switch to another app or take a call mid-form, your in-progress input is preserved when you return. Both foreman and dispatcher create-order forms are covered. A save/discard prompt appears when you navigate away via the back button or gesture.
+
+───
+
+Improvements
+
+• Timesheet forms (Job + Time Log) restyled with cleaner headers showing the order name or time log date for context, plus a new Total Hours field on the Time Log form
+• Digital tickets now capture where the driver was when they saved, so the server can stamp the ticket with GPS coordinates for auditing
+• Site addresses are tap-to-copy again
+• Removed the "Synced with Project", "Frozen on Complete", and "Stamped to Order" chips from the order form rates section for a cleaner layout
+• Simplified foreman order form for select customers — trimmed fields, Project required, start time defaults to 7 AM (behind a feature flag)
+
+───
+
+Bug Fixes
+
+• Financial rates no longer leak to Foremen on the order/job detail screens or in the Create, Edit, and Copy & Edit order forms
+• Offline sync no longer discards a driver's queued write when the server returns an error — queued changes are now retried correctly
+• Improved error messages on the Time Log timesheet form (previously showed a generic "Error saving file attachment" message)
+• iOS minimum raised to 16.0, matching what the app actually supports (it was previously offered to iOS 15.6 devices that couldn't run it)
+• Sentry bug fixes and stability improvements
+
+───
+
+In Progress (not yet customer-facing)
+
+• Rate Visibility Overhaul — Server-side rate field omission and three-permission model in backlog; will replace all ad-hoc client-side rate hiding
+• Digital Ticket Hardening — Location capture shipped; geofence flagging for tickets created far from the dropoff site coming next
+
+cc: <@S04L0DFTPQE>
+Sent using <@U0A2QEASVDX|Claude>`},
+  {ts:"1786375150.484859",version:"Deploy #509",releaseDate:"2026-08-09",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1786375150484859?thread_ts=1786341607.002559&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #509 (2026-08-09)
+
+Bug Fixes
+
+Freight Rate Cascade Fix
+Orders with project-level freight rate cards could get permanently stuck at stale rates when the project's rates were updated. Affected orders were invisible to the rate cascade and couldn't be corrected through the impact dialog. This fix marks the legacy rate cards correctly so the cascade can reach them and they become visible and recoverable in the UI.
+
+───
+
+In Progress (not yet customer-facing)
+
+• Live ETA to Site — Backend and opt-in controls complete; dispatch board dwell timer in review
+• Rate Visibility Overhaul — Backend API field omission and frontend consumption in backlog; per-edge rate hiding blocked on permission split
+
+cc: <@S04L0DFTPQE>
+Sent using <@U0A2QEASVDX|Claude>`},
+  {ts:"1786202129.986629",version:"Deploy #508",releaseDate:"2026-08-07",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1786202129986629?thread_ts=1786144261.420029&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #508 (2026-08-07)
+
+New Features
+
+Self-Serve AI Scanning Instructions
+When you notice a ticket scanning issue, you can now edit your company's AI scanning instructions directly from the ticket drawer — no need to navigate to Settings → Agents.
+
+───
+
+Improvements
+
+• "First truck left pickup" on the dispatch board now correctly shows the first truck's departure time and is available on 98% of orders (previously showed the last truck and was blank on most orders)
+
+───
+
+Bug Fixes
+
+• Rates on invoice-approved jobs are now locked against manual edits — previously, approving an invoice froze rates against cascades but still allowed manual overrides
+• Adding or deleting a rate card on a non-project order now correctly recalculates job rates
+• Fixed invoice rate updates being silently lost when concurrent background processes raced each other
+• Fixed multiple rate cards incorrectly appearing as matched on a single job row
+• Fixed the "Apply rate changes to existing orders" checkbox not copying over when using Copy & Edit on a project
+• Fixed order dereference only cloning the starred rate card instead of the full set
+• Fixed changing an order's material sometimes assigning the wrong phase (cost code) to its jobs
+• Fixed Rates History showing blank for the first job when rates are added after order creation
+• Fixed consolidated settlement creation failing when the parent company's connected account had no accounting ID
+• Fixed the assign driver/vendor control appearing on jobs the acting company cannot dispatch
+
+───
+
+In Progress (not yet customer-facing)
+
+• Live ETA to Site — Backend fully complete; frontend opt-in controls and dispatch board dwell timer in review
+
+cc: <@S04L0DFTPQE>`},
+  {ts:"1786030147.513109",version:"Deploy #507",releaseDate:"2026-08-05",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1786030147513109?thread_ts=1785969047.633299&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #507 (2026-08-05)
+
+New Features
+
+Consolidated Settlement Creation
+Parent companies can now create consolidated settlements that roll up billing-approved work from child terminals into a single settlement per customer. A Location column has also been added to the Invoices grid for location-based filtering, matching the existing Settlements grid.
+
+"Apply Rate Changes" Checkbox on All Order Forms
+The "Apply rate changes to existing orders" checkbox is now available on the Create Order, Copy & Edit Order, and completed order forms — previously it only appeared when editing an existing order.
+
+───
+
+Improvements
+
+• Rates History now shows entries for jobs that inherit rates from their parent order — these previously appeared blank
+• Tread ID column added to the Customers tab in Settings, making it easy to identify connected companies at a glance
+
+───
+
+Bug Fixes
+
+• Fixed orders losing pickup and dropoff sites when copying
+• Fixed duplicated orders without a project losing their order-scoped rate cards
+• Fixed rate changes incorrectly applying to existing orders when the "Apply rate changes" checkbox was unchecked
+• Fixed the rate cascade modal showing orders outside the selected date range
+• Fixed the "Use vendor rate for driver rate" checkbox re-checking itself on saved rates and not functioning
+• Fixed fuel surcharge percentage in Edit Rates showing today's rate instead of the rate for the job's date
+• Fixed scrolling inside the freight rates form unintentionally changing number values
+• Fixed shared driver typeahead in hot-dispatch showing drivers that couldn't be assigned due to company hierarchy
+• Fixed Job ID in reports showing a prefixed format instead of the numeric value
+• Fixed report approval timestamps becoming stale after rapid consecutive changes
+
+───
+
+In Progress (not yet customer-facing)
+
+• Live ETA to Site — Backend fully complete; frontend opt-in controls and dispatch board column in review
+• Multiple Material Totals on Orders — Backend shipped; frontend display and order form entry coming next
+
+cc: <@S04L0DFTPQE>`},
   {ts:"1785597180.891789",version:"Deploy #506",releaseDate:"2026-07-31",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1785597180891789?thread_ts=1785536090.256669&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #506 (2026-07-31)
 
 New Features
@@ -2144,6 +2274,109 @@ const MONTHLY_THEMES = {
       }
     ],
     "inProgress": []
+  },
+  "2026-08": {
+    "label": "August 2026",
+    "narrative": "August was about hardening the rates system end to end: rates on invoice-approved jobs were locked against manual edits, legacy freight rate cards stuck at stale prices became recoverable through the cascade, and the rate-change cascade reached mobile with a full impact preview. Parent companies gained consolidated settlement creation across child terminals, and drivers got order form autosave, GPS-stamped digital tickets, and a fix that stopped financial rates leaking to foremen.",
+    "themes": [
+      {
+        "name": "Rate Cascade & Integrity Hardening",
+        "tag": "Platform",
+        "tagClass": "platform",
+        "items": [
+          "Rates on invoice-approved jobs locked against manual edits (Deploy #508)",
+          "Freight rate cascade fix — orders stuck at stale project rates are now visible and recoverable (Deploy #509)",
+          "Adding or deleting a rate card on a non-project order now recalculates job rates (Deploy #508)",
+          "Fixed invoice rate updates silently lost to racing background processes (Deploy #508)",
+          "Fixed rate cascade modal showing orders outside the selected date range and unchecked cascades applying anyway (Deploy #507)"
+        ]
+      },
+      {
+        "name": "Parent-Company Consolidated Billing",
+        "tag": "Platform",
+        "tagClass": "platform",
+        "items": [
+          "Consolidated settlement creation rolling up child-terminal billing into one settlement per customer (Deploy #507)",
+          "Location column on the Invoices grid for location-based filtering (Deploy #507)",
+          "Fixed consolidated settlement creation failing when the parent's connected account had no accounting ID (Deploy #508)"
+        ]
+      },
+      {
+        "name": "Rate Controls on Mobile",
+        "tag": "Mobile",
+        "tagClass": "mobile",
+        "items": [
+          "\"Apply rate changes to existing orders\" checkbox on mobile Create, Copy & Edit, and Edit order forms with an impact bottom sheet (Mobile v1.117.0)",
+          "Financial rates no longer leak to Foremen on detail screens or order forms (Mobile v1.117.0)",
+          "Cleaner order form rates section with sync-status chips removed (Mobile v1.117.0)"
+        ]
+      },
+      {
+        "name": "Driver Field Experience",
+        "tag": "Mobile",
+        "tagClass": "mobile",
+        "items": [
+          "Order form draft autosave — in-progress forms survive backgrounding the app (Mobile v1.117.0)",
+          "Timesheet forms restyled with contextual headers and a new Total Hours field (Mobile v1.117.0)",
+          "Offline sync now retries queued driver writes after server errors instead of discarding them (Mobile v1.117.0)",
+          "Simplified foreman order form for select customers behind a feature flag (Mobile v1.117.0)"
+        ]
+      },
+      {
+        "name": "AI Ticketing & Auditability",
+        "tag": "AI",
+        "tagClass": "ai",
+        "items": [
+          "Self-serve AI scanning instructions editable directly from the ticket drawer (Deploy #508)",
+          "Digital tickets capture the driver's GPS location at save time for auditing (Mobile v1.117.0)"
+        ]
+      },
+      {
+        "name": "Dispatch Board Accuracy",
+        "tag": "Ops",
+        "tagClass": "ops",
+        "items": [
+          "\"First truck left pickup\" now shows the first truck's departure and is available on 98% of orders (Deploy #508)",
+          "Assign driver/vendor control hidden on jobs the acting company cannot dispatch (Deploy #508)"
+        ]
+      }
+    ],
+    "heroFeatures": [
+      {
+        "name": "Consolidated Settlement Creation",
+        "desc": "Parent companies roll billing-approved work from child terminals into a single settlement per customer (Deploy #507)"
+      },
+      {
+        "name": "Cascade Rate Changes on Mobile",
+        "desc": "Apply-rate-changes checkbox with a full impact preview lands on mobile order forms (Mobile v1.117.0)"
+      },
+      {
+        "name": "Order Form Draft Autosave",
+        "desc": "In-progress mobile order forms survive app backgrounding with a save/discard prompt (Mobile v1.117.0)"
+      },
+      {
+        "name": "Self-Serve AI Scanning Instructions",
+        "desc": "Edit your company's AI ticket-scanning instructions right from the ticket drawer (Deploy #508)"
+      }
+    ],
+    "inProgress": [
+      {
+        "name": "Live ETA to Site",
+        "note": "Backend and opt-in controls complete; dispatch board dwell timer in review"
+      },
+      {
+        "name": "Rate Visibility Overhaul",
+        "note": "Server-side rate field omission and three-permission model in backlog; will replace ad-hoc client-side rate hiding"
+      },
+      {
+        "name": "Digital Ticket Hardening",
+        "note": "Location capture shipped; geofence flagging for tickets created far from the dropoff site coming next"
+      },
+      {
+        "name": "Multiple Material Totals on Orders",
+        "note": "Backend shipped; frontend display and order form entry coming next"
+      }
+    ]
   }
 };
 // === END DATA: themes ===
@@ -2956,7 +3189,7 @@ function markMonthAnalyzing(monthKey, state) {
 // ============================================================
 // === BEGIN DATA: generated_at ===
 // GENERATED_AT is replaced at publish time by the scheduled task.
-const GENERATED_AT = "2026-08-02T18:00:40.475554+00:00";
+const GENERATED_AT = "2026-08-10T16:07:37.813361+00:00";
 // === END DATA: generated_at ===
 
 renderAll();
