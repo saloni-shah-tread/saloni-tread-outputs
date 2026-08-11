@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-11T04:10:05.833Z",
+  "generatedAt": "2026-08-11T05:43:53.140Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -198,19 +198,6 @@
     },
     {
       "Workflow": "Rate Set Up",
-      "Item": "Material Rates Restructure",
-      "Platform": "Web",
-      "Customers (ACV)": "Trio Aggregates",
-      "Impact": "High",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "Product Scoping",
-      "Product Owner": "Saloni Shah",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/material-rates-restructure-1614952c2a5a"
-    },
-    {
-      "Workflow": "Rate Set Up",
       "Item": "Global Vendor-specific Rate Overrides",
       "Platform": "Web",
       "Customers (ACV)": "Prime Aggregates, Jwgolding, R.W. Dunteman Co., Rock On Trucks, 4M Trucking",
@@ -247,6 +234,19 @@
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/project-level-vendor-rate-exceptions-f79efdda0ea5"
+    },
+    {
+      "Workflow": "Rate Set Up",
+      "Item": "Material Rates Restructure",
+      "Platform": "Web",
+      "Customers (ACV)": "Trio Aggregates",
+      "Impact": "High",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "Canceled",
+      "Product Owner": "Saloni Shah",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/material-rates-restructure-1614952c2a5a"
     },
     {
       "Workflow": "Data Input",
