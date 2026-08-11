@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-11T20:29:41.123Z",
+  "generatedAt": "2026-08-11T21:31:48.200Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -57,7 +57,7 @@
       "Workflow": "Dispatch Management",
       "Item": "Dispatcher Route Builder",
       "Platform": "Web + Mobile",
-      "Customers (ACV)": "",
+      "Customers (ACV)": "RPM xConstruction",
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
@@ -291,7 +291,7 @@
       "Workflow": "Data Input",
       "Item": "Recurring Orders",
       "Platform": "Web",
-      "Customers (ACV)": "RPM xConstruction, Werdco BC ($200K)",
+      "Customers (ACV)": "RPM xConstruction, Werdco BC ($200K), CRH Dufferin",
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
