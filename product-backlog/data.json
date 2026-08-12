@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T17:46:42.332Z",
+  "generatedAt": "2026-08-12T18:42:19.467Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -169,19 +169,6 @@
       "Product Owner": "Peter Bailey",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/enterprise-rate-hardening-18e2834a7b9e"
-    },
-    {
-      "Workflow": "Rate Set Up",
-      "Item": "Project-level Rates",
-      "Platform": "Web + Mobile",
-      "Customers (ACV)": "Rock On Trucks, 4M Trucking, JW Golding Hauling, Advanced Hauling Solutions, LLC.",
-      "Impact": "High",
-      "Effort": "High",
-      "Vibeable?": "TBD",
-      "Status": "In Progress",
-      "Product Owner": "Saloni Shah",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/project-level-rates-e29c60594b34"
     },
     {
       "Workflow": "Rate Set Up",
