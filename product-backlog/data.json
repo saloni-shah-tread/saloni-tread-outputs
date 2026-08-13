@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13T17:46:12.899Z",
+  "generatedAt": "2026-08-13T18:42:45.384Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -178,7 +178,7 @@
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
-      "Status": "In Progress",
+      "Status": "Paused",
       "Product Owner": "Jonathan Schatz",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/rate-visibility-5845605f5648"
