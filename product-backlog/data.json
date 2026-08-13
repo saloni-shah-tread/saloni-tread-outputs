@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13T16:41:01.519Z",
+  "generatedAt": "2026-08-13T17:46:12.899Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -263,19 +263,6 @@
     },
     {
       "Workflow": "Data Input",
-      "Item": "Expose Internal Notes on Project Tab",
-      "Platform": "Web",
-      "Customers (ACV)": "Rock On Trucks, 4M Trucking",
-      "Impact": "Medium",
-      "Effort": "Low",
-      "Vibeable?": "TBD",
-      "Status": "Backlog",
-      "Product Owner": "Saloni Shah",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/expose-internal-notes-on-project-tab-834af203427d"
-    },
-    {
-      "Workflow": "Data Input",
       "Item": "Recurring Orders",
       "Platform": "Web",
       "Customers (ACV)": "RPM xConstruction, Werdco BC ($200K), CRH Dufferin",
@@ -286,6 +273,19 @@
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/recurring-orders-e3958b2e432f"
+    },
+    {
+      "Workflow": "Data Input",
+      "Item": "Expose Internal Notes on Project Tab",
+      "Platform": "Web",
+      "Customers (ACV)": "Rock On Trucks, 4M Trucking",
+      "Impact": "Medium",
+      "Effort": "Low",
+      "Vibeable?": "TBD",
+      "Status": "Canceled",
+      "Product Owner": "Saloni Shah",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/expose-internal-notes-on-project-tab-834af203427d"
     },
     {
       "Workflow": "Approvals",
