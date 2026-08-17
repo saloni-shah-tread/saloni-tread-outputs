@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T22:09:56.586Z",
+  "generatedAt": "2026-08-17T23:09:57.723Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -198,7 +198,7 @@
     },
     {
       "Workflow": "Rate Set Up",
-      "Item": "Load-Level Rate Matching",
+      "Item": "Load-Level Freight Rate Matching",
       "Platform": "Web",
       "Customers (ACV)": "Brinks Land Improvement, Jwgolding, R.W. Dunteman Co.",
       "Impact": "High",
@@ -207,7 +207,20 @@
       "Status": "Backlog",
       "Product Owner": "Saloni Shah",
       "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/load-level-rate-matching-e8e2636e8596"
+      "PRD Brief Link": "https://linear.app/treadapp/project/load-level-freight-rate-matching-e8e2636e8596"
+    },
+    {
+      "Workflow": "Rate Set Up",
+      "Item": "Load-Level Material Rate Pricing",
+      "Platform": "Web",
+      "Customers (ACV)": "",
+      "Impact": "Medium",
+      "Effort": "Low",
+      "Vibeable?": "TBD",
+      "Status": "Backlog",
+      "Product Owner": "Saloni Shah",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/load-level-material-rate-pricing-de6707e67386"
     },
     {
       "Workflow": "Rate Set Up",
@@ -221,19 +234,6 @@
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/project-level-vendor-rate-exceptions-f79efdda0ea5"
-    },
-    {
-      "Workflow": "Rate Set Up",
-      "Item": "Material Rates Restructure",
-      "Platform": "Web",
-      "Customers (ACV)": "Trio Aggregates",
-      "Impact": "High",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "Canceled",
-      "Product Owner": "Saloni Shah",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/material-rates-restructure-1614952c2a5a"
     },
     {
       "Workflow": "Data Input",
