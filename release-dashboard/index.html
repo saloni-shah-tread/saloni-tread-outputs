@@ -266,6 +266,42 @@ html, body {
 // ============================================================
 // === BEGIN DATA: releases ===
 const PREBAKED = [
+  {ts:"1786721099.212669",version:"Deploy #515",releaseDate:"2026-08-13",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1786721099212669?thread_ts=1786660186.642259&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #515 (2026-08-13)
+
+New Features
+
+Rates History: "Matched On" Indicator
+Rate History entries now show exactly why a rate card matched a job — displaying the matching conditions (e.g., truck type, material, equipment) as chips beneath each rate change. Makes it easier to understand rate behavior and resolve billing disputes.
+
+───
+
+Improvements
+
+• AI timesheet scanning now writes extracted text to the correct fields, improving accuracy when reviewing AI-processed timesheets
+• You can now add rate cards to completed orders — previously the "Add another rate" button was incorrectly hidden after an order was marked complete
+
+───
+
+Bug Fixes
+
+• Fixed a deadlock that could cause invoice rate updates to fail during pricing cascades — affected orders now process reliably
+• Fixed pickup/drop-off site changes on jobs not cascading to unfinished loads and not triggering driver notifications
+• Fixed project foremen, collaborators, and salespeople not propagating to orders created via integrations — previously, integration-created orders were missing these contacts
+• Fixed equipment capacity and load-count fields not saving when selecting an equipment type on order and project forms
+• Fixed date and time editing issues on Projects where adjustments could produce unexpected results
+• Fixed the rate cascade dialog incorrectly appearing when no rate changes were actually made
+• Fixed payables rate changes failing with a generic error instead of surfacing the real validation issue
+• Fixed several order form fields (notes, contract/dispatch/PO numbers, department, material rates, tax rates, and site contacts) that could appear updated in the form but silently fail to persist on save
+
+───
+
+In Progress (not yet customer-facing)
+
+• 2-Way Chat — Backend messaging channels API shipped; frontend UI and mobile integration in development
+• Site-Based Material/PO Linking — Backend phase resolution and frontend New Order cascade shipped behind feature flag; terminal selector still in development
+• AI Timesheet Drawer Redesign — Backend structured metadata endpoint shipped; frontend expandable AI-metadata panel in development
+
+cc: <@S04L0DFTPQE>`},
   {ts:"1786567131.571319",version:"Deploy #514",releaseDate:"2026-08-12",isMobile:false,permalink:"https://treadinc.slack.com/archives/C057XJNGEGL/p1786567131571319?thread_ts=1786566131.917119&cid=C057XJNGEGL",content:`:clipboard: Release Notes — Deploy #514 (2026-08-12)
 
 Improvements
@@ -3253,7 +3289,7 @@ function markMonthAnalyzing(monthKey, state) {
 // ============================================================
 // === BEGIN DATA: generated_at ===
 // GENERATED_AT is replaced at publish time by the scheduled task.
-const GENERATED_AT = "2026-08-13T16:01:16.594111+00:00";
+const GENERATED_AT = "2026-08-17T16:25:54.431123+00:00";
 // === END DATA: generated_at ===
 
 renderAll();
