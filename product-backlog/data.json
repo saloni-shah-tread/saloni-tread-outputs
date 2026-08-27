@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T21:20:08.466Z",
+  "generatedAt": "2026-08-27T02:17:10.577Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -377,6 +377,19 @@
       "Product Owner": "",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/flatten-billing-data-a0d80b004a6f"
+    },
+    {
+      "Workflow": "Exporting",
+      "Item": "Quickbooks Integration (Rutter)",
+      "Platform": "Web",
+      "Customers (ACV)": "",
+      "Impact": "High",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "In Progress",
+      "Product Owner": "Saloni Shah",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/quickbooks-integration-rutter-fec7fd8eafb5"
     },
     {
       "Workflow": "Exporting",
