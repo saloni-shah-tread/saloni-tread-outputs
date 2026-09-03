@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T15:16:02.603Z",
+  "generatedAt": "2026-09-03T18:54:48.635Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -88,7 +88,7 @@
       "Effort": "High",
       "Vibeable?": "TBD",
       "Status": "In Progress",
-      "Product Owner": "",
+      "Product Owner": "Myles Pember",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/route-sequencing-optimization-d8a0f7dfaa8f"
     },
