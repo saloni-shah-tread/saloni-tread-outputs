@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T23:37:17.075Z",
+  "generatedAt": "2026-09-03T01:34:39.813Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -10,7 +10,7 @@
       "Effort": "High",
       "Vibeable?": "TBD",
       "Status": "In Progress",
-      "Product Owner": "",
+      "Product Owner": "Sameer Bhalla",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/tread-in-app-chat-agent-f34abe6ed149"
     },
@@ -360,7 +360,7 @@
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
-      "Status": "Planned",
+      "Status": "Backlog",
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/allow-connected-vendors-to-edit-billing-fields-89a9f69e2c24"
@@ -393,6 +393,19 @@
     },
     {
       "Workflow": "Exporting",
+      "Item": "Quick Vendor/Driver Payments",
+      "Platform": "Web + Mobile",
+      "Customers (ACV)": "",
+      "Impact": "High",
+      "Effort": "High",
+      "Vibeable?": "TBD",
+      "Status": "Paused",
+      "Product Owner": "Saloni Shah",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/quick-vendordriver-payments-fa9fb8247663"
+    },
+    {
+      "Workflow": "Exporting",
       "Item": "Settlement CSV Export",
       "Platform": "Web",
       "Customers (ACV)": "Statewide (SMT) ($200K)",
@@ -403,19 +416,6 @@
       "Product Owner": "Richard Leung",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/settlement-csv-export-a3871e88ba00"
-    },
-    {
-      "Workflow": "Exporting",
-      "Item": "Quick Vendor/Driver Payments",
-      "Platform": "Web + Mobile",
-      "Customers (ACV)": "",
-      "Impact": "High",
-      "Effort": "High",
-      "Vibeable?": "TBD",
-      "Status": "Product Scoping",
-      "Product Owner": "Saloni Shah",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/quick-vendordriver-payments-fa9fb8247663"
     },
     {
       "Workflow": "Exporting",
