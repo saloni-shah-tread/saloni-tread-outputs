@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T01:34:09.533Z",
+  "generatedAt": "2026-09-10T06:40:57.875Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -438,7 +438,7 @@
       "Impact": "High",
       "Effort": "High",
       "Vibeable?": "TBD",
-      "Status": "Paused",
+      "Status": "Planned",
       "Product Owner": "Sameer Bhalla",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/prevailing-wage-base-models-march-2026-a155576ce712"
