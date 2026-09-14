@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T19:38:00.203Z",
+  "generatedAt": "2026-09-14T22:47:01.354Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -156,19 +156,6 @@
       "Product Owner": "",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/linked-orders-and-the-driver-day-model-dcf4462fc34b"
-    },
-    {
-      "Workflow": "Rate Set Up",
-      "Item": "Enterprise Rate Hardening",
-      "Platform": "Web + Mobile",
-      "Customers (ACV)": "Jwgolding, Rock On Trucks, 4M Trucking",
-      "Impact": "High",
-      "Effort": "High",
-      "Vibeable?": "TBD",
-      "Status": "In Progress",
-      "Product Owner": "Peter Bailey",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/enterprise-rate-hardening-18e2834a7b9e"
     },
     {
       "Workflow": "Rate Set Up",
@@ -334,7 +321,7 @@
       "Impact": "Medium",
       "Effort": "Low",
       "Vibeable?": "TBD",
-      "Status": "Backlog",
+      "Status": "Canceled",
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/approval-integrity-post-approval-change-controls-8d6136059c18"
@@ -347,7 +334,7 @@
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
-      "Status": "Backlog",
+      "Status": "Canceled",
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/driver-ticket-submission-completeness-and-visibility-ae0991045c09"
@@ -373,7 +360,7 @@
       "Impact": "High",
       "Effort": "High",
       "Vibeable?": "TBD",
-      "Status": "Backlog",
+      "Status": "Canceled",
       "Product Owner": "",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/flatten-billing-data-a0d80b004a6f"
@@ -406,7 +393,7 @@
     },
     {
       "Workflow": "Exporting",
-      "Item": "Settlement CSV Export",
+      "Item": "Export Billing Data as CSV in product",
       "Platform": "Web",
       "Customers (ACV)": "Statewide (SMT) ($200K)",
       "Impact": "Medium",
@@ -415,7 +402,7 @@
       "Status": "Planned",
       "Product Owner": "Richard Leung",
       "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/settlement-csv-export-a3871e88ba00"
+      "PRD Brief Link": "https://linear.app/treadapp/project/export-billing-data-as-csv-in-product-a3871e88ba00"
     },
     {
       "Workflow": "Exporting",
