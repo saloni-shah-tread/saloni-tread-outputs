@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T12:14:47.667Z",
+  "generatedAt": "2026-09-17T17:18:28.493Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -49,7 +49,7 @@
       "Effort": "High",
       "Vibeable?": "TBD",
       "Status": "In Progress",
-      "Product Owner": "Richard Leung",
+      "Product Owner": "",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/2-way-chat-1493d36ce248"
     },
