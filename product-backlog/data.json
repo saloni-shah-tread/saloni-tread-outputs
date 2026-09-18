@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T21:17:50.878Z",
+  "generatedAt": "2026-09-18T23:40:07.792Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -309,7 +309,7 @@
       "Effort": "High",
       "Vibeable?": "TBD",
       "Status": "Product Scoping",
-      "Product Owner": "",
+      "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/charge-based-settlements-2239081ae977"
     },
