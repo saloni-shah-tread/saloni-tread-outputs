@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22T17:22:17.780Z",
+  "generatedAt": "2026-09-22T20:31:00.722Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -161,7 +161,7 @@
       "Workflow": "Rate Set Up",
       "Item": "Rate Visibility",
       "Platform": "Web + Mobile",
-      "Customers (ACV)": "",
+      "Customers (ACV)": "TruckStone Logistics",
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
