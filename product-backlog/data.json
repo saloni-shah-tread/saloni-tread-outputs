@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T18:06:51.825Z",
+  "generatedAt": "2026-09-25T21:52:38.309Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -408,7 +408,7 @@
       "Workflow": "Exporting",
       "Item": "Bulk PDF Generation",
       "Platform": "Web",
-      "Customers (ACV)": "Pineridge, Marex, Trans-Phos, Whitaker",
+      "Customers (ACV)": "Fiore & Sons Inc., Pineridge, Marex, Trans-Phos, Whitaker",
       "Impact": "Medium",
       "Effort": "Medium",
       "Vibeable?": "TBD",
