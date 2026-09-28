@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T19:54:07.808Z",
+  "generatedAt": "2026-09-28T23:59:29.730Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -23,7 +23,7 @@
       "Effort": "High",
       "Vibeable?": "TBD",
       "Status": "Backlog",
-      "Product Owner": "Saloni Shah",
+      "Product Owner": "Sameer Bhalla",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/driver-model-redesign-30da1fe85bda"
     },
@@ -49,7 +49,7 @@
       "Effort": "High",
       "Vibeable?": "TBD",
       "Status": "In Progress",
-      "Product Owner": "",
+      "Product Owner": "Sameer Bhalla",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/2-way-chat-1493d36ce248"
     },
