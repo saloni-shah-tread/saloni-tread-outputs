@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-02T20:20:21.307Z",
+  "generatedAt": "2026-10-03T00:01:58.332Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -303,7 +303,7 @@
     {
       "Workflow": "Approvals",
       "Item": "Charge-Based Settlements",
-      "Platform": "",
+      "Platform": "Web",
       "Customers (ACV)": "",
       "Impact": "High",
       "Effort": "High",
