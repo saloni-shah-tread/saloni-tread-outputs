@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T18:53:04.800Z",
+  "generatedAt": "2026-10-06T00:24:31.485Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -289,6 +289,19 @@
     },
     {
       "Workflow": "Approvals",
+      "Item": "Charge-Based Settlements",
+      "Platform": "Web",
+      "Customers (ACV)": "",
+      "Impact": "High",
+      "Effort": "High",
+      "Vibeable?": "TBD",
+      "Status": "In Progress",
+      "Product Owner": "Saloni Shah",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/charge-based-settlements-2239081ae977"
+    },
+    {
+      "Workflow": "Approvals",
       "Item": "New Roles",
       "Platform": "Web",
       "Customers (ACV)": "Advanced Hauling Solutions, LLC., R.W. Tomlinson Ltd.",
@@ -299,19 +312,6 @@
       "Product Owner": "Richard Leung",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/new-roles-9d23b69b77bb"
-    },
-    {
-      "Workflow": "Approvals",
-      "Item": "Charge-Based Settlements",
-      "Platform": "Web",
-      "Customers (ACV)": "",
-      "Impact": "High",
-      "Effort": "High",
-      "Vibeable?": "TBD",
-      "Status": "Product Scoping",
-      "Product Owner": "Saloni Shah",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/charge-based-settlements-2239081ae977"
     },
     {
       "Workflow": "Approvals",
@@ -369,7 +369,7 @@
       "Workflow": "Exporting",
       "Item": "Quickbooks Integration (Rutter)",
       "Platform": "Web",
-      "Customers (ACV)": "",
+      "Customers (ACV)": "Pineridge Farms, Inc.",
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
