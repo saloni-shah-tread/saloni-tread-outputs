@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T09:50:08.005Z",
+  "generatedAt": "2026-10-12T19:25:24.442Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -380,19 +380,6 @@
     },
     {
       "Workflow": "Exporting",
-      "Item": "Export Billing Data as CSV in product",
-      "Platform": "Web",
-      "Customers (ACV)": "Statewide (SMT)",
-      "Impact": "Medium",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "Planned",
-      "Product Owner": "Richard Leung",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/export-billing-data-as-csv-in-product-a3871e88ba00"
-    },
-    {
-      "Workflow": "Exporting",
       "Item": "Bulk PDF Generation",
       "Platform": "Web",
       "Customers (ACV)": "Cega Freights LLC ($32K), Alexis Trucking | W&J LAZARO INC ($80K), Otwell Services ($100K), Fiore & Sons Inc. ($80K), Pineridge, Marex, Trans-Phos Inc. Trucking Company ($60K), Whitaker",
@@ -403,6 +390,19 @@
       "Product Owner": "",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/bulk-pdf-generation-548eab783fe4"
+    },
+    {
+      "Workflow": "Exporting",
+      "Item": "Export Billing Data as CSV in product",
+      "Platform": "Web",
+      "Customers (ACV)": "Statewide (SMT)",
+      "Impact": "Medium",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "Canceled",
+      "Product Owner": "Richard Leung",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/export-billing-data-as-csv-in-product-a3871e88ba00"
     },
     {
       "Workflow": "Advanced Billing",
