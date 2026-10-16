@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T19:03:36.010Z",
+  "generatedAt": "2026-10-16T22:14:37.325Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -356,7 +356,7 @@
       "Workflow": "Exporting",
       "Item": "Quickbooks Integration (Rutter)",
       "Platform": "Web",
-      "Customers (ACV)": "Alexis Trucking | W&J LAZARO INC ($80K), Otwell Services ($100K), Thunderbolt ($28K), Pineridge Farms Inc. ($49K)",
+      "Customers (ACV)": "Alexis Trucking | W&J LAZARO INC ($80K), Otwell Services ($100K), Zito Trucking ($26K), Thunderbolt ($28K), Pineridge Farms Inc. ($49K)",
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
