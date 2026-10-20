@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-20T18:08:00.573Z",
+  "generatedAt": "2026-10-20T21:57:04.654Z",
   "rows": [
     {
       "Workflow": "Onboarding",
-      "Item": "Tread In-app Chat Agent",
+      "Item": "Tread Agent",
       "Platform": "Web",
       "Customers (ACV)": "",
       "Impact": "High",
@@ -12,7 +12,7 @@
       "Status": "In Progress",
       "Product Owner": "Jeev Prayaga",
       "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/tread-in-app-chat-agent-f34abe6ed149"
+      "PRD Brief Link": "https://linear.app/treadapp/project/tread-agent-f34abe6ed149"
     },
     {
       "Workflow": "Onboarding",
