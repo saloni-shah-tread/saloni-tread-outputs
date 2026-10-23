@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T13:01:11.935Z",
+  "generatedAt": "2026-10-23T17:58:59.113Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -278,7 +278,7 @@
       "Workflow": "Approvals",
       "Item": "Charge-Based Settlements",
       "Platform": "Web + Mobile",
-      "Customers (ACV)": "",
+      "Customers (ACV)": "Otwell Services ($100K), 4M Trucking ($53K)",
       "Impact": "High",
       "Effort": "High",
       "Vibeable?": "TBD",
