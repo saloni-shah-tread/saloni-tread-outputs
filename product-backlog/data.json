@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T19:09:38.102Z",
+  "generatedAt": "2026-10-28T23:40:06.412Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -161,7 +161,7 @@
       "Workflow": "Rate Set Up",
       "Item": "Rate Visibility",
       "Platform": "Web + Mobile",
-      "Customers (ACV)": "TruckStone Logistics ($15K)",
+      "Customers (ACV)": "TruckStone Logistics ($15K), Gulfshore Trucking LLC ($36K)",
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
