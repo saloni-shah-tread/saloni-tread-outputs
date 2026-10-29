@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T16:27:44.379Z",
+  "generatedAt": "2026-10-29T21:28:05.875Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -382,7 +382,7 @@
       "Workflow": "Exporting",
       "Item": "Bulk PDF Generation",
       "Platform": "Web",
-      "Customers (ACV)": "Cega Freights LLC ($32K), Alexis Trucking | W&J LAZARO INC ($80K), Otwell Services ($100K), Fiore & Sons Inc. ($80K), Pineridge, Marex, Trans-Phos Inc. Trucking Company ($60K), Whitaker",
+      "Customers (ACV)": "Cega Freights LLC ($32K), Alexis Trucking | W&J LAZARO INC ($80K), Metropolitan Gravel Company ($45K), Otwell Services ($100K), Fiore & Sons Inc. ($80K), Pineridge, Marex, Trans-Phos Inc. Trucking Company ($60K), Whitaker",
       "Impact": "Medium",
       "Effort": "Medium",
       "Vibeable?": "TBD",
