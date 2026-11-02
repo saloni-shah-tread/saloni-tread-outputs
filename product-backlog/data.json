@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T10:07:43.195Z",
+  "generatedAt": "2026-11-02T20:31:40.015Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -82,7 +82,7 @@
     {
       "Workflow": "Dispatch Management",
       "Item": "Route Sequencing Optimization",
-      "Platform": "Web",
+      "Platform": "Web + Mobile",
       "Customers (ACV)": "",
       "Impact": "High",
       "Effort": "High",
