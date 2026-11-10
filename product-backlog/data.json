@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T17:51:17.433Z",
+  "generatedAt": "2026-11-10T00:52:58.346Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -39,19 +39,6 @@
       "Product Owner": "Richard Leung",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/vendor-management-reactivate-deactivated-vendors-f229e28f7510"
-    },
-    {
-      "Workflow": "Dispatch Management",
-      "Item": "2-Way Chat",
-      "Platform": "Web + Mobile",
-      "Customers (ACV)": "NLS, Lafarge GVA Construction, Amrize: GTA ($266K)",
-      "Impact": "High",
-      "Effort": "High",
-      "Vibeable?": "TBD",
-      "Status": "In Progress",
-      "Product Owner": "Sameer Bhalla",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/2-way-chat-1493d36ce248"
     },
     {
       "Workflow": "Dispatch Management",
