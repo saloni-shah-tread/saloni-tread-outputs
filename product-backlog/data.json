@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-12T13:19:52.264Z",
+  "generatedAt": "2026-11-12T21:09:43.503Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -304,7 +304,7 @@
       "Workflow": "Connected Customer Ecosystem",
       "Item": "Allow Connected Vendors to Edit Billing Fields",
       "Platform": "Web",
-      "Customers (ACV)": "",
+      "Customers (ACV)": "Rajhauling, Rock On Trucks ($29K), Peterson Companies",
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
