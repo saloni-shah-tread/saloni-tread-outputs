@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T17:31:21.057Z",
+  "generatedAt": "2026-11-17T01:07:49.033Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -252,7 +252,7 @@
       "Workflow": "Approvals",
       "Item": "Charge-Based Settlements",
       "Platform": "Web + Mobile",
-      "Customers (ACV)": "Otwell Services ($100K), 4M Trucking ($53K)",
+      "Customers (ACV)": "Otwell Services ($100K), 4M Trucking ($53K), Statewide Materials ($204K)",
       "Impact": "High",
       "Effort": "High",
       "Vibeable?": "TBD",
@@ -330,7 +330,7 @@
       "Workflow": "Exporting",
       "Item": "Quickbooks Integration (Rutter)",
       "Platform": "Web",
-      "Customers (ACV)": "Alexis Trucking | W&J LAZARO INC ($80K), Otwell Services ($100K), Zito Trucking ($26K), Thunderbolt ($28K), Pineridge Farms Inc. ($49K)",
+      "Customers (ACV)": "Cega Freights LLC ($32K), Alexis Trucking | W&J LAZARO INC ($80K), Otwell Services ($100K), Zito Trucking ($26K), Thunderbolt ($28K), Pineridge Farms Inc. ($49K)",
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
