@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T18:47:33.653Z",
+  "generatedAt": "2026-11-18T01:22:12.890Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -213,7 +213,7 @@
       "Workflow": "Data Input",
       "Item": "Recurring Orders",
       "Platform": "Web",
-      "Customers (ACV)": "Daniel Mullins Trucking, RPM xConstruction ($140K), Werdco BC, Dufferin Aggregates (CRH) ($71K)",
+      "Customers (ACV)": "Daniel Mullins Trucking, RPM xConstruction ($140K), Western States Contracting, Werdco BC, Dufferin Aggregates (CRH) ($71K)",
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
@@ -252,7 +252,7 @@
       "Workflow": "Approvals",
       "Item": "Charge-Based Settlements",
       "Platform": "Web + Mobile",
-      "Customers (ACV)": "Otwell Services ($100K), 4M Trucking ($53K), Statewide Materials ($204K)",
+      "Customers (ACV)": "Otwell Services ($100K), Thunderbolt ($28K), 4M Trucking ($53K), Statewide Materials ($204K)",
       "Impact": "High",
       "Effort": "High",
       "Vibeable?": "TBD",
@@ -304,7 +304,7 @@
       "Workflow": "Connected Customer Ecosystem",
       "Item": "Allow Connected Vendors to Edit Billing Fields",
       "Platform": "Web",
-      "Customers (ACV)": "Rajhauling, Rock On Trucks ($29K), Peterson Companies",
+      "Customers (ACV)": "Rajhauling, Rock On Trucks ($29K), AHS ($39K), Peterson Companies",
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
