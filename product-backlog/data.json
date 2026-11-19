@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T18:26:48.659Z",
+  "generatedAt": "2026-11-19T00:47:14.028Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -211,19 +211,6 @@
     },
     {
       "Workflow": "Data Input",
-      "Item": "Recurring Orders",
-      "Platform": "Web",
-      "Customers (ACV)": "Daniel Mullins Trucking, RPM xConstruction ($140K), Western States Contracting, Werdco BC, Dufferin Aggregates (CRH) ($71K)",
-      "Impact": "High",
-      "Effort": "Medium",
-      "Vibeable?": "TBD",
-      "Status": "Backlog",
-      "Product Owner": "Saloni Shah",
-      "Notes": "",
-      "PRD Brief Link": "https://linear.app/treadapp/project/recurring-orders-e3958b2e432f"
-    },
-    {
-      "Workflow": "Data Input",
       "Item": "Expose Internal Notes on Project Tab",
       "Platform": "Web",
       "Customers (ACV)": "Rock On Trucks ($29K), 4M Trucking ($53K)",
@@ -234,6 +221,19 @@
       "Product Owner": "Saloni Shah",
       "Notes": "",
       "PRD Brief Link": "https://linear.app/treadapp/project/expose-internal-notes-on-project-tab-834af203427d"
+    },
+    {
+      "Workflow": "Data Input",
+      "Item": "Recurring Orders",
+      "Platform": "Web",
+      "Customers (ACV)": "Daniel Mullins Trucking, RPM xConstruction ($140K), Western States Contracting, Werdco BC, Dufferin Aggregates (CRH) ($71K)",
+      "Impact": "High",
+      "Effort": "Medium",
+      "Vibeable?": "TBD",
+      "Status": "Canceled",
+      "Product Owner": "Saloni Shah",
+      "Notes": "",
+      "PRD Brief Link": "https://linear.app/treadapp/project/recurring-orders-e3958b2e432f"
     },
     {
       "Workflow": "Approvals",
@@ -252,7 +252,7 @@
       "Workflow": "Approvals",
       "Item": "Charge-Based Settlements",
       "Platform": "Web + Mobile",
-      "Customers (ACV)": "Otwell Services ($100K), Thunderbolt ($28K), 4M Trucking ($53K), Statewide Materials ($204K)",
+      "Customers (ACV)": "Otwell Services ($100K), Thunderbolt ($28K), Rock On Trucks ($29K), 4M Trucking ($53K), Statewide Materials ($204K)",
       "Impact": "High",
       "Effort": "High",
       "Vibeable?": "TBD",
