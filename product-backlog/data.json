@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T17:45:12.616Z",
+  "generatedAt": "2026-11-19T23:55:47.774Z",
   "rows": [
     {
       "Workflow": "Onboarding",
@@ -226,7 +226,7 @@
       "Workflow": "Data Input",
       "Item": "Recurring Orders",
       "Platform": "Web",
-      "Customers (ACV)": "Daniel Mullins Trucking, RPM xConstruction ($140K), Western States Contracting, Werdco BC, Dufferin Aggregates (CRH) ($71K)",
+      "Customers (ACV)": "Daniel Mullins Trucking ($93K), RPM xConstruction ($140K), Western States Contracting, Werdco BC, Dufferin Aggregates (CRH) ($71K)",
       "Impact": "High",
       "Effort": "Medium",
       "Vibeable?": "TBD",
